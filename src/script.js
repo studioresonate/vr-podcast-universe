@@ -219,7 +219,7 @@ renderer.xr.enabled = true;
 const clock = new THREE.Clock()
 
 function animate() {
-    renderer.setAnimationLoop( tick );
+    renderer.setAnimationLoop( animate );
 
     const elapsedTime = clock.getElapsedTime()
 
@@ -235,10 +235,10 @@ function animate() {
     controls.update()
 
     // Render
-    // renderer.render(scene, camera)
+    renderer.render(scene, camera)
 
     // Call tick again on the next frame
-    window.requestAnimationFrame(animate)
+    // window.requestAnimationFrame(animate)
 
 
     for (var i = 0; i < rotateMe.length; i++) {
@@ -249,14 +249,14 @@ function animate() {
     stats.update()
 }
 
-const tick = () =>
-{
-    // Render
-    renderer.render(scene, camera)
+// const tick = () =>
+// {
+//     // Render
+//     renderer.render(scene, camera)
 
-    // Call tick again on the next frame
-    // window.requestAnimationFrame(tick)
-}
+//     // Call tick again on the next frame
+//     // window.requestAnimationFrame(tick)
+// }
 
 // tick()
 animate();
