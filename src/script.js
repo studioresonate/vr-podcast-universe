@@ -246,8 +246,6 @@ function animate() {
         rotateMe[i].rotation.y +=0.003;
     }
 
-    console.log(rotateMe);
-
     stats.update()
 }
 
