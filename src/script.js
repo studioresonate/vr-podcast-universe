@@ -39,6 +39,7 @@ const addNewBoxMesh = (positionX, positionY, positionZ, material, title) => {
         fontSize: 0.51,
         fontStyle: 'normal',
         fontWeight: 'bold',
+        padding: 0.5,
         text: title,
     });
     instance.position.set(positionX, positionY -3, positionZ);
