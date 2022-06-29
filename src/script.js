@@ -5,6 +5,8 @@ import { BoxLineGeometry } from 'three/examples/jsm/geometries/BoxLineGeometry.j
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import TextSprite from '@seregpie/three.text-sprite';
 import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
+import ImmersiveControls from '@depasquale/three-immersive-controls';
+
 
 import * as dat from 'dat.gui'
 
@@ -182,8 +184,8 @@ camera.position.z = -15
 scene.add(camera)
 
 // Controls
-const controls = new OrbitControls(camera, canvas)
-controls.enableDamping = true
+// const controls = new OrbitControls(camera, canvas)
+// controls.enableDamping = true
 
 /**
  * Renderer
@@ -202,6 +204,10 @@ cameraFolder.add(camera.position, 'x', -100, 100)
 cameraFolder.open()
 
 
+// VR Controls
+const controls = new ImmersiveControls(camera, renderer, scene, {
+
+});
 
 /**
  * VR
@@ -234,6 +240,7 @@ function animate() {
 
     // Update Orbital Controls
     controls.update()
+
 
     // Render
     renderer.render(scene, camera)
