@@ -109,9 +109,9 @@ window.addEventListener('resize', () =>
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 1000)
-camera.position.x = 14
-camera.position.y = 2
-camera.position.z = -15
+// camera.position.x = 14
+// camera.position.y = 2
+// camera.position.z = -15
 scene.add(camera)
 
 // Controls
@@ -137,6 +137,7 @@ cameraFolder.open()
 
 // VR Controls
 const controls = new ImmersiveControls(camera, renderer, scene, {
+    initialPosition: new THREE.Vector3(4, 2, 22),
     gravity: false,
     floor: false
 });
