@@ -139,7 +139,8 @@ cameraFolder.open()
 const controls = new ImmersiveControls(camera, renderer, scene, {
     initialPosition: new THREE.Vector3(4, 2, 22),
     gravity: false,
-    floor: false
+    floor: false,
+    showExitVRButton: false
 });
 
 /**
