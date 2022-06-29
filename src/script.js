@@ -58,41 +58,6 @@ addNewBoxMesh(3,4,6,'ConanOBrienNeedsAFriend', 'Conan OBrien Needs A Friend')
 addNewBoxMesh(6,1,16,'2Bears1Cave', '2 Bears, 1 Cave')
 
 
-// // Objects
-// const geometry = new THREE.BoxGeometry(3, 3, 3)
-
-// // Materials
-
-// const textureConan = new THREE.TextureLoader().load( "./ConanOBrienNeedsAFriend.jpeg" );
-// const materialConan = new THREE.MeshPhongMaterial({
-//     map: textureConan
-// })
-
-// const texture2Bears1Cave = new THREE.TextureLoader().load( "./2Bears1Cave.jpeg" );
-// const material2Bears1Cave = new THREE.MeshPhongMaterial({
-//     map: texture2Bears1Cave
-// })
-
-// // Mesh
-// const boxConan = new THREE.Mesh(geometry,materialConan)
-// boxConan.position.x = Math.random() * 60 - 40;
-// boxConan.position.y = Math.random() * 60 - 40;
-// boxConan.position.z = Math.random() * 60 - 40;
-// scene.add(boxConan)
-
-// const box2Bears1Cave = new THREE.Mesh(geometry,material2Bears1Cave)
-// // box2Bears1Cave.position.y = 8
-// // box2Bears1Cave.position.x = 8
-// // box2Bears1Cave.position.z = 8
-
-// box2Bears1Cave.position.x = Math.random() * 60 - 40;
-// box2Bears1Cave.position.y = Math.random() * 60 - 40;
-// box2Bears1Cave.position.z = Math.random() * 60 - 40;
-
-// scene.add(box2Bears1Cave)
-
-
-
 // // Lights
 
 const light = new THREE.AmbientLight(0xffffff, 1)
@@ -100,40 +65,6 @@ light.position.x = 0
 light.position.y = 0
 light.position.z = 0
 scene.add(light)
-
-// // Text
-// let instanceConan = new TextSprite({
-//     alignment: 'center',
-//     color: '#fff',
-//     fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-//     fontSize: 0.51,
-//     fontStyle: 'normal',
-//     fontWeight: 'bold',
-//     text: 'CONAN O\'BRIEN NEEDS A FRIEND',
-//   });
-
-// instanceConan.position.x = boxConan.position.x;
-// instanceConan.position.y = boxConan.position.y -3;
-// instanceConan.position.z = boxConan.position.z;
-
-// scene.add(instanceConan);
-
-
-// let instance2Bears1Cave = new TextSprite({
-//     alignment: 'center',
-//     color: '#fff',
-//     fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-//     fontSize: 0.51,
-//     fontStyle: 'normal',
-//     fontWeight: 'bold',
-//     text: '2 BEARS, 1 CAVE',
-//   });
-
-// instance2Bears1Cave.position.x = box2Bears1Cave.position.x;
-// instance2Bears1Cave.position.y = box2Bears1Cave.position.y -3;
-// instance2Bears1Cave.position.z = box2Bears1Cave.position.z;
-
-// scene.add(instance2Bears1Cave);
 
 
 /**
@@ -233,24 +164,12 @@ function animate() {
 
     const elapsedTime = clock.getElapsedTime()
 
-    // // Update objects
-    // boxConan.rotation.y = .5 * elapsedTime
-    // boxConan.rotation.x = .5 * elapsedTime
-
-    // box2Bears1Cave.rotation.y = .3 * elapsedTime
-    // box2Bears1Cave.rotation.x = .3 * elapsedTime
-
-
     // Update Orbital Controls
     controls.update()
 
 
     // Render
     renderer.render(scene, camera)
-
-    // Call tick again on the next frame
-    // window.requestAnimationFrame(animate)
-
 
     for (var i = 0; i < rotateMe.length; i++) {
         // rotateMe[i].rotation.x +=0.003;
@@ -260,16 +179,6 @@ function animate() {
     stats.update()
 }
 
-// const tick = () =>
-// {
-//     // Render
-//     renderer.render(scene, camera)
-
-//     // Call tick again on the next frame
-//     // window.requestAnimationFrame(tick)
-// }
-
-// tick()
 animate();
 
 
