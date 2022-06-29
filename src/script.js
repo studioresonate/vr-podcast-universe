@@ -206,7 +206,8 @@ cameraFolder.open()
 
 // VR Controls
 const controls = new ImmersiveControls(camera, renderer, scene, {
-
+    gravity: false,
+    floor: false
 });
 
 /**
