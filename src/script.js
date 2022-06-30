@@ -2,7 +2,7 @@ import './style.css'
 import * as THREE from 'three'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { BoxLineGeometry } from 'three/examples/jsm/geometries/BoxLineGeometry.js';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import TextSprite from '@seregpie/three.text-sprite';
 import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
 import ImmersiveControls from '@depasquale/three-immersive-controls';
@@ -23,17 +23,21 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
+// Rando number
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
 
-const addNewBoxMesh = (positionX, positionY, positionZ, material, title) => {
+// Mesh helper
+const addNewBoxMesh = (material, title) => {
     const boxGeometry = new THREE.BoxGeometry(3, 3, 3)
-    const loader = new THREE.TextureLoader().load( './' + material + '.jpeg' );
+    const loader = new THREE.TextureLoader().load('./' + material + '.jpeg');
     const boxMaterial = new THREE.MeshPhongMaterial({
         map: loader,
         shininess: 10,
         opacity: 1
     })
     const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
-    boxMesh.position.set(positionX, positionY, positionZ);
     const instance = new TextSprite({
         alignment: 'center',
         color: '#fff',
@@ -44,18 +48,25 @@ const addNewBoxMesh = (positionX, positionY, positionZ, material, title) => {
         padding: 0.5,
         text: title,
     });
-    instance.position.set(positionX, positionY -3, positionZ);
+
+    // position text just below box
+    instance.position.y = -3;
+
+    const boxGroup = new THREE.Group();
+    boxGroup.position.set(getRandomInt(20), getRandomInt(20), getRandomInt(20));
+    boxGroup.add(instance)
+    boxGroup.add(boxMesh)
 
     rotateMe.push(boxMesh);
 
-    scene.add(instance);
-    scene.add(boxMesh);
+    scene.add(boxGroup)
 
 
 }
 
-addNewBoxMesh(3,4,6,'ConanOBrienNeedsAFriend', 'Conan OBrien Needs A Friend')
-addNewBoxMesh(6,1,16,'2Bears1Cave', '2 Bears, 1 Cave')
+
+addNewBoxMesh('ConanOBrienNeedsAFriend', 'Conan OBrien Needs A Friend')
+addNewBoxMesh('2Bears1Cave', '2 Bears, 1 Cave')
 
 
 // // Lights
@@ -72,11 +83,11 @@ scene.add(light)
  */
 
 const room = new THREE.LineSegments(
-    new BoxLineGeometry( 200, 200, 200, 10, 10, 10 ).translate( 0, 3, 0 ),
-    new THREE.LineBasicMaterial( { color: 0x808080 } )
+    new BoxLineGeometry(200, 200, 200, 10, 10, 10).translate(0, 3, 0),
+    new THREE.LineBasicMaterial({ color: 0x808080 })
 );
 
-scene.add( room );
+scene.add(room);
 
 
 /**
@@ -87,8 +98,7 @@ const sizes = {
     height: window.innerHeight
 }
 
-window.addEventListener('resize', () =>
-{
+window.addEventListener('resize', () => {
     // Update sizes
     sizes.width = window.innerWidth
     sizes.height = window.innerHeight
@@ -140,13 +150,14 @@ const controls = new ImmersiveControls(camera, renderer, scene, {
     initialPosition: new THREE.Vector3(4, 2, 22),
     gravity: false,
     floor: false,
-    showExitVRButton: false
+    showExitVRButton: false,
+    showEnterVRButton: false
 });
 
 /**
  * VR
  */
-document.body.appendChild( VRButton.createButton( renderer ) );
+document.body.appendChild(VRButton.createButton(renderer));
 renderer.xr.enabled = true;
 
 
@@ -162,7 +173,7 @@ document.body.insertAdjacentHTML('afterbegin', `
 const clock = new THREE.Clock()
 
 function animate() {
-    renderer.setAnimationLoop( animate );
+    renderer.setAnimationLoop(animate);
 
     const elapsedTime = clock.getElapsedTime()
 
@@ -175,7 +186,7 @@ function animate() {
 
     for (var i = 0; i < rotateMe.length; i++) {
         // rotateMe[i].rotation.x +=0.003;
-        rotateMe[i].rotation.y +=0.003;
+        rotateMe[i].rotation.y += 0.003;
     }
 
     stats.update()
