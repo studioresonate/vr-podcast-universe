@@ -1,10 +1,25 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { Canvas, useFrame, extend, useThree } from '@react-three/fiber'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import StatsImpl from "stats.js"
 
 import './App.css';
 
 extend({ OrbitControls });
+
+function Stats() {
+  const [stats] = useState(() => new StatsImpl())
+  useEffect(() => {
+    stats.showPanel(0)
+    document.body.appendChild(stats.dom)
+    return () => document.body.removeChild(stats.dom)
+  }, [])
+  return useFrame(state => {
+    stats.begin()
+    state.gl.render(state.scene, state.camera)
+    stats.end()
+  }, 1)
+}
 
 const CameraControls = () => {
   // Get a reference to the three.js Camera, and the canvas html element.
@@ -46,6 +61,7 @@ function App() {
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
       <pointLight position={[-10, -10, -10]} />
       <Box position={[0, 0, 0]} />
+      <Stats />
     </Canvas>
   );
 }
