@@ -1,43 +1,16 @@
-import { useRef, useState, useEffect } from 'react'
-import { Canvas, useFrame, extend, useThree } from '@react-three/fiber'
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import StatsImpl from "stats.js"
+import { useRef, useState } from 'react'
+import { Canvas, useFrame, useLoader } from '@react-three/fiber'
+import { Stats, OrbitControls, Billboard, Stars, Text } from '@react-three/drei'
+import { TextureLoader } from 'three/src/loaders/TextureLoader.js'
 
 import './App.css';
-
-extend({ OrbitControls });
-
-function Stats() {
-  const [stats] = useState(() => new StatsImpl())
-  useEffect(() => {
-    stats.showPanel(0)
-    document.body.appendChild(stats.dom)
-    return () => document.body.removeChild(stats.dom)
-  }, [stats])
-  return useFrame(state => {
-    stats.begin()
-    state.gl.render(state.scene, state.camera)
-    stats.end()
-  }, 1)
-}
-
-const CameraControls = () => {
-  // Get a reference to the three.js Camera, and the canvas html element.
-  const {
-    camera,
-    gl: { domElement },
-  } = useThree();
-  // Ref to the controls, so that we can update them on every frame using useFrame
-  const controls = useRef();
-  useFrame((state) => controls.current.update());
-  return <orbitControls ref={controls} args={[camera, domElement]} />;
-};
-
 
 function Box(props) {
   const ref = useRef()
   const [hovered, hover] = useState(false)
   const [clicked, click] = useState(false)
+
+  const ConanOBrienNeedsAFriend = useLoader(TextureLoader, 'tiles/ConanOBrienNeedsAFriend.jpeg')
   // add rotation to render loop
   useFrame((state, delta) => (ref.current.rotation.y += 0.01))
   return (
@@ -48,7 +21,7 @@ function Box(props) {
       onPointerOver={(event) => hover(true)}
       onPointerOut={(event) => hover(false)}>
       <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={hovered ? 'blue' : 'purple'} />
+      <meshStandardMaterial map={ConanOBrienNeedsAFriend} color={hovered ? 'blue' : 'white'} />
     </mesh>
   )
 }
@@ -56,12 +29,22 @@ function Box(props) {
 function App() {
   return (
     <Canvas>
-      <CameraControls />
+      <OrbitControls />
       <ambientLight intensity={0.5} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
       <pointLight position={[-10, -10, -10]} />
-      <Box position={[0, 0, 0]} />
-      <Stats />
+      <Stars radius={100} depth={50} count={2000} factor={8} saturation={0} fade speed={2} />
+
+      <group position={[1, 3, 0]}>
+        <Box />
+        <Billboard follow='true'>
+          <Text fontSize={0.2} outlineWidth={'5%'} outlineColor="#000000" outlineOpacity={1} position={[0, - 1, 0]} maxWidth="3" textAlign='center'>
+            This is a BOX! And some very long text that would go here!
+          </Text>
+        </Billboard>
+      </group>
+
+      <Stats showPanel={0} />
     </Canvas>
   );
 }
