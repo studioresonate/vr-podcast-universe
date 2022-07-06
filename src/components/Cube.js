@@ -10,7 +10,7 @@ function Box({ setRef, position, textureURL, title }) {
   ])
 
   // Maybe not a good idea for performance reasons??
-  useFrame(() => (setRef.current.rotation.y += 0.01))
+  useFrame(() => (setRef.current.rotation.y += 0.002))
 
   return (
     <>

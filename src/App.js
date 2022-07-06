@@ -10,28 +10,60 @@ import Dome from './components/Dome';
 
 import ConanOBrienNeedsAFriend from './tiles/ConanOBrienNeedsAFriend.jpeg';
 import TwoBears1Cave from './tiles/2Bears1Cave.jpeg';
+import StarTalk from './tiles/StarTalk.jpeg';
+import OfficeLadies from './tiles/OfficeLadies.jpeg';
+import LeVarBurtonReads from './tiles/LeVarBurtonReads.jpeg';
+
 
 function App() {
   const _ConanOBrienNeedsAFriendBoxRef = useRef();
   const _TwoBears1Cave = useRef();
+  const _StarTalk = useRef();
+  const _OfficeLadies = useRef();
+  const _LeVarBurtonReads = useRef();
+
   return (
     <Canvas>
       <OrbitControls />
       <ambientLight intensity={0.5} />
+      <Suspense fallback={null}>
 
-      <Cube
-        setRef={_ConanOBrienNeedsAFriendBoxRef}
-        position={[0, 1, 0]}
-        textureURL={ConanOBrienNeedsAFriend}
-        title="Conan O'Brien Needs A Friend"
-      />
+        <Cube
+          setRef={_ConanOBrienNeedsAFriendBoxRef}
+          position={[0, 1, 0]}
+          textureURL={ConanOBrienNeedsAFriend}
+          title="Conan O'Brien Needs A Friend"
+        />
 
-      <Cube
-        setRef={_TwoBears1Cave}
-        position={[3, -1, 3]}
-        textureURL={TwoBears1Cave}
-        title="2 Bears, 1 Cave"
-      />
+        <Cube
+          setRef={_TwoBears1Cave}
+          position={[3, -1, 3]}
+          textureURL={TwoBears1Cave}
+          title="2 Bears, 1 Cave"
+        />
+
+        <Cube
+          setRef={_StarTalk}
+          position={[4, 2, -2]}
+          textureURL={StarTalk}
+          title="StarTalk Radio"
+        />
+
+        <Cube
+          setRef={_OfficeLadies}
+          position={[-4, -2, -5]}
+          textureURL={OfficeLadies}
+          title="Office Ladies"
+        />
+
+        <Cube
+          setRef={_LeVarBurtonReads}
+          position={[-5, 3, -4]}
+          textureURL={LeVarBurtonReads}
+          title="LeVar Burton Reads"
+        />
+
+      </Suspense>
 
       <Suspense fallback={null}>
         <Dome />
