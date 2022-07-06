@@ -1,21 +1,28 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { TextureLoader } from 'three'
 import { Billboard, Text } from '@react-three/drei'
 
 function Box({ setRef, position, textureURL, title }) {
+  const [hovered, hover] = useState(false)
   const boxTexture = useMemo(() => new TextureLoader().load(textureURL), [
     textureURL
   ])
 
+
   return (
-    <mesh ref={setRef} position={position} castShadow>
+    <mesh
+      ref={setRef}
+      position={position}
+      onPointerOver={(event) => hover(true)}
+      onPointerOut={(event) => hover(false)} castShadow
+    >
       <boxGeometry attach='geometry' args={[1, 1, 1]} />
       <meshStandardMaterial
         attach='material'
-        color={0xffffff}
         roughness={0.25}
         metalness={0}
         map={boxTexture}
+        color={hovered ? 'hotpink' : 'white'}
       />
       <Billboard follow='true'>
         <Text
