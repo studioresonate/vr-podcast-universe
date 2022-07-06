@@ -1,5 +1,6 @@
 import { Suspense, useRef } from 'react'
-import { Canvas } from '@react-three/fiber'
+// import { Canvas } from '@react-three/fiber'
+import { DefaultXRControllers, VRCanvas } from '@react-three/xr'
 import { Stats, OrbitControls, Stars } from '@react-three/drei'
 import * as THREE from 'three'
 
@@ -23,7 +24,8 @@ function App() {
   const _LeVarBurtonReads = useRef();
 
   return (
-    <Canvas>
+    <VRCanvas>
+      <DefaultXRControllers />
       <OrbitControls />
       <ambientLight intensity={0.5} />
       <Suspense fallback={null}>
@@ -82,7 +84,7 @@ function App() {
       {/* debug */}
       <primitive object={new THREE.AxesHelper(5)} />
       <Stats showPanel={0} />
-    </Canvas>
+    </VRCanvas>
   );
 }
 
