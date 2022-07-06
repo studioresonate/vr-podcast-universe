@@ -1,6 +1,6 @@
 import { Suspense, useRef } from 'react'
 // import { Canvas } from '@react-three/fiber'
-import { DefaultXRControllers, VRCanvas } from '@react-three/xr'
+import { DefaultXRControllers, Hands, VRCanvas } from '@react-three/xr'
 import { Stats, OrbitControls, Stars } from '@react-three/drei'
 import * as THREE from 'three'
 
@@ -24,15 +24,16 @@ function App() {
   const _LeVarBurtonReads = useRef();
 
   return (
-    <VRCanvas>
+    <VRCanvas camera={{ position: [-5, 5, 5] }}>
       <DefaultXRControllers />
+      <Hands />
       <OrbitControls />
       <ambientLight intensity={0.5} />
       <Suspense fallback={null}>
 
         <Cube
           setRef={_ConanOBrienNeedsAFriendBoxRef}
-          position={[0, 1, 0]}
+          position={[-5, 2, 3]}
           textureURL={ConanOBrienNeedsAFriend}
           title="Conan O'Brien Needs A Friend"
         />
