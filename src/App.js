@@ -1,7 +1,7 @@
 import { Suspense, useRef } from 'react'
 // import { Canvas } from '@react-three/fiber'
 import { DefaultXRControllers, VRCanvas } from '@react-three/xr'
-import { Stats, OrbitControls, Stars, PerspectiveCamera, Plane } from '@react-three/drei'
+import { Stats, Stars, PerspectiveCamera, Plane } from '@react-three/drei'
 import * as THREE from 'three'
 
 import './App.css';
