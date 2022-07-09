@@ -32,7 +32,7 @@ function Box({ setRef, position, textureURL, title }) {
         <mesh
           position={[0, - 1, 0]}
         >
-          <Billboard follow='true'>
+          <Billboard follow='true' lockZ={true}>
             <Text
               fontSize={0.2}
               outlineWidth={'5%'}

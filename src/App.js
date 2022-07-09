@@ -1,7 +1,7 @@
 import { Suspense, useRef } from 'react'
 // import { Canvas } from '@react-three/fiber'
 import { DefaultXRControllers, VRCanvas } from '@react-three/xr'
-import { Stats, Stars, PerspectiveCamera, Plane } from '@react-three/drei'
+import { Stats, Stars, PerspectiveCamera } from '@react-three/drei'
 import * as THREE from 'three'
 
 import './App.css';
@@ -17,7 +17,6 @@ import LeVarBurtonReads from './tiles/LeVarBurtonReads.jpeg';
 
 
 function App() {
-  const cameraPoint = useRef();
   const _ConanOBrienNeedsAFriendBoxRef = useRef();
   const _TwoBears1Cave = useRef();
   const _StarTalk = useRef();
@@ -28,13 +27,8 @@ function App() {
     <VRCanvas>
       <DefaultXRControllers />
 
-      <PerspectiveCamera makeDefault position={[-6, 5, 6]}>
-        <mesh>
-          <Plane args={[0.1, 0.1]} ref={cameraPoint} />
-        </mesh>
-      </PerspectiveCamera>
+      <PerspectiveCamera makeDefault position={[-6, 5, 6]} />
 
-      {/* <OrbitControls /> */}
       <ambientLight intensity={0.5} />
       <Suspense fallback={null}>
 
