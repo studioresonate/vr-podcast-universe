@@ -1,7 +1,8 @@
-import { Suspense, useRef } from 'react'
-// import { Canvas } from '@react-three/fiber'
+import { Suspense, useEffect, useState } from 'react'
+import query from './components/Query'
+
 import { DefaultXRControllers, VRCanvas } from '@react-three/xr'
-import { Stats, Stars, PerspectiveCamera } from '@react-three/drei'
+import { Stats, Stars, PerspectiveCamera, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 
 import './App.css';
@@ -9,64 +10,69 @@ import './App.css';
 import Cube from './components/Cube';
 import Dome from './components/Dome';
 
-import ConanOBrienNeedsAFriend from './tiles/ConanOBrienNeedsAFriend.jpeg';
-import TwoBears1Cave from './tiles/2Bears1Cave.jpeg';
-import StarTalk from './tiles/StarTalk.jpeg';
-import OfficeLadies from './tiles/OfficeLadies.jpeg';
-import LeVarBurtonReads from './tiles/LeVarBurtonReads.jpeg';
 
 
 function App() {
-  const _ConanOBrienNeedsAFriendBoxRef = useRef();
-  const _TwoBears1Cave = useRef();
-  const _StarTalk = useRef();
-  const _OfficeLadies = useRef();
-  const _LeVarBurtonReads = useRef();
+
+  const [podcastCollection, setpodcastCollection] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      `https://graphql.contentful.com/content/v1/spaces/${process.env.REACT_APP_SPACE_ID}/`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // Authenticate the request
+          Authorization: `Bearer ${process.env.REACT_APP_CONTENT_DELIVERY}`,
+        },
+        // send the GraphQL query
+        body: JSON.stringify({ query }),
+      }
+    )
+      .then((response) => response.json())
+      .then(({ data, errors }) => {
+        if (errors) {
+          console.error(errors);
+        }
+        // rerender the entire component with new data
+        setpodcastCollection(data.podcastCollection.items);
+        // console.log(data.podcastCollection.items);
+      });
+  }, []);
+
+  if (!podcastCollection) {
+    return "Loading...";
+  }
+
+
+
 
   return (
     <VRCanvas>
       <DefaultXRControllers />
+      <OrbitControls />
 
       <PerspectiveCamera makeDefault position={[-6, 5, 6]} />
 
       <ambientLight intensity={0.5} />
+
       <Suspense fallback={null}>
-
-        <Cube
-          setRef={_ConanOBrienNeedsAFriendBoxRef}
-          position={[-5, 2, 3]}
-          textureURL={ConanOBrienNeedsAFriend}
-          title="Conan O'Brien Needs A Friend"
-        />
-
-        <Cube
-          setRef={_TwoBears1Cave}
-          position={[3, -1, 3]}
-          textureURL={TwoBears1Cave}
-          title="2 Bears, 1 Cave"
-        />
-
-        <Cube
-          setRef={_StarTalk}
-          position={[4, 2, -2]}
-          textureURL={StarTalk}
-          title="StarTalk Radio"
-        />
-
-        <Cube
-          setRef={_OfficeLadies}
-          position={[-4, -2, -5]}
-          textureURL={OfficeLadies}
-          title="Office Ladies"
-        />
-
-        <Cube
-          setRef={_LeVarBurtonReads}
-          position={[-5, 3, -4]}
-          textureURL={LeVarBurtonReads}
-          title="LeVar Burton Reads"
-        />
-
+        {podcastCollection.map(podcast => (
+          <>
+            <Cube
+              key={podcast.sys.id}
+              useRef={podcast.sys.id}
+              position={[
+                Math.random() * (5 - -5) + -5,
+                Math.random() * (5 - -5) + -5,
+                Math.random() * (5 - -5) + -5
+              ]}
+              textureURL={`${podcast.coverArt.url}?fit=scale&w=300&h=300`}
+              title={podcast.podcastTitle}
+            />
+          </>
+        ))}
       </Suspense>
 
       <Suspense fallback={null}>
@@ -81,7 +87,6 @@ function App() {
         saturation={0}
         fade speed={3}
       />
-      <Dome />
 
       {/* debug */}
       <primitive object={new THREE.AxesHelper(5)} />

@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from 'react'
 import { TextureLoader } from 'three'
-import { useFrame } from '@react-three/fiber'
 import { Billboard, Text } from '@react-three/drei'
 
 function Box({ setRef, position, textureURL, title }) {
@@ -10,7 +9,7 @@ function Box({ setRef, position, textureURL, title }) {
   ])
 
   // Maybe not a good idea for performance reasons??
-  useFrame(() => (setRef.current.rotation.y += 0.002))
+  // useFrame(() => (setRef.current.rotation.y += 0.002))
 
   return (
     <>
