@@ -2,7 +2,7 @@ import { Suspense, useEffect, useState } from 'react'
 import query from './components/Query'
 
 import { DefaultXRControllers, VRCanvas } from '@react-three/xr'
-import { Stats, Stars, PerspectiveCamera, OrbitControls } from '@react-three/drei'
+import { Stats, Stars, PerspectiveCamera } from '@react-three/drei'
 import * as THREE from 'three'
 
 import './App.css';
@@ -51,7 +51,6 @@ function App() {
   return (
     <VRCanvas>
       <DefaultXRControllers />
-      <OrbitControls />
 
       <PerspectiveCamera makeDefault position={[-6, 5, 6]} />
 
