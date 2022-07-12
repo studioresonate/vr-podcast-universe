@@ -2,7 +2,7 @@ import { Suspense, useEffect, useState } from 'react'
 import query from './components/Query'
 
 import { DefaultXRControllers, VRCanvas } from '@react-three/xr'
-import { Stats, Stars, PerspectiveCamera } from '@react-three/drei'
+import { Stats, Sparkles, Stars, OrbitControls, PerspectiveCamera } from '@react-three/drei'
 import * as THREE from 'three'
 
 import './App.css';
@@ -52,6 +52,8 @@ function App() {
     <VRCanvas>
       <DefaultXRControllers />
 
+      <OrbitControls />
+
       <PerspectiveCamera makeDefault position={[-6, 5, 6]} />
 
       <ambientLight intensity={0.5} />
@@ -61,11 +63,10 @@ function App() {
           <>
             <Cube
               key={podcast.sys.id}
-              useRef={podcast.sys.id}
               position={[
+                Math.random() * (10 - -10) + -10,
                 Math.random() * (5 - -5) + -5,
-                Math.random() * (5 - -5) + -5,
-                Math.random() * (5 - -5) + -5
+                Math.random() * (10 - -10) + -10
               ]}
               textureURL={`${podcast.coverArt.url}?fit=scale&w=300&h=300`}
               title={podcast.podcastTitle}
@@ -77,6 +78,8 @@ function App() {
       <Suspense fallback={null}>
         <Dome />
       </Suspense>
+
+      <Sparkles count={400} scale={40 * 2} size={40} noise={1} speed={0.15} />
 
       <Stars
         radius={80}

@@ -1,21 +1,23 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import { TextureLoader } from 'three'
+import { useFrame } from '@react-three/fiber'
 import { Billboard, Text } from '@react-three/drei'
 
-function Box({ setRef, position, textureURL, title }) {
+function Box({ position, textureURL, title }) {
   const [hovered, hover] = useState(false)
   const boxTexture = useMemo(() => new TextureLoader().load(textureURL), [
     textureURL
   ])
 
   // Maybe not a good idea for performance reasons??
-  // useFrame(() => (setRef.current.rotation.y += 0.002))
+  const ref = useRef()
+  useFrame(() => (ref.current.rotation.y += 0.002))
 
   return (
     <>
       <group position={position}>
         <mesh
-          ref={setRef}
+          ref={ref}
           onPointerOver={(event) => hover(true)}
           onPointerOut={(event) => hover(false)} castShadow
         >
@@ -31,7 +33,7 @@ function Box({ setRef, position, textureURL, title }) {
         <mesh
           position={[0, - 1, 0]}
         >
-          <Billboard follow='true' lockZ={true}>
+          <Billboard follow='true' lockZ={true} lockX={true} lockY={true}>
             <Text
               fontSize={0.2}
               outlineWidth={'5%'}
