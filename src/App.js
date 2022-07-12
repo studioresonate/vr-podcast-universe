@@ -2,7 +2,7 @@ import { Suspense, useEffect, useState } from 'react'
 import query from './components/Query'
 
 import { DefaultXRControllers, VRCanvas } from '@react-three/xr'
-import { Stats, Sparkles, Stars, OrbitControls, PerspectiveCamera } from '@react-three/drei'
+import { Stats, Sparkles, Stars, FirstPersonControls } from '@react-three/drei'
 import * as THREE from 'three'
 
 import './App.css';
@@ -49,29 +49,30 @@ function App() {
 
 
   return (
-    <VRCanvas>
+    <VRCanvas vr="true">
       <DefaultXRControllers />
 
-      <OrbitControls />
+      <FirstPersonControls
+        lookSpeed={0.05}
+        movementSpeed={2}
+      />
 
-      <PerspectiveCamera makeDefault position={[-6, 5, 6]} />
+      {/* <PerspectiveCamera makeDefault position={[-6, 5, 6]} /> */}
 
       <ambientLight intensity={0.5} />
 
       <Suspense fallback={null}>
         {podcastCollection.map(podcast => (
-          <>
-            <Cube
-              key={podcast.sys.id}
-              position={[
-                Math.random() * (10 - -10) + -10,
-                Math.random() * (5 - -5) + -5,
-                Math.random() * (10 - -10) + -10
-              ]}
-              textureURL={`${podcast.coverArt.url}?fit=scale&w=300&h=300`}
-              title={podcast.podcastTitle}
-            />
-          </>
+          <Cube
+            key={podcast.sys.id}
+            position={[
+              Math.random() * (10 - -10) + -10,
+              Math.random() * (5 - -5) + -5,
+              Math.random() * (10 - -10) + -10
+            ]}
+            textureURL={`${podcast.coverArt.url}?fit=scale&w=300&h=300`}
+            title={podcast.podcastTitle}
+          />
         ))}
       </Suspense>
 
