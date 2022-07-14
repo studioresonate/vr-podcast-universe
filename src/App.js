@@ -70,7 +70,7 @@ function App() {
               Math.random() * (5 - -5) + -5,
               Math.random() * (10 - -10) + -10
             ]}
-            textureURL={`${podcast.coverArt.url}?fit=scale&w=300&h=300`}
+            textureURL={`${podcast.coverArt.url}?fit=scale&w=300&h=300&q=70`}
             title={podcast.podcastTitle}
           />
         ))}
