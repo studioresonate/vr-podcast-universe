@@ -1,16 +1,21 @@
 import { Suspense, useEffect, useState } from 'react'
-import query from './components/Query'
-
 import { DefaultXRControllers, VRCanvas } from '@react-three/xr'
 import { Stats, Sparkles, Stars, FirstPersonControls } from '@react-three/drei'
 import * as THREE from 'three'
 
+import query from './components/Query'
 import './App.css';
 
 import Cube from './components/Cube';
 import Dome from './components/Dome';
+import Sun from './components/Sun';
 
 
+// Generate random number exept -1 thru 1, since that's where the sun is occupied
+function generateRandom(min, max) {
+  const num = Math.random() * (max - min + 1) + min;
+  return (num >= -1 && num <= 1) ? generateRandom(min, max) : num;
+}
 
 function App() {
 
@@ -66,15 +71,17 @@ function App() {
           <Cube
             key={podcast.sys.id}
             position={[
-              Math.random() * (10 - -10) + -10,
-              Math.random() * (5 - -5) + -5,
-              Math.random() * (10 - -10) + -10
+              generateRandom(-10, 10),
+              generateRandom(-10, 10),
+              generateRandom(-10, 10)
             ]}
             textureURL={`${podcast.coverArt.url}?fit=scale&w=300&h=300&q=70`}
             title={podcast.podcastTitle}
           />
         ))}
       </Suspense>
+
+      <Sun />
 
       <Suspense fallback={null}>
         <Dome />

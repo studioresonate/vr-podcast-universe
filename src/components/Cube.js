@@ -9,6 +9,8 @@ function Box({ position, textureURL, title }) {
     textureURL
   ])
 
+  // console.log(position);
+
   // Maybe not a good idea for performance reasons??
   const ref = useRef()
   useFrame(() => (ref.current.rotation.y += 0.002))
