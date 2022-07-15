@@ -3,17 +3,15 @@ import { TextureLoader } from 'three'
 import { useFrame } from '@react-three/fiber'
 import { Billboard, Text } from '@react-three/drei'
 
-function Box({ position, textureURL, title }) {
+function Cube({ position, textureURL, title }) {
   const [hovered, hover] = useState(false)
   const boxTexture = useMemo(() => new TextureLoader().load(textureURL), [
     textureURL
   ])
 
-  // console.log(position);
-
   // Maybe not a good idea for performance reasons??
   const ref = useRef()
-  useFrame(() => (ref.current.rotation.y += 0.002))
+  useFrame(() => (ref.current.rotation.y += 0.01))
 
   return (
     <>
@@ -54,4 +52,4 @@ function Box({ position, textureURL, title }) {
   )
 }
 
-export default Box;
+export default Cube;
