@@ -1,7 +1,7 @@
 import React, { useMemo, useRef, useState } from 'react'
 import { TextureLoader } from 'three'
-import { useFrame, useThree } from '@react-three/fiber'
-import { Billboard, Text } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
+import { Text } from '@react-three/drei'
 
 function Cube({ position, textureURL, title }) {
   const [hovered, hover] = useState(false)
