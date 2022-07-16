@@ -11,7 +11,7 @@ function generateRandom(min, max) {
   return (num >= -1 && num <= 1) ? generateRandom(min, max) : num;
 }
 
-function Cubes(cubes) {
+function Cubes() {
   const [podcastCollection, setpodcastCollection] = useState([]);
 
   const cubez = useRef()
@@ -54,8 +54,8 @@ function Cubes(cubes) {
 
 
   return (
-    <Suspense fallback={null}>
-      <group ref={cubez}>
+    <group ref={cubez}>
+      <Suspense fallback={null}>
         {podcastCollection.map(podcast => (
           <Cube
             key={podcast.sys.id}
@@ -68,8 +68,8 @@ function Cubes(cubes) {
             title={podcast.podcastTitle}
           />
         ))}
-      </group>
-    </Suspense>
+      </Suspense>
+    </group>
   );
 }
 

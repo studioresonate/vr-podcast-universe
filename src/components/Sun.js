@@ -9,16 +9,16 @@ function Sun() {
   // ])
 
   // Maybe not a good idea for performance reasons??
-  const ref = useRef()
+  const sunRef = useRef()
 
 
   return (
     <>
       <mesh
-        ref={ref}
+        ref={sunRef}
         onPointerOver={(event) => hover(true)}
         onPointerOut={(event) => hover(false)}
-        color={hovered ? 'hotpink' : 'white'}
+
       >
         <sphereBufferGeometry
           args={[2, 15, 8]}
@@ -26,7 +26,7 @@ function Sun() {
         />
         <meshStandardMaterial
           attach="material"
-          color={0x00d0ff}
+          color={hovered ? 'hotpink' : 'white'}
           wireframe
         />
       </mesh>

@@ -1,5 +1,5 @@
 import { DefaultXRControllers, VRCanvas } from '@react-three/xr'
-import { Stats, OrbitControls } from '@react-three/drei'
+import { Stats, OrbitControls, PerspectiveCamera } from '@react-three/drei'
 import * as THREE from 'three'
 
 // import query from './components/Query'
@@ -20,8 +20,9 @@ function App() {
         lookSpeed={0.05}
         movementSpeed={2}
       />
-      {/* <PerspectiveCamera makeDefault position={[-6, 5, 6]} /> */}
-      <ambientLight intensity={0.5} />
+      <PerspectiveCamera makeDefault position={[-6, 5, 6]} />
+      <ambientLight intensity={0.9} />
+      <pointLight intensity={1.5} position={[4, 0, 0]} />
       <Cubes />
       <Sun />
       <Space />
