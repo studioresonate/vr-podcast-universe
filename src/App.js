@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { DefaultXRControllers, VRCanvas, useXR } from '@react-three/xr'
+import { DefaultXRControllers, VRCanvas } from '@react-three/xr'
 import { Stats, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 
@@ -9,29 +8,12 @@ import './App.css';
 import Cubes from './components/Podcast';
 import Space from './components/Space';
 import Sun from './components/Sun';
-
-const XR = () => {
-  const { player, isPresenting } = useXR();
-  console.log(isPresenting);
-  useEffect(() => {
-    if (isPresenting) {
-      player.position.x = 0;
-      player.position.y = 1;
-      player.position.z += 10;
-    } else {
-      player.position.x = 0;
-      player.position.y = 0;
-      player.position.z = 2;
-    }
-  }, [player, isPresenting]);
-
-  return null;
-};
+import XR from './util/Xr'
 
 function App() {
 
   return (
-    <VRCanvas vr="true" >
+    <VRCanvas vr="true" camera={{ position: [0, 0, 15] }}  >
       <DefaultXRControllers
         rayMaterial={{ color: 'white' }}
         hideRaysOnBlur={false}

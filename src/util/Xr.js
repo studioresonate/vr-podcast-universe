@@ -1,0 +1,22 @@
+import { useEffect } from 'react'
+import { useXR } from '@react-three/xr'
+
+const XR = () => {
+  const { player, isPresenting } = useXR();
+  console.log(isPresenting);
+  useEffect(() => {
+    if (isPresenting) {
+      player.position.x = 0;
+      player.position.y = 1;
+      player.position.z += 10;
+    } else {
+      player.position.x = 0;
+      player.position.y = 0;
+      player.position.z = 5;
+    }
+  }, [player, isPresenting]);
+
+  return null;
+};
+
+export default XR
