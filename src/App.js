@@ -20,7 +20,7 @@ function App() {
       />
 
       <OrbitControls
-        maxDistance={13}
+        maxDistance={30}
         minDistance={3}
         maxPolarAngle={Math.PI * 0.8}
         minPolarAngle={Math.PI * 0.2}

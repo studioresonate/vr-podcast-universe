@@ -12,7 +12,7 @@ const XR = () => {
     } else {
       player.position.x = 0;
       player.position.y = 0;
-      player.position.z = 5;
+      player.position.z = 1;
     }
   }, [player, isPresenting]);
 
