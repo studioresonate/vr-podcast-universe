@@ -1,5 +1,5 @@
 import React, { Suspense, useRef, useState } from 'react'
-import { Sparkles } from '@react-three/drei'
+import { useCursor } from '@react-three/drei'
 import * as THREE from "three";
 import { useFrame, useLoader } from '@react-three/fiber'
 
@@ -16,7 +16,7 @@ function Sun() {
     './img/textures/clouds.png'
   ])
 
-
+  useCursor(hovered, /*'pointer', 'auto'*/)
 
   const sunRef = useRef()
   const ref = useRef()
@@ -42,7 +42,8 @@ function Sun() {
           ref={sunRef}
           onPointerOver={(event) => hover(true)}
           onPointerOut={(event) => hover(false)}
-
+          castShadow
+          receiveShadow
         >
           <sphereGeometry
             args={[2, 60, 60]}

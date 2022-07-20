@@ -1,13 +1,15 @@
 import React, { useMemo, useRef, useState } from 'react'
 import { TextureLoader } from 'three'
 import { useFrame } from '@react-three/fiber'
-import { Text } from '@react-three/drei'
+import { Text, useCursor } from '@react-three/drei'
 
 function Cube({ position, textureURL, title }) {
   const [hovered, hover] = useState(false)
   const boxTexture = useMemo(() => new TextureLoader().load(textureURL), [
     textureURL
   ])
+
+  useCursor(hovered, /*'pointer', 'auto'*/)
 
   // Maybe not a good idea for performance reasons??
   const ref = useRef()
