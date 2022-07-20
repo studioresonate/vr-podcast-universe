@@ -2,6 +2,7 @@ import React, { useMemo, useRef, useState } from 'react'
 import { TextureLoader } from 'three'
 import { useFrame } from '@react-three/fiber'
 import { Text, useCursor } from '@react-three/drei'
+import { useXR } from '@react-three/xr'
 
 function Cube({ position, textureURL, title }) {
   const [hovered, hover] = useState(false)
@@ -11,17 +12,25 @@ function Cube({ position, textureURL, title }) {
 
   useCursor(hovered, /*'pointer', 'auto'*/)
 
-  // Maybe not a good idea for performance reasons??
+  const { player } = useXR();
+
   const ref = useRef()
   useFrame(() => (ref.current.rotation.y += 0.02))
+
+  const textRef = useRef()
+  // Only works for when isPresenting is true
+  useFrame(() => textRef.current.lookAt(player.position))
 
   return (
     <>
       <group position={position}>
         <mesh
           ref={ref}
-          onPointerOver={(event) => hover(true)}
-          onPointerOut={(event) => hover(false)} castShadow
+          onPointerOver={() => hover(true)}
+          onPointerOut={() => hover(false)} castShadow
+          onClick={() => {
+            console.log('Clicked')
+          }}
         >
           <boxGeometry attach='geometry' args={[1, 1, 1]} />
           <meshStandardMaterial
@@ -42,6 +51,7 @@ function Cube({ position, textureURL, title }) {
             maxWidth="3"
             textAlign='center'
             color='white'
+            ref={textRef}
           >
             {title}
           </Text>

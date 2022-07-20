@@ -3,7 +3,7 @@ import { useXR } from '@react-three/xr'
 
 const XR = () => {
   const { player, isPresenting } = useXR();
-  console.log(isPresenting);
+  // console.log('Are we in VR mode? ' + isPresenting);
   useEffect(() => {
     if (isPresenting) {
       player.position.x = 0;

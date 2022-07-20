@@ -11,7 +11,6 @@ import Sun from './components/Sun';
 import XR from './util/Xr'
 
 function App() {
-
   return (
     <VRCanvas vr="true" camera={{ position: [0, 0, 15] }}  >
       <DefaultXRControllers
