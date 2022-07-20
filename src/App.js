@@ -28,8 +28,8 @@ function App() {
         autoRotateSpeed={0.2}
       />
 
-      <ambientLight intensity={0.9} />
-      <pointLight intensity={1.5} position={[4, 0, 0]} />
+      <ambientLight intensity={0.4} castShadow />
+      <pointLight intensity={3.5} position={[4, 12, 2]} castShadow />
       <Cubes />
       <Sun />
       <Space />

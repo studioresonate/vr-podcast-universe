@@ -1,4 +1,5 @@
 import React, { Suspense, useRef, useState } from 'react'
+import { Sparkles } from '@react-three/drei'
 import * as THREE from "three";
 import { useFrame, useLoader } from '@react-three/fiber'
 
@@ -19,18 +20,18 @@ function Sun() {
 
   const sunRef = useRef()
   const ref = useRef()
-  useFrame(() => (ref.current.rotation.y += 0.001))
+  useFrame(() => (ref.current.rotation.y += -0.001))
 
 
   return (
     <>
       <Suspense fallback={null}>
         <mesh ref={ref}>
-          <sphereBufferGeometry
+          <sphereGeometry
             args={[2.02, 30, 30]}
             attach="geometry"
           />
-          <meshPhongMaterial
+          <meshStandardMaterial
             attach="material"
             map={cloudMap}
             transparent
@@ -43,8 +44,8 @@ function Sun() {
           onPointerOut={(event) => hover(false)}
 
         >
-          <sphereBufferGeometry
-            args={[2, 20, 30]}
+          <sphereGeometry
+            args={[2, 60, 60]}
             attach="geometry"
           />
           <meshPhongMaterial
@@ -53,7 +54,8 @@ function Sun() {
             map={colorMap}
             normalMap={normalMap}
             metalness={1}
-            shininess={2}
+            shininess={100}
+            roughness={1}
             flatShading={false}
           />
         </mesh>
