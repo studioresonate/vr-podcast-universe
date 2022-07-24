@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
-import { VRCanvas, useXR } from '@react-three/xr'
-import { useFrame, useThree } from '@react-three/fiber'
+// import { VRCanvas, useXR } from '@react-three/xr'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { Stats, useCursor, Text } from '@react-three/drei'
 import * as THREE from 'three'
 import { TextureLoader } from 'three'
@@ -92,7 +92,7 @@ function Cube({ position, textureURL, title }) {
   useFrame(() => (ref.current.rotation.y += 0.02))
 
   // Text lookAt
-  const { player } = useXR();
+  // const { player } = useXR();
   const textRef = useRef()
   const { camera, gl, scene } = useThree()
 
@@ -102,10 +102,10 @@ function Cube({ position, textureURL, title }) {
     gravity: false,
     floor: false,
     showExitVRButton: false,
-    showEnterVRButton: false
+    showEnterVRButton: true
   });
 
-  useFrame(() => controls.update());
+  controls.update();
 
 
   // const controllerGrip0 = gl.xr.getControllerGrip(0)
@@ -114,7 +114,7 @@ function Cube({ position, textureURL, title }) {
   // })
 
   // Only works for when isPresenting is true
-  useFrame(() => textRef.current.lookAt(player.position))
+  // useFrame(() => textRef.current.lookAt(player.position))
   // Desktop view
   useFrame(() => textRef.current.lookAt(camera.position))
 
@@ -163,7 +163,7 @@ function Cube({ position, textureURL, title }) {
 
 function App() {
   return (
-    <VRCanvas vr="true" camera={{ position: [0, 0, 15] }}  >
+    <Canvas vr="true" camera={{ position: [0, 0, 15] }}  >
       {/* <DefaultXRControllers
         rayMaterial={{ color: 'white' }}
         hideRaysOnBlur={false}
@@ -189,7 +189,7 @@ function App() {
       {/* debug */}
       {/* <primitive object={new THREE.AxesHelper(5)} /> */}
       <Stats showPanel={0} />
-    </VRCanvas>
+    </Canvas>
   );
 }
 
