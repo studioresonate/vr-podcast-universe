@@ -12,7 +12,7 @@ import './App.css';
 // import Cubes from './components/Podcast';
 import Space from './components/Space';
 import Sun from './components/Sun';
-import XR from './util/Xr'
+// import XR from './util/Xr'
 
 import query from './components/Query'
 
@@ -184,7 +184,7 @@ function App() {
       <Sun />
       <Space />
 
-      <XR />
+      {/* <XR /> */}
 
       {/* debug */}
       {/* <primitive object={new THREE.AxesHelper(5)} /> */}
