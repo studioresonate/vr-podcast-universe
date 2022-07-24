@@ -1,9 +1,11 @@
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
-import { DefaultXRControllers, VRCanvas, useXR } from '@react-three/xr'
+import { VRCanvas, useXR } from '@react-three/xr'
 import { useFrame, useThree } from '@react-three/fiber'
-import { Stats, OrbitControls, useCursor, Text } from '@react-three/drei'
-// import * as THREE from 'three'
+import { Stats, useCursor, Text } from '@react-three/drei'
+import * as THREE from 'three'
 import { TextureLoader } from 'three'
+import ImmersiveControls from '@depasquale/three-immersive-controls';
+
 
 import './App.css';
 
@@ -92,7 +94,25 @@ function Cube({ position, textureURL, title }) {
   // Text lookAt
   const { player } = useXR();
   const textRef = useRef()
-  const { camera } = useThree()
+  const { camera, gl, scene } = useThree()
+
+  // Immersive controls
+  const controls = new ImmersiveControls(camera, gl, scene, {
+    initialPosition: new THREE.Vector3(0, 0, 15),
+    gravity: false,
+    floor: false,
+    showExitVRButton: false,
+    showEnterVRButton: false
+  });
+
+  useFrame(() => controls.update());
+
+
+  // const controllerGrip0 = gl.xr.getControllerGrip(0)
+  // controllerGrip0.addEventListener("connected", (e) => {
+  //   console.log(e.data.gamepad)
+  // })
+
   // Only works for when isPresenting is true
   useFrame(() => textRef.current.lookAt(player.position))
   // Desktop view
@@ -103,7 +123,7 @@ function Cube({ position, textureURL, title }) {
       <group position={position}>
         <mesh
           ref={ref}
-          onPointerOver={() => hover(true)}
+          // onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)} castShadow
           onClick={() => {
             console.log('Clicked')
@@ -144,19 +164,19 @@ function Cube({ position, textureURL, title }) {
 function App() {
   return (
     <VRCanvas vr="true" camera={{ position: [0, 0, 15] }}  >
-      <DefaultXRControllers
+      {/* <DefaultXRControllers
         rayMaterial={{ color: 'white' }}
         hideRaysOnBlur={false}
-      />
+      /> */}
 
-      <OrbitControls
+      {/* <OrbitControls
         maxDistance={30}
         minDistance={3}
         maxPolarAngle={Math.PI * 0.8}
         minPolarAngle={Math.PI * 0.2}
         autoRotate
         autoRotateSpeed={0.2}
-      />
+      /> */}
 
       <ambientLight intensity={0.4} castShadow />
       <pointLight intensity={3.5} position={[4, 12, 2]} castShadow />
