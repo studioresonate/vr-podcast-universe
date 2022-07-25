@@ -4,7 +4,8 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { Stats, useCursor, Text } from '@react-three/drei'
 import * as THREE from 'three'
 import { TextureLoader } from 'three'
-import ImmersiveControls from '@depasquale/three-immersive-controls';
+import { Control } from './util/VRControl'
+
 
 
 import './App.css';
@@ -28,19 +29,6 @@ function Cubes() {
   const [podcastCollection, setpodcastCollection] = useState([]);
   const cubez = useRef()
 
-  const { camera, gl, scene } = useThree()
-
-  // Immersive controls
-  const controls = new ImmersiveControls(camera, gl, scene, {
-    initialPosition: new THREE.Vector3(0, 0, 15),
-    gravity: false,
-    floor: false,
-    showExitVRButton: false,
-    showEnterVRButton: true
-  });
-
-
-  useFrame(() => (controls.update()))
   useFrame(() => (cubez.current.rotation.y += 0.002))
 
   useEffect(() => {
@@ -184,6 +172,7 @@ function App() {
       <Cubes />
       <Sun />
       <Space />
+      <Control />
 
       {/* <XR /> */}
 
