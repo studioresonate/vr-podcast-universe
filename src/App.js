@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
-// import { VRCanvas, useXR } from '@react-three/xr'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { VRCanvas } from '@react-three/xr'
+import { useFrame, useThree } from '@react-three/fiber'
 import { Stats, useCursor, Text } from '@react-three/drei'
 // import * as THREE from 'three'
 import { TextureLoader } from 'three'
@@ -107,6 +107,8 @@ function Cube({ position, textureURL, title }) {
   // Desktop view
   useFrame(() => textRef.current.lookAt(camera.position))
 
+  console.log(camera.position);
+
   return (
     <>
       <group position={position}>
@@ -148,11 +150,16 @@ function Cube({ position, textureURL, title }) {
 }
 
 
+document.body.insertAdjacentHTML('afterbegin', `
+    <p class="instructions">Move with <span class="circle">L</span> thumbstick in VR or <span>W</span>, <span>A</span>, <span>S</span>, and <span>D</span> keys. Rotate with <span class="circle">R</span> thumbstick in VR or arrow keys. &larr; &uarr; &rarr;	&darr;</p>
+`)
+
+
 
 
 function App() {
   return (
-    <Canvas vr="true" camera={{ position: [0, 0, 15] }}  >
+    <VRCanvas vr="true" camera={{ position: [0, 0, 15] }}  >
       {/* <DefaultXRControllers
         rayMaterial={{ color: 'white' }}
         hideRaysOnBlur={false}
@@ -179,7 +186,7 @@ function App() {
       {/* debug */}
       {/* <primitive object={new THREE.AxesHelper(5)} /> */}
       <Stats showPanel={0} />
-    </Canvas>
+    </VRCanvas>
   );
 }
 

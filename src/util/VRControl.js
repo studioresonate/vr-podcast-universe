@@ -10,7 +10,7 @@ export const Control = () => {
     gravity: false,
     floor: false,
     showExitVRButton: false,
-    showEnterVRButton: true
+    showEnterVRButton: false
   });
 
   useFrame(() => (controls.update()))
