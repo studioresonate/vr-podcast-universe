@@ -28,6 +28,19 @@ function Cubes() {
   const [podcastCollection, setpodcastCollection] = useState([]);
   const cubez = useRef()
 
+  const { camera, gl, scene } = useThree()
+
+  // Immersive controls
+  const controls = new ImmersiveControls(camera, gl, scene, {
+    initialPosition: new THREE.Vector3(0, 0, 15),
+    gravity: false,
+    floor: false,
+    showExitVRButton: false,
+    showEnterVRButton: true
+  });
+
+
+  useFrame(() => (controls.update()))
   useFrame(() => (cubez.current.rotation.y += 0.002))
 
   useEffect(() => {
@@ -94,19 +107,7 @@ function Cube({ position, textureURL, title }) {
   // Text lookAt
   // const { player } = useXR();
   const textRef = useRef()
-  const { camera, gl, scene } = useThree()
-
-  // Immersive controls
-  const controls = new ImmersiveControls(camera, gl, scene, {
-    initialPosition: new THREE.Vector3(0, 0, 15),
-    gravity: false,
-    floor: false,
-    showExitVRButton: false,
-    showEnterVRButton: true
-  });
-
-  controls.update();
-
+  const { camera } = useThree()
 
   // const controllerGrip0 = gl.xr.getControllerGrip(0)
   // controllerGrip0.addEventListener("connected", (e) => {
