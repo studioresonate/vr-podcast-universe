@@ -2,7 +2,7 @@ import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 // import { VRCanvas, useXR } from '@react-three/xr'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { Stats, useCursor, Text } from '@react-three/drei'
-import * as THREE from 'three'
+// import * as THREE from 'three'
 import { TextureLoader } from 'three'
 import { Control } from './util/VRControl'
 
