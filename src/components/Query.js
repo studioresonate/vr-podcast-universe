@@ -16,7 +16,11 @@ const query = `
         width
         height
       }
-      youTubeId
+      videoPreview {
+        title
+        fileName
+        url
+      }
       listenUrl
       sys {
         id
