@@ -1,7 +1,7 @@
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { VRCanvas } from '@react-three/xr'
 import { useFrame, useThree } from '@react-three/fiber'
-import { PerspectiveCamera, Stats, useCursor, useAspect, Text } from '@react-three/drei'
+import { Stats, useCursor, useAspect, Text } from '@react-three/drei'
 import * as THREE from 'three'
 import { TextureLoader } from 'three'
 import { Control } from './util/VRControl'
