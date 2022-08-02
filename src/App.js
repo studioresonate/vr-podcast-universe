@@ -1,7 +1,7 @@
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { VRCanvas } from '@react-three/xr'
 import { useFrame, useThree } from '@react-three/fiber'
-import { Stats, useCursor, useAspect, Text } from '@react-three/drei'
+import { PerspectiveCamera, Stats, useCursor, useAspect, Text } from '@react-three/drei'
 import * as THREE from 'three'
 import { TextureLoader } from 'three'
 import { Control } from './util/VRControl'
@@ -191,24 +191,25 @@ function PodcastModal() {
         </mesh>
 
         {/* play button */}
-        <mesh position={[0.1, 0, 0.1]} rotation={[1.6, 0, 1.6]}>
-          <capsuleGeometry args={[0.7, 3, 4, 2]} />
+        <mesh position={[0.1, 0, 0.1]} rotation={[0, 0, 1.57]}>
+          <planeGeometry args={[1, 3.6]} />
           <Text
-            fontSize={0.7}
+            fontSize={0.5}
             // outlineWidth={'5%'}
             // outlineColor="#000000"
 
             outlineOpacity={1}
             maxWidth="10"
             textAlign='center'
-            color='black'
-            rotation={[180, 1.6, 0.64]}
-            position={[0.1, 0, 0]}
+            color='white'
+            // rotation={[3.8, 0.1, 0.64]}
+            rotation={[0, 0, -1.6]}
+            position={[0, 0, 0.01]}
           // ref={textRef}
           >
             PLAY
           </Text>
-          <meshBasicMaterial color={0xff000} />
+          <meshBasicMaterial color={0x0051e6} />
         </mesh>
 
         {/* close button */}
