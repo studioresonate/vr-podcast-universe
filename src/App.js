@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { VRCanvas } from '@react-three/xr'
 import { Stats } from '@react-three/drei'
 import { Control } from './util/VRControl'
