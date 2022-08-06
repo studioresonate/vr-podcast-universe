@@ -1,8 +1,9 @@
-import { Suspense, useEffect, useRef, useState } from 'react'
+import { Suspense, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 
 import Cube from './Cube'
-import query from '../../components/Query'
+// import query from '../../components/Query'
+import { usePosts } from '../../hooks/'
 
 
 // Generate random number exept -1 thru 1, since that's where the sun is occupied
@@ -12,62 +13,34 @@ function generateRandom(min, max) {
 }
 
 function Cubes() {
-  const [podcastCollection, setpodcastCollection] = useState([]);
+  // const [podcastCollection, setpodcastCollection] = useState([]);
+  const [posts, isLoading] = usePosts()
 
   const cubez = useRef()
   useFrame(() => (cubez.current.rotation.y += 0.002))
 
+  const renderPosts = () => {
+    if (isLoading) return <>Loading</>
+    console.log(posts);
 
-  useEffect(() => {
-    fetch(
-      `https://graphql.contentful.com/content/v1/spaces/${process.env.REACT_APP_SPACE_ID}/`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          // Authenticate the request
-          Authorization: `Bearer ${process.env.REACT_APP_CONTENT_DELIVERY}`,
-        },
-        // send the GraphQL query
-        body: JSON.stringify({ query }),
-      }
-    )
-      .then((response) => response.json())
-      .then(({ data, errors }) => {
-        if (errors) {
-          console.error(errors);
-        }
-        // rerender the entire component with new data
-        setpodcastCollection(data.podcastCollection.items);
-        // console.log(data.podcastCollection.items);
-      });
-  }, []);
-
-  if (!podcastCollection) {
-    return "Loading...";
+    return posts.map(post => (
+      <Cube
+        key={post.fields.slug}
+        position={[
+          generateRandom(-10, 10),
+          generateRandom(-10, 10),
+          generateRandom(-10, 10)
+        ]}
+        textureURL={`${post.fields.coverArt.fields.file.url}?fit=scale&w=300&h=300&q=70`}
+        title={post.fields.podcastTitle}
+      />
+    ))
   }
-
-
-
-
-
-
 
   return (
     <group ref={cubez}>
       <Suspense fallback={null}>
-        {podcastCollection.map(podcast => (
-          <Cube
-            key={podcast.sys.id}
-            position={[
-              generateRandom(-10, 10),
-              generateRandom(-10, 10),
-              generateRandom(-10, 10)
-            ]}
-            textureURL={`${podcast.coverArt.url}?fit=scale&w=300&h=300&q=70`}
-            title={podcast.podcastTitle}
-          />
-        ))}
+        {renderPosts()}
       </Suspense>
     </group>
   );

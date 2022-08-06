@@ -1,8 +1,7 @@
 import React, { useMemo, useRef, useState } from 'react'
 import { TextureLoader } from 'three'
-import { useFrame } from '@react-three/fiber'
-import { Text, useCursor } from '@react-three/drei'
-import { useXR } from '@react-three/xr'
+import { useFrame, useThree } from '@react-three/fiber'
+import { Text } from '@react-three/drei'
 
 function Cube({ position, textureURL, title }) {
   const [hovered, hover] = useState(false)
@@ -10,23 +9,32 @@ function Cube({ position, textureURL, title }) {
     textureURL
   ])
 
-  useCursor(hovered, /*'pointer', 'auto'*/)
-
-  const { player } = useXR();
+  // useCursor(hovered, 'pointer', 'auto')
 
   const ref = useRef()
   useFrame(() => (ref.current.rotation.y += 0.02))
 
+  // Text lookAt
+  // const { player } = useXR();
   const textRef = useRef()
+  const { camera } = useThree()
+
+  // const controllerGrip0 = gl.xr.getControllerGrip(0)
+  // controllerGrip0.addEventListener("connected", (e) => {
+  //   console.log(e.data.gamepad)
+  // })
+
   // Only works for when isPresenting is true
-  useFrame(() => textRef.current.lookAt(player.position))
+  // useFrame(() => textRef.current.lookAt(player.position))
+  // Desktop view
+  useFrame(() => textRef.current.lookAt(camera.position))
 
   return (
     <>
       <group position={position}>
         <mesh
           ref={ref}
-          onPointerOver={() => hover(true)}
+          // onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)} castShadow
           onClick={() => {
             console.log('Clicked')
