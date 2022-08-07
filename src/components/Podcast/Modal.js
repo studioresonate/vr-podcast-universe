@@ -1,4 +1,5 @@
 import { Text } from '@react-three/drei'
+import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
 import { useSinglePost } from '../../hooks/'
 
 import ModalVideo from './ModalVideo'
@@ -46,6 +47,7 @@ export default function PodcastModal() {
 
           <group>
             <mesh rotation={[0, -0.5, 0]}>
+              {/* hosts */}
               <group position={[8.5, 4, 0]}>
                 <Text
                   fontSize={0.4}
@@ -74,6 +76,8 @@ export default function PodcastModal() {
                   {` ${post.hostNames}`}
                 </Text>
               </group>
+
+              {/* description */}
               <group position={[8.5, 2.2, 0]}>
                 <Text
                   fontSize={0.2}
@@ -87,7 +91,7 @@ export default function PodcastModal() {
                   anchorY="top"
                   lineHeight={2}
                 >
-                  Congue nullam lacinia habitasse rhoncus eu finibus pulvinar, ornare aliquam ante nam diam sem, mattis ullamcorper netus venenatis platea massa. Elementum lobortis diam nisi finibus integer vestibulum dictum accumsan, curae fusce ridiculus habitasse justo sit rhoncus eros ut, montes facilisi duis massa praesent senectus ante. Et malesuada ipsum elementum tempor augue nibh orci montes, pellentesque penatibus dis metus lacinia nunc porta inceptos, tempus ridiculus sagittis enim conubia parturient proin. Maximus pretium dictum curae integer hendrerit porttitor rutrum turpis vestibulum vehicula, accumsan nunc mauris porta etiam ultrices odio sed per proin
+                  {documentToPlainTextString(post.description)}
                 </Text>
               </group>
             </mesh>
