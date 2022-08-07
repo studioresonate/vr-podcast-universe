@@ -5,6 +5,7 @@ import * as THREE from 'three'
 export default function ModalVideo(props) {
   const size = useAspect(1024, 512)
   const playRef = useRef()
+  const pauseRef = useRef()
   const [video] = useState(() =>
     Object.assign(document.createElement('video'), {
       src: props.videoUrl,
@@ -19,11 +20,19 @@ export default function ModalVideo(props) {
     video.play()
     video.muted = false
     playRef.current.visible = false
+    pauseRef.current.visible = true
+  }
+
+  function pauseVideo() {
+    video.pause()
+    video.muted = true
+    playRef.current.visible = true
+    pauseRef.current.visible = false
   }
 
   useEffect(() => {
-    // void video.play()
     const playPromise = video.play();
+    pauseRef.current.visible = false
 
     // DAMMIT Chrome.. why???
     if (playPromise !== undefined) {
@@ -78,6 +87,30 @@ export default function ModalVideo(props) {
         // ref={textRef}
         >
           PLAY
+        </Text>
+        <meshBasicMaterial color={0x0051e6} />
+      </mesh>
+
+      {/* pause button */}
+      <mesh
+        position={[-6.1, -3, 0.1]}
+        rotation={[0, 0, 1.57]}
+        // onClick={(event) => click(!clicked)}
+        onClick={pauseVideo}
+        ref={pauseRef}
+      >
+        <planeGeometry args={[0.4, 1]} />
+        <Text
+          fontSize={0.2}
+          outlineOpacity={1}
+          maxWidth="10"
+          textAlign='center'
+          color='white'
+          rotation={[0, 0, -1.58]}
+          position={[0, 0, 0.01]}
+        // ref={textRef}
+        >
+          PAUSE
         </Text>
         <meshBasicMaterial color={0x0051e6} />
       </mesh>
