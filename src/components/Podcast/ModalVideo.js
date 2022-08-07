@@ -15,15 +15,14 @@ export default function ModalVideo(props) {
     }),
   )
 
-
-  function playVideo() {
+  const playVideo = () => {
     video.play()
     video.muted = false
     playRef.current.visible = false
     pauseRef.current.visible = true
   }
 
-  function pauseVideo() {
+  const pauseVideo = () => {
     video.pause()
     video.muted = true
     playRef.current.visible = true
