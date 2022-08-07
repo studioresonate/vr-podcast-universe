@@ -1,16 +1,16 @@
 import { Text } from '@react-three/drei'
-
 import { useSinglePost } from '../../hooks/'
 
 import ModalVideo from './ModalVideo'
+import ModalThumbnail from './ModalThumbnail'
 
 export default function PodcastModal() {
   const [post, isLoading] = useSinglePost()
   // const [clicked, click] = useState(false)
+  // console.log(post);
+
   const renderPost = () => {
     if (isLoading) return <Text>Loading...</Text>
-
-    console.log(post);
     return (
       <>
         <group>
@@ -39,11 +39,9 @@ export default function PodcastModal() {
               <meshBasicMaterial color={0xf3f3f3} />
             </mesh>
 
-            {/* thumbnail */}
-            <mesh position={[-5.7, -5.3, 0]}>
-              <planeBufferGeometry args={[2.4, 2.4]} color={0x00ff00} />
-              <meshBasicMaterial />
-            </mesh>
+            <ModalThumbnail
+              artwork={`${post.coverArt.fields.file.url}?fit=scale&w=300&h=300&q=70`}
+            />
           </group>
 
           <group>

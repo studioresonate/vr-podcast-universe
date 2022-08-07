@@ -25,6 +25,7 @@ export default function ModalVideo(props) {
     // void video.play()
     const playPromise = video.play();
 
+    // DAMMIT Chrome.. why???
     if (playPromise !== undefined) {
       playPromise.then(_ => {
         // Automatic playback started!
