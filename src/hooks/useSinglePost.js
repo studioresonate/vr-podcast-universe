@@ -13,7 +13,7 @@ export default function useSinglePost(slug) {
       setPost(result[0].fields)
       setLoading(false)
     })
-  }, [])
+  }, [promise])
 
   return [post, isLoading]
 }
