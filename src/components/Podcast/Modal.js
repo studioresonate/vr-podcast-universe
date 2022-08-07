@@ -1,46 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
-import { useAspect, Text } from '@react-three/drei'
-import * as THREE from 'three'
+import { Text } from '@react-three/drei'
 
 import { useSinglePost } from '../../hooks/'
 
+import ModalVideo from './ModalVideo'
+
 export default function PodcastModal() {
-  const size = useAspect(1024, 512)
-  const playRef = useRef()
   const [post, isLoading] = useSinglePost()
-
   // const [clicked, click] = useState(false)
-  const [video] = useState(() =>
-    Object.assign(document.createElement('video'), {
-      src: 'https://videos.ctfassets.net/ydi6vzm9xood/4FKwgfyNBD8Z6FLZG0vhmJ/10e5ee7d33562e05548a8f6c9b0ab9ea/StarTalk.mp4',
-      crossOrigin: 'Anonymous',
-      loop: false,
-      muted: true
-    }),
-  )
-  // video.muted = "muted"
-  // useEffect(() => void video.play(), [video])
-
-
-  function playVideo() {
-    video.play()
-    video.muted = false
-    playRef.current.visible = false
-  }
-
-  useEffect(() => {
-    void video.play()
-    // Play video, then pause after 500ms. Wonky (or genius??) work around
-    // to set video poster rather, than getting a black screen before video gets loaded.
-    // This is assuming that the video doesn't start off with a black screen... in which case
-    // we're back to square one :-|
-
-    const videotimer = setTimeout(() => {
-      video.pause()
-    }, 500);
-    return () => clearTimeout(videotimer);
-  }, [video]);
-
   const renderPost = () => {
     if (isLoading) return <Text>Loading...</Text>
 
@@ -65,37 +31,7 @@ export default function PodcastModal() {
               {post.podcastTitle}
             </Text>
 
-            {/* video */}
-            <mesh scale={size} >
-              <planeBufferGeometry args={[0.3, 0.3]} />
-              <meshBasicMaterial toneMapped={false} side={THREE.DoubleSide}>
-                <videoTexture attach="map" args={[video]} encoding={THREE.sRGBEncoding} />
-              </meshBasicMaterial>
-            </mesh>
-
-            {/* play button */}
-            <mesh
-              position={[0.1, 0, 0.1]}
-              rotation={[0, 0, 1.57]}
-              // onClick={(event) => click(!clicked)}
-              onClick={playVideo}
-              ref={playRef}
-            >
-              <planeGeometry args={[1, 3.6]} />
-              <Text
-                fontSize={0.5}
-                outlineOpacity={1}
-                maxWidth="10"
-                textAlign='center'
-                color='white'
-                rotation={[0, 0, -1.58]}
-                position={[0, 0, 0.01]}
-              // ref={textRef}
-              >
-                PLAY
-              </Text>
-              <meshBasicMaterial color={0x0051e6} />
-            </mesh>
+            <ModalVideo videoUrl={post.videoPreview.fields.file.url} />
 
             {/* close button */}
             <mesh position={[6.8, 3.3, 0.1]}>
