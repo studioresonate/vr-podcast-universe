@@ -1,6 +1,9 @@
+import React, { useRef } from 'react'
 import { Text } from '@react-three/drei'
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
 import { useSinglePost } from '../../hooks/'
+import { useFrame } from '@react-three/fiber'
+
 
 import ModalVideo from './ModalVideo'
 import ModalThumbnail from './ModalThumbnail'
@@ -9,12 +12,18 @@ export default function PodcastModal() {
   const [post, isLoading] = useSinglePost()
   // const [clicked, click] = useState(false)
   // console.log(post);
+  // useFrame(() => modalRef.current.rotation.y += -0.002)
+
+  const modalRef = useRef()
+  useFrame(() => modalRef.current.lookAt(0, 0, 0))
+
+
 
   const renderPost = () => {
     if (isLoading) return <Text>Loading...</Text>
     return (
       <>
-        <group>
+        <group ref={modalRef}>
           <group position={[0, 2, 4]}>
             <Text
               fontSize={0.8}
