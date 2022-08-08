@@ -1,4 +1,5 @@
 import { Suspense, useRef } from 'react'
+import { Text } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 
 import Cube from './Cube'
@@ -20,7 +21,7 @@ function Cubes() {
   useFrame(() => (cubez.current.rotation.y += 0.002))
 
   const renderPosts = () => {
-    if (isLoading) return <>Loading</>
+    if (isLoading) return <Text>Loading</Text>
     console.log(posts);
 
     return posts.map(post => (

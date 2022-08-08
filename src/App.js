@@ -2,7 +2,7 @@ import { VRCanvas } from '@react-three/xr'
 import { Stats } from '@react-three/drei'
 import { Control } from './util/VRControl'
 
-import PodcastModal from './components/Podcast/Modal'
+// import PodcastModal from './components/Podcast/Modal'
 import Podcasts from './components/Podcast/'
 
 import './App.css';
@@ -40,7 +40,7 @@ function App() {
         <Sun />
         <Space />
         <Control />
-        <PodcastModal />
+        {/* <PodcastModal /> */}
         <Podcasts />
 
         {/* <XR /> */}

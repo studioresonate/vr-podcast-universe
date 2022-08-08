@@ -3,8 +3,11 @@ import { TextureLoader } from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import { Text } from '@react-three/drei'
 
+import PodcastModal from './Modal'
+
 function Cube({ position, textureURL, title }) {
   const [hovered, hover] = useState(false)
+  const [openModal, setOpenModal] = useState(false)
   const boxTexture = useMemo(() => new TextureLoader().load(textureURL), [
     textureURL
   ])
@@ -35,9 +38,11 @@ function Cube({ position, textureURL, title }) {
         <mesh
           ref={ref}
           // onPointerOver={() => hover(true)}
-          onPointerOut={() => hover(false)} castShadow
+          onPointerOut={() => hover(false)}
+          castShadow
           onClick={() => {
-            console.log('Clicked')
+            // console.log('Clicked')
+            setOpenModal(true)
           }}
         >
           <boxGeometry attach='geometry' args={[1, 1, 1]} />
@@ -65,6 +70,7 @@ function Cube({ position, textureURL, title }) {
           </Text>
         </mesh>
       </group>
+      {openModal && <PodcastModal />}
     </>
   )
 }
