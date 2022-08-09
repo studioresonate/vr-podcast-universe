@@ -41,7 +41,7 @@ export default function PodcastModal({ closeModal }) {
               {post.podcastTitle}
             </Text>
 
-            <ModalVideo videoUrl={post.videoPreview.fields.file.url} />
+            <ModalVideo videoUrl={post.videoPreview?.fields.file.url} />
 
             {/* close button */}
             <mesh
