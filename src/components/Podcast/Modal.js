@@ -50,8 +50,15 @@ export default function PodcastModal({ closeModal }) {
                 closeModal(false)
               }}
             >
+              <Text
+                fontSize={0.2}
+                textAlign='center'
+                color='white'
+              >
+                close
+              </Text>
               <circleGeometry args={[0.5, 32]} />
-              <meshBasicMaterial color={0xf3f3f3} />
+              <meshBasicMaterial color={0x0051e6} />
             </mesh>
 
             <ModalThumbnail
