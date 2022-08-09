@@ -70,7 +70,7 @@ function Cube({ position, textureURL, title }) {
           </Text>
         </mesh>
       </group>
-      {openModal && <PodcastModal />}
+      {openModal && <PodcastModal closeModal={setOpenModal} />}
     </>
   )
 }

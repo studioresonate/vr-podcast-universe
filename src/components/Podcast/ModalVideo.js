@@ -15,6 +15,7 @@ export default function ModalVideo(props) {
     }),
   )
 
+  // console.log(props);
   const playVideo = () => {
     video.play()
     video.muted = false

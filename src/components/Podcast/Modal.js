@@ -8,7 +8,7 @@ import { useFrame } from '@react-three/fiber'
 import ModalVideo from './ModalVideo'
 import ModalThumbnail from './ModalThumbnail'
 
-export default function PodcastModal() {
+export default function PodcastModal({ closeModal }) {
   const [post, isLoading] = useSinglePost()
   // const [clicked, click] = useState(false)
   // console.log(post);
@@ -17,7 +17,7 @@ export default function PodcastModal() {
   const modalRef = useRef()
   useFrame(() => modalRef.current.lookAt(0, 0, 0))
 
-
+  // console.log({ closeModal });
 
   const renderPost = () => {
     if (isLoading) return <Text>Loading...</Text>
@@ -44,7 +44,12 @@ export default function PodcastModal() {
             <ModalVideo videoUrl={post.videoPreview.fields.file.url} />
 
             {/* close button */}
-            <mesh position={[6.8, 3.3, 0.1]}>
+            <mesh
+              position={[6.8, 3.3, 0.1]}
+              onClick={() => {
+                closeModal(false)
+              }}
+            >
               <circleGeometry args={[0.5, 32]} />
               <meshBasicMaterial color={0xf3f3f3} />
             </mesh>
