@@ -4,10 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { history } from './components/history'
+import ThreeRouter from './components/ThreeRouter';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <ThreeRouter history={history}>
+      <App />
+    </ThreeRouter>
   </React.StrictMode>
 );
 

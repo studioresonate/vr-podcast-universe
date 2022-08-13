@@ -27,6 +27,7 @@ function Cubes() {
     return posts.map(post => (
       <Cube
         key={post.fields.slug}
+        slug={post.fields.slug}
         position={[
           generateRandom(-10, 10),
           generateRandom(-10, 10),
@@ -34,6 +35,7 @@ function Cubes() {
         ]}
         textureURL={`${post.fields.coverArt.fields.file.url}?fit=scale&w=300&h=300&q=70`}
         title={post.fields.podcastTitle}
+      // onClick={() => history.push("/page23")}
       />
     ))
   }
