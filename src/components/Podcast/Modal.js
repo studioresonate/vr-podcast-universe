@@ -8,8 +8,8 @@ import { useFrame } from '@react-three/fiber'
 import ModalVideo from './ModalVideo'
 import ModalThumbnail from './ModalThumbnail'
 
-export default function PodcastModal({ closeModal }) {
-  const [post, isLoading] = useSinglePost()
+export default function PodcastModal({ closeModal, slug }) {
+  const [post, isLoading] = useSinglePost(slug)
   // const [clicked, click] = useState(false)
   // console.log(post);
   // useFrame(() => modalRef.current.rotation.y += -0.002)

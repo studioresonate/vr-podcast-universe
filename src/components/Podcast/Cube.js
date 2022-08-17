@@ -32,6 +32,11 @@ function Cube({ position, textureURL, title, slug }) {
   // Desktop view
   useFrame(() => textRef.current.lookAt(camera.position))
 
+  function podcastOpen() {
+    history.push(slug)
+    setOpenModal(true)
+  }
+
   return (
     <>
       <group position={position}>
@@ -40,7 +45,7 @@ function Cube({ position, textureURL, title, slug }) {
           // onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}
           castShadow
-          onClick={() => history.push(slug)}
+          onClick={podcastOpen}
         // onClick={() => {
         //   setOpenModal(true)
         // }}
@@ -70,7 +75,7 @@ function Cube({ position, textureURL, title, slug }) {
           </Text>
         </mesh>
       </group>
-      {openModal && <PodcastModal closeModal={setOpenModal} />}
+      {openModal && <PodcastModal slug={slug} closeModal={setOpenModal} />}
     </>
   )
 }
