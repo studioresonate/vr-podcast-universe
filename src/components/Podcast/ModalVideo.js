@@ -2,6 +2,13 @@ import { useEffect, useRef, useState } from 'react'
 import { useAspect, Text } from '@react-three/drei'
 import * as THREE from 'three'
 
+//
+// TODO:
+// Need to create a conditional in case no video has been uploaded
+// Create alternate "no video" layout
+//
+
+
 export default function ModalVideo(props) {
   const size = useAspect(1024, 512)
   const playRef = useRef()
