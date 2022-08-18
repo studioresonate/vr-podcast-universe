@@ -22,7 +22,7 @@ function Cubes() {
 
   const renderPosts = () => {
     if (isLoading) return <Text>Loading</Text>
-    console.log(posts);
+    // console.log(posts);
 
     return posts.map(post => (
       <Cube

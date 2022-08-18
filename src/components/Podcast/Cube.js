@@ -32,7 +32,7 @@ function Cube({ position, textureURL, title, slug }) {
   // Desktop view
   useFrame(() => textRef.current.lookAt(camera.position))
 
-  function podcastOpen() {
+  const podcastOpen = () => {
     history.push(slug)
     setOpenModal(true)
   }

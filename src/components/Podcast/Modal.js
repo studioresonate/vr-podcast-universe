@@ -4,20 +4,25 @@ import { documentToPlainTextString } from '@contentful/rich-text-plain-text-rend
 import { useSinglePost } from '../../hooks/'
 import { useFrame } from '@react-three/fiber'
 
-
+import { history } from '../../components/history'
 import ModalVideo from './ModalVideo'
 import ModalThumbnail from './ModalThumbnail'
 
 export default function PodcastModal({ closeModal, slug }) {
+  // const { camera } = useThree()
   const [post, isLoading] = useSinglePost(slug)
   // const [clicked, click] = useState(false)
   // console.log(post);
-  // useFrame(() => modalRef.current.rotation.y += -0.002)
+  useFrame(() => modalRef.current.rotation.y += -0.002)
 
   const modalRef = useRef()
-  useFrame(() => modalRef.current.lookAt(0, 0, 0))
+  // useFrame(() => modalRef.current.lookAt(camera.position))
 
-  // console.log({ closeModal });
+  const podcastClose = () => {
+    history.push('/')
+    closeModal(false)
+  }
+  // console.log("I'm visible " + visible);
 
   const renderPost = () => {
     if (isLoading) return <Text>Loading...</Text>
@@ -46,9 +51,7 @@ export default function PodcastModal({ closeModal, slug }) {
             {/* close button */}
             <mesh
               position={[6.8, 3.3, 0.1]}
-              onClick={() => {
-                closeModal(false)
-              }}
+              onClick={podcastClose}
             >
               <Text
                 fontSize={0.2}
