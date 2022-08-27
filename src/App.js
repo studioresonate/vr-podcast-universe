@@ -12,6 +12,7 @@ import Instructions from './components/instructions';
 import Space from './components/Space';
 import Sun from './components/Sun';
 // import XR from './util/Xr'
+import Intro from './components/Intro'
 
 
 
@@ -40,6 +41,7 @@ function App() {
         <Sun />
         <Space />
         <Control />
+        <Intro />
         {/* <PodcastModal /> */}
         <Podcasts />
 

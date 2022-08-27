@@ -6,7 +6,7 @@ export const Control = () => {
   const { camera, gl, scene } = useThree()
 
   const controls = new ImmersiveControls(camera, gl, scene, {
-    initialPosition: new THREE.Vector3(0, 0, 15),
+    initialPosition: new THREE.Vector3(0, 0, 415),
     gravity: false,
     floor: false,
     showExitVRButton: false,
@@ -15,5 +15,3 @@ export const Control = () => {
 
   useFrame(() => (controls.update()))
 }
-
-
