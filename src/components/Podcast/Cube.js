@@ -1,7 +1,7 @@
 import React, { useMemo, useRef, useState } from 'react'
 import { TextureLoader } from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
-import { Text } from '@react-three/drei'
+import { Text, useCursor } from '@react-three/drei'
 import { history } from '../../components/history'
 import PodcastModal from './Modal'
 
@@ -13,6 +13,7 @@ function Cube({ position, textureURL, title, slug }) {
   ])
 
   // useCursor(hovered, 'pointer', 'auto')
+  useCursor(hovered, /*'pointer', 'auto'*/)
 
   const ref = useRef()
   useFrame(() => (ref.current.rotation.y += 0.02))
@@ -42,7 +43,7 @@ function Cube({ position, textureURL, title, slug }) {
       <group position={position}>
         <mesh
           ref={ref}
-          // onPointerOver={() => hover(true)}
+          onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}
           castShadow
           onClick={podcastOpen}
