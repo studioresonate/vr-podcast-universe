@@ -1,6 +1,6 @@
 import * as THREE from 'three'
-import { Suspense } from 'react'
-import { useLoader } from '@react-three/fiber'
+import { Suspense, useRef } from 'react'
+import { useFrame, useLoader } from '@react-three/fiber'
 import { Sparkles, Stars, useGLTF } from '@react-three/drei'
 
 function RocketModel() {
@@ -8,13 +8,27 @@ function RocketModel() {
   return (<primitive object={gltf.scene} />)
 }
 
+function SatelliteModel() {
+  const gltf = useGLTF('/models/satellite.gltf')
+  return (<primitive object={gltf.scene} />)
+}
+
+
 function Dome() {
   const texture = useLoader(THREE.TextureLoader, 'img/nebula.jpg')
+  const rocketRef = useRef()
+  const satelliteRef = useRef()
+  useFrame(() => (rocketRef.current.rotation.x += 0.01))
   return (
     <Suspense fallback={null}>
-      <group position={[0, 0, 300]} rotation={[0, 20, 0]}>
+      <group position={[-2, 0, 311]} rotation={[0, 0, 0.2]} ref={rocketRef}>
         <RocketModel />
       </group>
+
+      <group position={[5, 0, 160]} rotation={[10, 20, 0]} ref={satelliteRef}>
+        <SatelliteModel />
+      </group>
+
       <mesh>
         <sphereBufferGeometry attach="geometry" args={[800, 100, 100]} />
         <meshBasicMaterial attach="material" map={texture} side={THREE.BackSide} />
