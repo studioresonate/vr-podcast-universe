@@ -2,11 +2,12 @@ import { VRCanvas } from '@react-three/xr'
 import { Stats } from '@react-three/drei'
 import { Control } from './util/VRControl'
 
-// import PodcastModal from './components/Podcast/Modal'
-import Podcasts from './components/Podcast/'
+import { IntroProvider } from './IntroContext'
 
+// import PodcastModal from './components/Podcast/Modal'
 import './App.css';
 
+import Podcasts from './components/Podcast/'
 import Instructions from './components/instructions';
 // import Cubes from './components/Podcast';
 import Space from './components/Space';
@@ -40,8 +41,11 @@ function App() {
         {/* <Cubes /> */}
         <Sun />
         <Space />
-        <Control />
-        <Intro />
+
+        <IntroProvider>
+          <Control />
+          <Intro />
+        </IntroProvider>
         {/* <PodcastModal /> */}
         <Podcasts />
 

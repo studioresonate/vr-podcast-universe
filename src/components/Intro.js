@@ -1,13 +1,15 @@
+import { useContext } from 'react'
+import IntroContext from '../IntroContext'
+
 import { useLoader } from '@react-three/fiber'
 import { TextureLoader } from 'three'
 
 export default function Intro() {
-  // const [intro, setIntro] = useState(true)
-
+  const { changeIntro } = useContext(IntroContext)
   const introMap = useLoader(TextureLoader, '../img/textures/texture-intro.png')
   return (
     <mesh
-      onClick={() => { console.log("Chee") }}
+      onClick={() => changeIntro()}
       position={[0, 0, 411]}
     >
       <planeGeometry attach='geometry' args={[5.8, 4]} />
