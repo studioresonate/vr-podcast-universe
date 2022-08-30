@@ -27,5 +27,5 @@ export const Control = () => {
       ease: "power1.inOut"
     })
 
-  useFrame(() => (controls.update()))
+  useFrame(() => (intro && controls.update()))
 }
