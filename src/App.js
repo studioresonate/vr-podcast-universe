@@ -3,11 +3,12 @@ import { Stats } from '@react-three/drei'
 import { Control } from './util/VRControl'
 
 import { IntroProvider } from './IntroContext'
+import { ModalProvider } from './ModalContext'
 
-// import PodcastModal from './components/Podcast/Modal'
 import './App.css';
 
 import Podcasts from './components/Podcast/'
+import PodcastModal from './components/Podcast/Modal'
 import Instructions from './components/instructions';
 // import Cubes from './components/Podcast';
 import Space from './components/Space';
@@ -46,8 +47,11 @@ function App() {
           <Control />
           <Intro />
         </IntroProvider>
-        {/* <PodcastModal /> */}
-        <Podcasts />
+
+        <ModalProvider>
+          <Podcasts />
+          <PodcastModal />
+        </ModalProvider>
 
         {/* <XR /> */}
 

@@ -1,13 +1,16 @@
-import React, { useMemo, useRef, useState } from 'react'
+import React, { useContext, useMemo, useRef, useState } from 'react'
 import { TextureLoader } from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import { Text, useCursor } from '@react-three/drei'
 import { history } from '../../components/history'
-import PodcastModal from './Modal'
+
+import ModalContext from '../../ModalContext'
+// import PodcastModal from './Modal'
 
 function Cube({ position, textureURL, title, slug }) {
   const [hovered, hover] = useState(false)
-  const [openModal, setOpenModal] = useState(false)
+  // const [openModal, setOpenModal] = useState(false)
+  const { changeModal, InitModal } = useContext(ModalContext)
   const boxTexture = useMemo(() => new TextureLoader().load(textureURL), [
     textureURL
   ])
@@ -35,7 +38,7 @@ function Cube({ position, textureURL, title, slug }) {
 
   const podcastOpen = () => {
     history.push(slug)
-    setOpenModal(true)
+    // setOpenModal(true)
   }
 
   return (
@@ -46,7 +49,11 @@ function Cube({ position, textureURL, title, slug }) {
           onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}
           castShadow
-          onClick={podcastOpen}
+          onClick={() => {
+            podcastOpen();
+            changeModal();
+            InitModal(slug);
+          }}
         // onClick={() => {
         //   setOpenModal(true)
         // }}
@@ -76,7 +83,7 @@ function Cube({ position, textureURL, title, slug }) {
           </Text>
         </mesh>
       </group>
-      {openModal && <PodcastModal slug={slug} closeModal={setOpenModal} />}
+      {/* {openModal && <PodcastModal slug={slug} closeModal={setOpenModal} />} */}
     </>
   )
 }

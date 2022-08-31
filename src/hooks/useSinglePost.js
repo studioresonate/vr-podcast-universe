@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 import { getSinglePost } from '../contentful'
+import ModalContext from '../ModalContext';
 
-export default function useSinglePost(slug) {
-  const promise = getSinglePost(slug)
+export default function useSinglePost() {
+  const { podSlug } = useContext(ModalContext)
+  const promise = getSinglePost(podSlug)
 
   const [post, setPost] = useState(null)
   const [isLoading, setLoading] = useState(true)
