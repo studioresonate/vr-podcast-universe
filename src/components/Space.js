@@ -36,9 +36,9 @@ function Dome() {
 
       <mesh>
         <Sparkles
-          count={400}
-          scale={40 * 2}
-          size={40}
+          count={500}
+          scale={500}
+          size={80}
           noise={1}
           speed={0.15} />
 
