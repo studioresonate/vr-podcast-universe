@@ -1,7 +1,9 @@
 import * as THREE from 'three'
 import { Suspense, useRef } from 'react'
+// import { SpotLightHelper } from "three"
 import { useFrame, useLoader } from '@react-three/fiber'
 import { Sparkles, Stars, useGLTF } from '@react-three/drei'
+
 
 function RocketModel() {
   const gltf = useGLTF('/models/rocket.gltf')
@@ -18,9 +20,12 @@ function Dome() {
   const texture = useLoader(THREE.TextureLoader, 'img/nebula.jpg')
   const rocketRef = useRef()
   const satelliteRef = useRef()
+  const spotLight = useRef()
   useFrame(() => (rocketRef.current.rotation.x += 0.01))
+  // useHelper(spotLight, SpotLightHelper, "teal")
   return (
     <Suspense fallback={null}>
+      <spotLight ref={spotLight} intensity={6} distance={24} position={[-2, 0, 332]} />
       <group position={[-2, 0, 311]} rotation={[0, 0, 0.2]} ref={rocketRef}>
         <RocketModel />
       </group>
