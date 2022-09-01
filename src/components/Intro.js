@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import IntroContext from '../IntroContext'
+import { Sparkles } from '@react-three/drei'
 
 import { useLoader } from '@react-three/fiber'
 import { TextureLoader } from 'three'
@@ -12,6 +13,7 @@ export default function Intro() {
       onClick={() => changeIntro()}
       position={[0, 0, 411]}
     >
+      <Sparkles count={50} scale={4 * 2} size={6} speed={0.4} />
       <planeGeometry attach='geometry' args={[5.8, 4]} />
       <meshBasicMaterial
         attach='material'
