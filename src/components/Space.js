@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { Suspense, useRef } from 'react'
 // import { SpotLightHelper } from "three"
-import { useFrame, useLoader } from '@react-three/fiber'
+import { useLoader } from '@react-three/fiber'
 import { Sparkles, Stars, useGLTF } from '@react-three/drei'
 
 
