@@ -21,7 +21,7 @@ function Dome() {
   const rocketRef = useRef()
   const satelliteRef = useRef()
   const spotLight = useRef()
-  useFrame(() => (rocketRef.current.rotation.x += 0.01))
+  // useFrame(() => (rocketRef.current.rotation.x += 0.01))
   // useHelper(spotLight, SpotLightHelper, "teal")
   return (
     <Suspense fallback={null}>

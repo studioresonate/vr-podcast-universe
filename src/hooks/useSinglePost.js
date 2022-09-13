@@ -15,7 +15,6 @@ export default function useSinglePost() {
       setPost(result[0].fields)
       setLoading(false)
     })
-  }, [promise])
-
+  }, [])
   return [post, isLoading]
 }
