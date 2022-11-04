@@ -1,7 +1,7 @@
 import "./style.css";
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
 
-const endpoint = "https://graphql.contentful.com/content/v1/spaces/" + process.env.SPACE_ID;
+const endpoint = "https://graphql.contentful.com/content/v1/spaces/" + process.env.REACT_APP_SPACE_ID;
 
 const query = `{
   podcastCollection {
@@ -36,7 +36,7 @@ const query = `{
 const fetchOptions = {
   method: "POST",
   headers: {
-    Authorization: "Bearer " + process.env.CONTENT_DELIVERY,
+    Authorization: "Bearer " + process.env.REACT_APP_CONTENT_DELIVERY,
     "Content-Type": "application/json",
   },
   body: JSON.stringify({ query }),
