@@ -1,5 +1,5 @@
 import "./style.css";
-import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
+import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer/dist/rich-text-plain-text-renderer.es5.js';
 
 const endpoint = "https://graphql.contentful.com/content/v1/spaces/" + process.env.REACT_APP_SPACE_ID;
 
