@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <script src="js/aframe.min.js"></script>
+    <script src="js/aframe-extras.min@6.1.1.js"></script>
+    <script src="js/aframe-look-at-component.min@0.8.0.js"></script>
+    <script src="js/aframe-particle-system-component.min.js"></script>
+    <script src="js/aframe-star-system.js"></script>
+    <script src="components.min.js"></script>
+
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
+  </head>
+  <body>
+    <% if (htmlWebpackPlugin.options.unsupportedBrowser) { %>
+      <style>.unsupported-browser { display: none; }</style>
+      <div class="unsupported-browser">
+        Sorry, your browser is not supported.  Please upgrade to
+        the latest version or switch your browser to use this site.
+        See <a href="http://outdatedbrowser.com/">outdatedbrowser.com</a>
+        for options.
+      </div>
+    <% } %>
+    <a-scene
+      renderer="antialias: true;"
+      loading-screen="backgroundColor: black"
+      cursor="rayOrigin: mouse; fuse: false"
+      gltf-model="dracoDecoderPath: util/; meshoptDecoderPath: util/meshopt_decoder.js;"
+    >
+      <a-assets timeout="5000" data-assets>
+
+        <a-asset-item id="rocket2" src="assets/audio/looperman-l-1791281-0294023-0x0329e01f.m4a" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="bgaudio" src="assets/audio/PodcastUniverse360_Loop01.mp3" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="click1" src="assets/audio/mixkit-sci-fi-click-900.mp3" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="click2" src="assets/audio/mixkit-select-click-1109.mp3" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="click3" src="assets/audio/mixkit-click-melodic-tone-1129.mp3" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="click4" src="assets/audio/mixkit-mouse-click-close-1113.mp3" response-type="arraybuffer"></a-asset-item>
+
+        <a-mixin id="pointer" raycaster="objects: .clickable"></a-mixin>
+        <a-mixin id="controller-right" laser-controls="hand: right" mixin="pointer"></a-mixin>
+        <a-mixin id="controller-left" laser-controls="hand: left" mixin="pointer"></a-mixin>
+
+        <img id="nebula" src="assets/nebula2.jpg">
+        <img id="txtintro-desktop" src="assets/texture-intro-desktop.png">
+        <img id="txtintro-mobile" src="assets/texture-intro-mobile.png">
+        <img id="txtintro-headset" src="assets/texture-intro-headset.png">
+        <img id="txtsxm" src="assets/texture-sxm.png">
+        <img id="txtclouds" src="assets/texture-clouds.png">
+        <img id="modalclose" src="assets/ico-close.png">
+        <a-asset-item id="rocket" src="assets/rocket.gltf"></a-asset-item>
+      </a-assets>
+
+
+      <!-- Stars -->
+      <a-entity
+        position="0 0 0"
+        particle-system="preset: dust"
+        particleCount="10000"
+        size=[2,7,4,5,1,10]
+        maxAge="40"
+        accelerationSpread="0 2 0"
+      >
+      </a-entity>
+
+      <!-- Stars -->
+      <a-entity
+        position="0 0 420"
+        particle-system="preset: dust"
+        particleCount="10000"
+        maxAge="40"
+        velocityValue="0 105 0"
+      >
+      </a-entity>
+
+      <a-entity star-system="texture: assets/star.svg"></a-entity>
+
+
+      <a-gltf-model
+        src="#rocket"
+        id="rocketone"
+        position="-2 0 420"
+      >
+      </a-gltf-model>
+
+      <a-gltf-model
+        src="#rocket"
+        id="rockettwo"
+        position="3 0 250"
+      >
+      </a-gltf-model>
+
+      <!-- Podcast container -->
+      <a-entity
+        data-items
+        filter
+        position="0 1.6 0"
+        animation="property: rotation; from: 0 360 0; to: 0 0 0; loop: true; easing:linear; dur: 150000">
+
+        <ul class="filter">
+          <li class="btn all-filter active">All</li>
+          <li class="btn society-filter">Society and Culture</li>
+          <li class="btn comedy-filter">Comedy</li>
+          <li class="btn truecrime-filter">True Crime</li>
+          <li class="btn news-filter">News</li>
+          <li class="btn business-filter">Business</li>
+          <li class="btn sports-filter">Sports</li>
+          <li class="btn tvfilm-filter">TV & Film</li>
+          <li class="btn other-filter">Other</li>
+        </ul>
+      </a-entity>
+
+      <!-- Sun -->
+      <a-entity id="sun">
+        <a-sphere
+          position="0 1.6 0"
+          radius="6.03"
+          src="#txtclouds"
+          material="transparent: true"
+          animation="property: rotation; from: 0 0 0; to: 0 360 0; loop: true; easing:linear; dur: 100000">
+        </a-sphere>
+
+        <a-sphere
+          position="0 1.6 0"
+          radius="6"
+          src="#txtsxm">
+        </a-sphere>
+      </a-entity>
+
+      <!-- Camera and controls -->
+      <a-entity id="rig"
+        introcontrol
+        speed="1"
+        movement-controls="fly: false"
+      >
+
+        <!-- Intro -->
+        <a-image
+          class="clickable"
+          id="intro"
+          position="0, 1.6, -2"
+          height="2.5"
+          width="3.6"
+          material="side: front"
+          sound="src: #click1; on: click; positional: false; volume: 0.1;"
+        >
+        </a-image>
+
+        <!-- Camera -->
+        <a-entity
+          camera
+          id="maincamera"
+          position="0 1.6 0"
+          look-controls="pointerLockEnabled: false"
+          wasd-controls-enabled="false"
+          active="true"
+        >
+          <!-- <a-cursor></a-cursor> -->
+        </a-entity>
+
+
+        <!-- Modal -->
+        <a-entity class="podcastModal"  visible="true">
+          <a-circle
+            closemodal
+            class="clickable closemodal"
+            radius="0.4"
+            sound="src: #click4; on: click; positional: false; volume: 0.1;"
+            src="#modalclose">
+          </a-circle>
+
+          <!-- Video  -->
+          <a-video
+            class="modalvideo clickable"
+            height="4"
+            width="7"
+            src=""
+            visible="false"
+            >
+          </a-video>
+
+          <!-- Art  -->
+          <a-plane
+            class="modalart"
+            height="1.6"
+            width="1.6"
+            position="-2.7 -3.2 0"
+            src=""
+          >
+          </a-plane>
+
+          <!-- Title  -->
+          <a-text
+            class="modaltitle"
+            position="-1.6 -2.8 0"
+            width="5"
+            value=""
+            align="left"
+            color="white"
+            wrap-pixels="400"
+            baseline="top"
+          >
+          </a-text>
+
+          <!-- Podcast Hosts  -->
+          <a-text
+            class="modalhosts"
+            position="0 -0.1 0"
+            width="2"
+            value=""
+            color="white"
+          >
+          </a-text>
+
+          <!-- Description  -->
+          <a-text
+            class="modaldesc"
+            position="0 -0.3 0"
+            scale="1 1"
+            width="2"
+            value=""
+            line-height="60"
+            color="white"
+            baseline="top"
+          >
+          </a-text>
+        </a-entity>
+
+
+
+
+        <a-entity id="rhand" mixin="controller-right"></a-entity>
+        <a-entity id="lhand" mixin="controller-left"></a-entity>
+
+      </a-entity>
+      <!-- /rig -->
+
+
+
+      <!-- Lights -->
+      <a-light intensity="1.5" type="directional" position="0 0 0" rotation="-90 0 0" target="#directionaltarget">
+        <a-entity id="directionaltarget" position="4 3 -3"></a-entity>
+      </a-light>
+
+      <a-light intensity="0.3" type="directional" position="0 0 0" rotation="-90 0 0" target="#directionaltarget2">
+        <a-entity id="directionaltarget2" position="-4 -6 3"></a-entity>
+      </a-light>
+
+      <!-- Sky -->
+      <a-sky src="#nebula"></a-sky>
+
+
+
+    </a-scene>
+
+
+      <script src="js/app.js"></script>
+      <% if (htmlWebpackPlugin.options.devServer) { %>
+      <script src="<%= htmlWebpackPlugin.options.devServer%>/webpack-dev-server.js"></script>
+    <% } %>
+  </body>
+</html>
