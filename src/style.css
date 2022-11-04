@@ -142,6 +142,7 @@ template {
   --green: #82af3a;
   --blue: #0051e6;
   --black: #0f111a;
+  --gray: #242424;
   --white: #ffffff;
   --offwhite: #f8f8f2;
   --pink: #d91ca8;
@@ -232,4 +233,21 @@ body {
   /* color: var(--black); */
   visibility: hidden;
   display: none;
+}
+
+.a-dialog-button {
+  color: var(--white);
+  font-weight: bold;
+  border-radius: 0;
+  box-shadow: 0;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.a-dialog-deny-button {
+  background-color: var(--gray);
+}
+
+.a-dialog-allow-button {
+  background-color: var(--blue);
 }
