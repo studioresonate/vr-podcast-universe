@@ -188,7 +188,7 @@ const renderItems = (podcasts) => {
   const other = document.querySelectorAll('.other');
 
   const allBtn = document.querySelector('.all-filter');
-  const btn = document.querySelectorAll('.btn');
+  const btn = document.querySelectorAll('.filter-btn');
   const societyBtn = document.querySelector('.society-filter');
   const comedyBtn = document.querySelector('.comedy-filter');
   const truecrimeBtn = document.querySelector('.truecrime-filter');
@@ -322,3 +322,25 @@ const renderItems = (podcasts) => {
 fetch(endpoint, fetchOptions)
   .then((response) => response.json())
   .then((data) => renderItems(data.data.podcastCollection.items));
+
+
+// desktop and mobile filter
+const children = document.querySelectorAll('.filter-btn')
+const menuico = document.querySelector('.menu-ico')
+
+function delayClass(className, index) {
+  if (typeof index === 'undefined') {
+    index = 0
+  }
+
+  if (children.length > index) {
+    children[index].classList.toggle(className)
+    setTimeout(() => {
+      delayClass(className, index + 1)
+    }, 50);
+  }
+}
+
+menuico.addEventListener('click', () => {
+  delayClass('show')
+})

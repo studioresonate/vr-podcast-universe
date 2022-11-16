@@ -3,7 +3,8 @@ AFRAME.registerComponent('introcontrol', {
     this.el.object3D.position.set(0, 1.6, 480);
     const intro = document.querySelector('#intro');
     const sun = document.querySelector('#sun');
-    const filter = document.querySelector('.filter');
+    const menu = document.querySelector('.menu-ico');
+    const mainmenu = document.querySelector('.mainmenu');
     // const camera = document.querySelector('#maincamera');
     const rocketone = document.querySelector('#rocketone');
     const rockettwo = document.querySelector('#rockettwo');
@@ -17,6 +18,7 @@ AFRAME.registerComponent('introcontrol', {
       // console.log("You're on mobile " + mobile);
     } else if (headset === false && mobile === true) {
       intro.setAttribute('src', '#txtintro-mobile')
+      mainmenu.classList.add('mobile')
       // console.log("You're on a headset " + headset);
       // console.log("You're on mobile " + mobile);
     } else {
@@ -39,7 +41,7 @@ AFRAME.registerComponent('introcontrol', {
 
       sun.setAttribute('sound', 'src: #bgaudio; loop: true; positional: false; volume: 1; autoplay: true; ')
       setTimeout(() => {
-        filter.classList.add('fadeIn')
+        menu.classList.add('fadeIn')
         rocketone.setAttribute('sound', 'src: #rocket2; loop: false; volume: 0;')
         rockettwo.setAttribute('sound', 'src: #rocket2; loop: false; volume: 0;')
       }, 5000);
