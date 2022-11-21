@@ -198,7 +198,6 @@ const renderItems = (podcasts) => {
   const tvfilmBtn = document.querySelector('.tvfilm-filter');
   const otherBtn = document.querySelector('.other-filter');
 
-
   allBtn.insertAdjacentHTML('beforeend', `<span>${all.length}</span>`)
   societyBtn.insertAdjacentHTML('beforeend', `<span>${society.length}</span>`)
   comedyBtn.insertAdjacentHTML('beforeend', `<span>${comedy.length}</span>`)
@@ -309,6 +308,30 @@ const renderItems = (podcasts) => {
   tvfilmBtn.addEventListener('click', filterTvFilm)
   otherBtn.addEventListener('click', filterOther)
 
+
+  // VR Filters
+
+  const vrAllBtn = document.querySelector('.vr-all-filter');
+  const vrBtn = document.querySelectorAll('.vr-btn-filter');
+  const vrSocietyBtn = document.querySelector('.vr-society-filter');
+  const vrComedyBtn = document.querySelector('.vr-comedy-filter');
+  const vrTrueCrimeBtn = document.querySelector('.vr-true-crime-filter');
+  const vrNewsBtn = document.querySelector('.vr-news-filter');
+  const vrBusinessBtn = document.querySelector('.vr-business-filter');
+  const vrSportsBtn = document.querySelector('.vr-sports-filter');
+  const vrTvfilmBtn = document.querySelector('.vr-tv-film-filter');
+  const vrOtherBtn = document.querySelector('.vr-other-filter');
+
+  vrAllBtn.addEventListener('click', filterAll)
+  vrSocietyBtn.addEventListener('click', filterSociety)
+  vrComedyBtn.addEventListener('click', filterComedy)
+  vrTrueCrimeBtn.addEventListener('click', filterTrueCrime)
+  vrNewsBtn.addEventListener('click', filterNews)
+  vrBusinessBtn.addEventListener('click', filterBusiness)
+  vrSportsBtn.addEventListener('click', filterSports)
+  vrTvfilmBtn.addEventListener('click', filterTvFilm)
+  vrOtherBtn.addEventListener('click', filterOther)
+
   // Asset management
   podcasts.forEach((podcast) => {
     podcastAssetHolder.insertAdjacentHTML("beforeend", `
@@ -339,8 +362,8 @@ function delayClass(className, index) {
       delayClass(className, index + 1)
     }, 50);
   }
-}
+};
 
 menuico.addEventListener('click', () => {
   delayClass('show')
-})
+});

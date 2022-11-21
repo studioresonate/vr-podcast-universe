@@ -191,6 +191,11 @@ body {
   margin: 0;
   background-color: var(--black);
 }
+/* #VRButton {
+  background: url('./assets/ico-menu.svg') 0 0 no-repeat;
+  height: 20px;
+  width: 20px;
+} */
 
 .mainmenu {
   position: absolute;
@@ -224,16 +229,27 @@ body {
   filter: hue-rotate(45deg)
 }
 
-.filter {
-  /* opacity: 0;
-  opacity: 1; */
+.mainmenu .label {
+  position: absolute;
+  top: -42px;
+  color: white;
+  left: 42px;
+  z-index: 900;
+  font-weight: bold;
+  /* opacity: 1; */
+  font-size: 1.4rem !important;
+  /* visibility: visible; */
+  background-color: transparent !important;
+}
+
+.mainmenu .filter {
   display: flex;
   flex-wrap: wrap;
   margin: 0;
   padding: 0;
   width: 70%;
 }
-.filter li {
+.mainmenu .filter li {
   display: flex;
   align-items: flex-end;
   margin-right: 0.6rem;
@@ -252,7 +268,7 @@ body {
   visibility: hidden;
   transition: all 0.2s ease-in-out;
 }
-.filter li span {
+.mainmenu .filter li span {
   background-color: var(--black);
   color: var(--white);
   font-size: 0.6rem;
@@ -260,12 +276,12 @@ body {
   margin-left: 0.3rem;
   border-radius: 2rem;
 }
-.filter li.active {
+.mainmenu .filter li.active {
   background-color: var(--blue);
   color: var(--white);
 }
 
-.filter li.show {
+.mainmenu .filter li.show {
   opacity: 1;
   margin-left: 0rem;
   visibility: visible;

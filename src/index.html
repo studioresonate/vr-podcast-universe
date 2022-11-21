@@ -8,6 +8,8 @@
     <script src="js/aframe-look-at-component.min@0.8.0.js"></script>
     <script src="js/aframe-particle-system-component.min.js"></script>
     <script src="js/aframe-star-system.js"></script>
+    <script src="js/aframe-layout-component.min@5.3.0.js"></script>
+    <script src="js/aframe-event-set-component.min@5.0.0.js"></script>
     <script src="components.min.js"></script>
 
     <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
@@ -26,10 +28,12 @@
       </div>
     <% } %>
     <a-scene
+      stats
       renderer="antialias: true;"
       loading-screen="backgroundColor: black"
       cursor="rayOrigin: mouse; fuse: false"
       gltf-model="dracoDecoderPath: util/; meshoptDecoderPath: util/meshopt_decoder.js;"
+      mixin="pointer"
     >
       <a-assets timeout="5000" data-assets>
 
@@ -96,12 +100,12 @@
       <!-- Podcast container -->
       <a-entity
         data-items
-        filter
         position="0 1.6 0"
         animation="property: rotation; from: 0 360 0; to: 0 0 0; loop: true; easing:linear; dur: 150000">
         <div class="mainmenu">
           <div class="menu-ico"></div>
           <ul class="filter">
+            <li class="filter-btn label">Filter</li>
             <li class="filter-btn all-filter active">All</li>
             <li class="filter-btn society-filter">Society and Culture</li>
             <li class="filter-btn comedy-filter">Comedy</li>
@@ -235,7 +239,124 @@
 
 
         <a-entity id="rhand" mixin="controller-right"></a-entity>
-        <a-entity id="lhand" mixin="controller-left"></a-entity>
+
+        <a-entity id="lhand" laser-controls="hand: left">
+          <!-- menu icon -->
+          <a-circle
+            class="clickable"
+            color="#0051e6"
+            radius="0.07"
+            position="0.1 0.1 0">
+          </a-circle>
+
+          <a-entity
+            layout="type: line; margin: 0.4; align: start"
+            position="0.01 0.3 0.02"
+          >
+            <!-- all -->
+            <a-plane
+              class="clickable vr-btn-filter vr-all-filter"
+              color="#CCC"
+              height="0.1"
+              width="0.2"
+              event-set__mouseenter="material.color: blue"
+              event-set__mouseleave="material.color: white"
+            >
+              <a-text scale="0.2 0.2" align="center" color="black" position="0 0 0.01" value="ALL"></a-text>
+            </a-plane>
+
+            <!-- society and culture -->
+            <a-plane
+              class="clickable vr-btn-filter vr-society-filter"
+              color="#CCC"
+              height="0.1"
+              width="0.5"
+              event-set__mouseenter="material.color: blue"
+              event-set__mouseleave="material.color: white">
+              <a-text scale="0.2 0.2" align="center" color="black" position="0 0 0.01" value="SOCIETY & CULTURE"></a-text>
+            </a-plane>
+
+            <!-- comedy -->
+            <a-plane
+              class="clickable vr-btn-filter vr-comedy-filter"
+              color="#CCC"
+              height="0.1"
+              width="0.3"
+              event-set__mouseenter="material.color: blue"
+              event-set__mouseleave="material.color: white">
+              <a-text scale="0.2 0.2" align="center" color="black" position="0 0 0.01" value="COMEDY"></a-text>
+            </a-plane>
+
+            <!-- true crime -->
+            <a-plane
+              class="clickable vr-btn-filter vr-true-crime-filter"
+              color="#CCC"
+              height="0.1"
+              width="0.4"
+              event-set__mouseenter="material.color: blue"
+              event-set__mouseleave="material.color: white">
+              <a-text scale="0.2 0.2" align="center" color="black" position="0 0 0.01" value="TRUE CRIME"></a-text>
+            </a-plane>
+
+            <!-- news -->
+            <a-plane
+              class="clickable vr-btn-filter vr-news-filter"
+              color="#CCC"
+              height="0.1"
+              width="0.3"
+              event-set__mouseenter="material.color: blue"
+              event-set__mouseleave="material.color: white">
+              <a-text scale="0.2 0.2" align="center" color="black" position="0 0 0.01" value="NEWS"></a-text>
+            </a-plane>
+
+            <!-- business -->
+            <a-plane
+              class="clickable vr-btn-filter vr-business-filter"
+              color="#CCC"
+              height="0.1"
+              width="0.3"
+              event-set__mouseenter="material.color: blue"
+              event-set__mouseleave="material.color: white">
+              <a-text scale="0.2 0.2" align="center" color="black" position="0 0 0.01" value="Business"></a-text>
+            </a-plane>
+
+            <!-- sports -->
+            <a-plane
+              class="clickable vr-btn-filter vr-sports-filter"
+              color="#CCC"
+              height="0.1"
+              width="0.3"
+              event-set__mouseenter="material.color: blue"
+              event-set__mouseleave="material.color: white">
+              <a-text scale="0.2 0.2" align="center" color="black" position="0 0 0.01" value="Sports"></a-text>
+            </a-plane>
+
+            <!-- tv film -->
+            <a-plane
+              class="clickable vr-btn-filter vr-tv-film-filter"
+              color="#CCC"
+              height="0.1"
+              width="0.3"
+              event-set__mouseenter="material.color: blue"
+              event-set__mouseleave="material.color: white">
+              <a-text scale="0.2 0.2" align="center" color="black" position="0 0 0.01" value="TV & FILM"></a-text>
+            </a-plane>
+
+            <!-- other -->
+            <a-plane
+              class="clickable vr-btn-filter vr-other-filter"
+              color="#CCC"
+              height="0.1"
+              width="0.3"
+              event-set__mouseenter="material.color: blue"
+              event-set__mouseleave="material.color: white">
+              <a-text scale="0.2 0.2" align="center" color="black" position="0 0 0.01" value="OTHER"></a-text>
+            </a-plane>
+
+          </a-entity>
+
+
+        </a-entity>
 
       </a-entity>
       <!-- /rig -->
