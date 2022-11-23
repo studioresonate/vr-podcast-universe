@@ -254,117 +254,152 @@
             <a-text id="helpText" scale="0.1 0.1" value="Filter" align="center" color="#FFF" visible="false" position="0 0.06 0"></a-text>
           </a-circle>
 
-        <a-entity position="0.4 0.15 0" rotation="-20 -15 0">
+          <a-entity position="0.4 0.15 0" rotation="-20 -15 0">
 
-        <a-xycontainer
-          justifyItems="start"
-          alignItems="start"
-          direction="row"
-          spacing="0.01"
-        >
+            <a-xycontainer
+              justifyItems="start"
+              alignItems="start"
+              direction="row"
+              spacing="0.01"
+            >
 
-          <a-plane
-            class="clickable vr-btn-filter vr-all-filter"
-            color="#CCC"
-            height="0.07"
-            width="0.12">
-            <a-text scale="0.1 0.1" align="center" color="black" position="0 0 0.001" value="ALL"></a-text>
-          </a-plane>
+              <a-plane
+                class="clickable vr-btn-filter vr-all-filter"
+                event-set__enter="_event: mouseenter; scale: 1.02 1.02 1.02"
+                event-set__leave="_event: mouseleave; scale: 1 1 1"
+                event-set__down="_event: mousedown; scale: 1.02 1.02 1.02"
+                event-set__up="_event: mouseup; scale: 1 1 1"
+                color="#0051e6"
+                height="0.07"
+                width="0.12">
+                <a-text scale="0.1 0.1" align="center" color="black" position="0 0 0.001" value="ALL"></a-text>
+              </a-plane>
 
-          <a-plane
-            class="clickable vr-btn-filter vr-society-filter"
-            color="#CCC"
-            height="0.07"
-            width="0.26">
-            <a-text scale="0.1 0.1" align="center" color="black" position="0 0 0.001" value="SOCIETY & CULTURE"></a-text>
-          </a-plane>
+              <a-plane
+                class="clickable vr-btn-filter vr-society-filter"
+                event-set__enter="_event: mouseenter; scale: 1.02 1.02 1.02"
+                event-set__leave="_event: mouseleave; scale: 1 1 1"
+                event-set__down="_event: mousedown; scale: 1.02 1.02 1.02"
+                event-set__up="_event: mouseup; scale: 1 1 1"
+                color="#fff"
+                height="0.07"
+                width="0.26">
+                <a-text scale="0.1 0.1" align="center" color="black" position="0 0 0.001" value="SOCIETY & CULTURE"></a-text>
+              </a-plane>
 
-          <a-plane
-            class="clickable vr-btn-filter vr-comedy-filter"
-            color="#CCC"
-            height="0.07"
-            width="0.15">
-            <a-text scale="0.1 0.1" align="center" color="black" position="0 0 0.001" value="COMEDY"></a-text>
-          </a-plane>
+              <a-plane
+                class="clickable vr-btn-filter vr-comedy-filter"
+                event-set__enter="_event: mouseenter; scale: 1.02 1.02 1.02"
+                event-set__leave="_event: mouseleave; scale: 1 1 1"
+                event-set__down="_event: mousedown; scale: 1.02 1.02 1.02"
+                event-set__up="_event: mouseup; scale: 1 1 1"
+                color="#fff"
+                height="0.07"
+                width="0.15">
+                <a-text scale="0.1 0.1" align="center" color="black" position="0 0 0.001" value="COMEDY"></a-text>
+              </a-plane>
 
-        </a-xycontainer>
+            </a-xycontainer>
 
-        <a-xycontainer
-          justifyItems="start"
-          alignItems="start"
-          direction="row"
-          spacing="0.01"
-          rotation="0 0 0"
-          position="-0.03 -0.08 0"
-        >
+            <a-xycontainer
+              justifyItems="start"
+              alignItems="start"
+              direction="row"
+              spacing="0.01"
+              rotation="0 0 0"
+              position="-0.03 -0.08 0"
+            >
 
-          <a-plane
-            class="clickable vr-btn-filter vr-true-crime-filter"
-            color="#CCC"
-            height="0.07"
-            width="0.2">
-            <a-text scale="0.1 0.1" align="center" color="black" position="0 0 0.001" value="TRUE CRIME"></a-text>
-          </a-plane>
+              <a-plane
+                class="clickable vr-btn-filter vr-true-crime-filter"
+                event-set__enter="_event: mouseenter; scale: 1.02 1.02 1.02"
+                event-set__leave="_event: mouseleave; scale: 1 1 1"
+                event-set__down="_event: mousedown; scale: 1.02 1.02 1.02"
+                event-set__up="_event: mouseup; scale: 1 1 1"
+                color="#fff"
+                height="0.07"
+                width="0.2">
+                <a-text scale="0.1 0.1" align="center" color="black" position="0 0 0.001" value="TRUE CRIME"></a-text>
+              </a-plane>
 
-          <a-plane
-            class="clickable vr-btn-filter vr-news-filter"
-            color="#CCC"
-            height="0.07"
-            width="0.11">
-            <a-text scale="0.1 0.1" align="center" color="black" position="0 0 0.001" value="NEWS"></a-text>
-          </a-plane>
+              <a-plane
+                class="clickable vr-btn-filter vr-news-filter"
+                event-set__enter="_event: mouseenter; scale: 1.02 1.02 1.02"
+                event-set__leave="_event: mouseleave; scale: 1 1 1"
+                event-set__down="_event: mousedown; scale: 1.02 1.02 1.02"
+                event-set__up="_event: mouseup; scale: 1 1 1"
+                color="#fff"
+                height="0.07"
+                width="0.11">
+                <a-text scale="0.1 0.1" align="center" color="black" position="0 0 0.001" value="NEWS"></a-text>
+              </a-plane>
 
-          <a-plane
-            class="clickable vr-btn-filter vr-business-filter"
-            color="#CCC"
-            height="0.07"
-            width="0.16">
-            <a-text scale="0.1 0.1" align="center" color="black" position="0 0 0.001" value="BUSINESS"></a-text>
-          </a-plane>
+              <a-plane
+                class="clickable vr-btn-filter vr-business-filter"
+                event-set__enter="_event: mouseenter; scale: 1.02 1.02 1.02"
+                event-set__leave="_event: mouseleave; scale: 1 1 1"
+                event-set__down="_event: mousedown; scale: 1.02 1.02 1.02"
+                event-set__up="_event: mouseup; scale: 1 1 1"
+                color="#fff"
+                height="0.07"
+                width="0.16">
+                <a-text scale="0.1 0.1" align="center" color="black" position="0 0 0.001" value="BUSINESS"></a-text>
+              </a-plane>
 
-        </a-xycontainer>
+            </a-xycontainer>
 
 
-        <a-xycontainer
-          justifyItems="start"
-          alignItems="start"
-          direction="row"
-          spacing="0.01"
-          rotation="0 0 0"
-          position="-0.055 -0.16 0"
-        >
+            <a-xycontainer
+              justifyItems="start"
+              alignItems="start"
+              direction="row"
+              spacing="0.01"
+              rotation="0 0 0"
+              position="-0.055 -0.16 0"
+            >
 
-          <a-plane
-            class="clickable vr-btn-filter vr-sports-filter"
-            color="#CCC"
-            height="0.07"
-            width="0.12">
-            <a-text scale="0.1 0.1" align="center" color="black" position="0 0 0.001" value="SPORTS"></a-text>
-          </a-plane>
+              <a-plane
+                class="clickable vr-btn-filter vr-sports-filter"
+                event-set__enter="_event: mouseenter; scale: 1.02 1.02 1.02"
+                event-set__leave="_event: mouseleave; scale: 1 1 1"
+                event-set__down="_event: mousedown; scale: 1.02 1.02 1.02"
+                event-set__up="_event: mouseup; scale: 1 1 1"
+                color="#fff"
+                height="0.07"
+                width="0.12">
+                <a-text scale="0.1 0.1" align="center" color="black" position="0 0 0.001" value="SPORTS"></a-text>
+              </a-plane>
 
-          <a-plane
-            class="clickable vr-btn-filter vr-tv-film-filter"
-            color="#CCC"
-            height="0.07"
-            width="0.17">
-            <a-text scale="0.1 0.1" align="center" color="black" position="0 0 0.001" value="TV & FILM"></a-text>
-          </a-plane>
+              <a-plane
+                class="clickable vr-btn-filter vr-tv-film-filter"
+                event-set__enter="_event: mouseenter; scale: 1.02 1.02 1.02"
+                event-set__leave="_event: mouseleave; scale: 1 1 1"
+                event-set__down="_event: mousedown; scale: 1.02 1.02 1.02"
+                event-set__up="_event: mouseup; scale: 1 1 1"
+                color="#fff"
+                height="0.07"
+                width="0.17">
+                <a-text scale="0.1 0.1" align="center" color="black" position="0 0 0.001" value="TV & FILM"></a-text>
+              </a-plane>
 
-          <a-plane
-            class="clickable vr-btn-filter vr-other-filter"
-            color="#CCC"
-            height="0.07"
-            width="0.13">
-            <a-text scale="0.1 0.1" align="center" color="black" position="0 0 0.001" value="OTHER"></a-text>
-          </a-plane>
+              <a-plane
+                class="clickable vr-btn-filter vr-other-filter"
+                event-set__enter="_event: mouseenter; scale: 1.02 1.02 1.02"
+                event-set__leave="_event: mouseleave; scale: 1 1 1"
+                event-set__down="_event: mousedown; scale: 1.02 1.02 1.02"
+                event-set__up="_event: mouseup; scale: 1 1 1"
+                color="#fff"
+                height="0.07"
+                width="0.13">
+                <a-text scale="0.1 0.1" align="center" color="black" position="0 0 0.001" value="OTHER"></a-text>
+              </a-plane>
 
-        </a-xycontainer>
+            </a-xycontainer>
+
+          </a-entity>
 
         </a-entity>
-
-
-      </a-entity>
-        <!-- /left controller -->
+          <!-- /left controller -->
 
       </a-entity>
       <!-- /rig -->

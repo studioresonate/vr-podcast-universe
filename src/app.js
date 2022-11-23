@@ -137,6 +137,17 @@ const renderItems = (podcasts) => {
         document.querySelector(`#vid-${podcast.sys.id}`).play()
       }
 
+      const podDesc = documentToPlainTextString(podcast.description.json)
+
+      const truncateString = (str, max = 50) => {
+        const array = str.trim().split(' ');
+        const ellipsis = array.length > max ? '...' : '';
+
+        return array.slice(0, max).join(' ') + ellipsis;
+      };
+
+
+
       // Hide video plane if no video available
       podcast.videoPreview ? modalvideo.setAttribute('visible', true) : modalvideo.setAttribute('visible', false)
       // Modal podcast artwork positioning and size for when there is a video, or no video
@@ -146,8 +157,8 @@ const renderItems = (podcasts) => {
       podcast.videoPreview ? setAttributes(modaltitle, { 'value': podcast.podcastTitle, 'position': '-1.6 -2.8 0', 'width': '5', 'wrap-pixels': '400' })
         : setAttributes(modaltitle, { 'value': podcast.podcastTitle, 'position': '-2 2.5 0', 'width': '8', 'wrap-pixels': '800' })
       // Modal podcast description positioning and size for when there is a video, or no video
-      podcast.videoPreview ? setAttributes(modaldesc, { 'value': documentToPlainTextString(podcast.description.json), 'position': '3.93 1.18 0', 'rotation': '0 -16 0', 'width': '4' })
-        : setAttributes(modaldesc, { 'value': documentToPlainTextString(podcast.description.json), 'position': '-2 1.42 0', 'width': '6.5', 'rotation': '0 0 0' })
+      podcast.videoPreview ? setAttributes(modaldesc, { 'value': truncateString(podDesc), 'position': '3.93 1.18 0', 'rotation': '0 -16 0', 'width': '4' })
+        : setAttributes(modaldesc, { 'value': truncateString(podDesc), 'position': '-2 1.42 0', 'width': '6.5', 'rotation': '0 0 0' })
       // Modal podcast hosts positioning and size for when there is a video, or no video
       podcast.videoPreview ? setAttributes(modalhosts, { 'value': `${podcast.hostNames ? `HOSTS: ${podcast.hostNames}` : ""}`, 'position': '3.9 1.67 0', 'rotation': '0 -16 0', 'width': '5' })
         : setAttributes(modalhosts, { 'value': `${podcast.hostNames ? `HOSTS: ${podcast.hostNames}` : ""}`, 'position': '-5.5 -0.68 0', 'width': '2.8', 'rotation': '0 0 0' })
@@ -234,6 +245,11 @@ const renderItems = (podcasts) => {
       e.classList.remove('active')
     });
     allBtn.classList.add('active')
+
+    vrBtn.forEach(function (e) {
+      e.setAttribute('color', 'white')
+    });
+    vrAllBtn.setAttribute('color', '#0051e6')
   }
 
   const removeAll = () => {
@@ -243,6 +259,9 @@ const renderItems = (podcasts) => {
     btn.forEach(function (e) {
       e.classList.remove('active')
     });
+    vrBtn.forEach(function (e) {
+      e.setAttribute('color', 'white')
+    });
   }
 
   const filterSociety = () => {
@@ -251,6 +270,7 @@ const renderItems = (podcasts) => {
       e.setAttribute('animation', scaleIn)
     });
     societyBtn.classList.add('active')
+    vrSocietyBtn.setAttribute('color', '#0051e6')
   }
 
   const filterComedy = () => {
@@ -259,6 +279,7 @@ const renderItems = (podcasts) => {
       e.setAttribute('animation', scaleIn)
     });
     comedyBtn.classList.add('active')
+    vrComedyBtn.setAttribute('color', '#0051e6')
   }
 
   const filterTrueCrime = () => {
@@ -267,6 +288,7 @@ const renderItems = (podcasts) => {
       e.setAttribute('animation', scaleIn)
     });
     truecrimeBtn.classList.add('active')
+    vrTrueCrimeBtn.setAttribute('color', '#0051e6')
   }
 
   const filterNews = () => {
@@ -275,6 +297,7 @@ const renderItems = (podcasts) => {
       e.setAttribute('animation', scaleIn)
     });
     newsBtn.classList.add('active')
+    vrNewsBtn.setAttribute('color', '#0051e6')
   }
 
   const filterBusiness = () => {
@@ -283,6 +306,7 @@ const renderItems = (podcasts) => {
       e.setAttribute('animation', scaleIn)
     });
     businessBtn.classList.add('active')
+    vrBusinessBtn.setAttribute('color', '#0051e6')
   }
 
   const filterSports = () => {
@@ -291,6 +315,7 @@ const renderItems = (podcasts) => {
       e.setAttribute('animation', scaleIn)
     });
     sportsBtn.classList.add('active')
+    vrSportsBtn.setAttribute('color', '#0051e6')
   }
 
   const filterTvFilm = () => {
@@ -299,6 +324,7 @@ const renderItems = (podcasts) => {
       e.setAttribute('animation', scaleIn)
     });
     tvfilmBtn.classList.add('active')
+    vrTvfilmBtn.setAttribute('color', '#0051e6')
   }
 
   const filterOther = () => {
@@ -307,6 +333,7 @@ const renderItems = (podcasts) => {
       e.setAttribute('animation', scaleIn)
     });
     otherBtn.classList.add('active')
+    vrOtherBtn.setAttribute('color', '#0051e6')
   }
 
   allBtn.addEventListener('click', filterAll)

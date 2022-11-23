@@ -29,9 +29,9 @@ AFRAME.registerComponent('introcontrol', {
     }
 
     intro.addEventListener('click', () => {
-      this.el.setAttribute('animation', 'property: position; to: 0 0 20; dur: 6000; easing: easeInOutCubic;')
+      this.el.setAttribute('animation', 'property: position; to: 0 0 35; dur: 6000; easing: easeInOutCubic;')
 
-      intro.setAttribute('animation', 'property: position; to: 0 0 20; easing:easeInOutCubic; dur: 2000')
+      intro.setAttribute('animation', 'property: position; to: 0 0 35; easing:easeInOutCubic; dur: 2000')
 
       rocketone.setAttribute('animation', 'property: rotation; from: 0 360 0; to: 40 0 0; loop: true; easing:linear; dur: 4200')
       rocketone.setAttribute('sound', 'src: #rocket2; loop: true; volume: 10; autoplay: true; refDistance: 0.05; rolloffFactor: 0.5')
