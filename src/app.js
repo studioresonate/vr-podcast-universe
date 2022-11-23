@@ -398,3 +398,4 @@ function delayClass(className, index) {
 menuico.addEventListener('click', () => {
   delayClass('show')
 });
+
