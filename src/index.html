@@ -43,6 +43,8 @@
         <a-asset-item id="click2" src="assets/audio/mixkit-select-click-1109.mp3" response-type="arraybuffer"></a-asset-item>
         <a-asset-item id="click3" src="assets/audio/mixkit-click-melodic-tone-1129.mp3" response-type="arraybuffer"></a-asset-item>
         <a-asset-item id="click4" src="assets/audio/mixkit-mouse-click-close-1113.mp3" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="click5" src="assets/audio/mixkit-modern-click-box-check-1120.mp3" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="click6" src="assets/audio/mixkit-single-classic-click-1116.mp3" response-type="arraybuffer"></a-asset-item>
 
         <a-mixin id="pointer" raycaster="objects: .clickable"></a-mixin>
         <a-mixin id="controller-right" laser-controls="hand: right" mixin="pointer"></a-mixin>
@@ -249,6 +251,7 @@
             radius="0.04"
             position="0.03 0.15 -0.02"
             src="#vrmenu"
+            sound="src: #click6; on: mouseenter; positional: true; volume: 0.8;"
             event-set__enter="_event: mouseenter; _target: #helpText; visible: true"
             event-set__leave="_event: mouseleave; _target: #helpText; visible: false">
             <a-text id="helpText" scale="0.1 0.1" value="Filter" align="center" color="#FFF" visible="false" position="0 0.06 0"></a-text>
@@ -267,8 +270,9 @@
                 class="clickable vr-btn-filter vr-all-filter"
                 event-set__enter="_event: mouseenter; scale: 1.02 1.02 1.02"
                 event-set__leave="_event: mouseleave; scale: 1 1 1"
-                event-set__down="_event: mousedown; scale: 1.02 1.02 1.02"
+                event-set__down="_event: mousedown; scale: 1.02 1.02 1.02;"
                 event-set__up="_event: mouseup; scale: 1 1 1"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.8;"
                 color="#0051e6"
                 height="0.07"
                 width="0.12">
@@ -281,6 +285,7 @@
                 event-set__leave="_event: mouseleave; scale: 1 1 1"
                 event-set__down="_event: mousedown; scale: 1.02 1.02 1.02"
                 event-set__up="_event: mouseup; scale: 1 1 1"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.8;"
                 color="#fff"
                 height="0.07"
                 width="0.26">
@@ -293,6 +298,7 @@
                 event-set__leave="_event: mouseleave; scale: 1 1 1"
                 event-set__down="_event: mousedown; scale: 1.02 1.02 1.02"
                 event-set__up="_event: mouseup; scale: 1 1 1"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.8;"
                 color="#fff"
                 height="0.07"
                 width="0.15">
@@ -316,6 +322,7 @@
                 event-set__leave="_event: mouseleave; scale: 1 1 1"
                 event-set__down="_event: mousedown; scale: 1.02 1.02 1.02"
                 event-set__up="_event: mouseup; scale: 1 1 1"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.8;"
                 color="#fff"
                 height="0.07"
                 width="0.2">
@@ -328,6 +335,7 @@
                 event-set__leave="_event: mouseleave; scale: 1 1 1"
                 event-set__down="_event: mousedown; scale: 1.02 1.02 1.02"
                 event-set__up="_event: mouseup; scale: 1 1 1"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.8;"
                 color="#fff"
                 height="0.07"
                 width="0.11">
@@ -340,6 +348,7 @@
                 event-set__leave="_event: mouseleave; scale: 1 1 1"
                 event-set__down="_event: mousedown; scale: 1.02 1.02 1.02"
                 event-set__up="_event: mouseup; scale: 1 1 1"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.8;"
                 color="#fff"
                 height="0.07"
                 width="0.16">
@@ -364,6 +373,7 @@
                 event-set__leave="_event: mouseleave; scale: 1 1 1"
                 event-set__down="_event: mousedown; scale: 1.02 1.02 1.02"
                 event-set__up="_event: mouseup; scale: 1 1 1"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.8;"
                 color="#fff"
                 height="0.07"
                 width="0.12">
@@ -376,6 +386,7 @@
                 event-set__leave="_event: mouseleave; scale: 1 1 1"
                 event-set__down="_event: mousedown; scale: 1.02 1.02 1.02"
                 event-set__up="_event: mouseup; scale: 1 1 1"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.8;"
                 color="#fff"
                 height="0.07"
                 width="0.17">
@@ -388,6 +399,7 @@
                 event-set__leave="_event: mouseleave; scale: 1 1 1"
                 event-set__down="_event: mousedown; scale: 1.02 1.02 1.02"
                 event-set__up="_event: mouseup; scale: 1 1 1"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.8;"
                 color="#fff"
                 height="0.07"
                 width="0.13">
