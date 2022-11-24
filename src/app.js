@@ -248,8 +248,10 @@ const renderItems = (podcasts) => {
 
     vrBtn.forEach(function (e) {
       e.setAttribute('color', 'white')
+      e.setAttribute('material', 'opacity: 0.3; transparent: true')
     });
     vrAllBtn.setAttribute('color', '#0051e6')
+    vrAllBtn.setAttribute('material', 'opacity: 1; transparent: false')
   }
 
   const removeAll = () => {
@@ -261,6 +263,7 @@ const renderItems = (podcasts) => {
     });
     vrBtn.forEach(function (e) {
       e.setAttribute('color', 'white')
+      e.setAttribute('material', 'opacity: 0.3; transparent: true')
     });
   }
 
@@ -271,6 +274,7 @@ const renderItems = (podcasts) => {
     });
     societyBtn.classList.add('active')
     vrSocietyBtn.setAttribute('color', '#0051e6')
+    vrSocietyBtn.setAttribute('material', 'opacity: 1; transparent: false')
   }
 
   const filterComedy = () => {
@@ -280,6 +284,7 @@ const renderItems = (podcasts) => {
     });
     comedyBtn.classList.add('active')
     vrComedyBtn.setAttribute('color', '#0051e6')
+    vrComedyBtn.setAttribute('material', 'opacity: 1; transparent: false')
   }
 
   const filterTrueCrime = () => {
@@ -289,6 +294,7 @@ const renderItems = (podcasts) => {
     });
     truecrimeBtn.classList.add('active')
     vrTrueCrimeBtn.setAttribute('color', '#0051e6')
+    vrTrueCrimeBtn.setAttribute('material', 'opacity: 1; transparent: false')
   }
 
   const filterNews = () => {
@@ -298,6 +304,7 @@ const renderItems = (podcasts) => {
     });
     newsBtn.classList.add('active')
     vrNewsBtn.setAttribute('color', '#0051e6')
+    vrNewsBtn.setAttribute('material', 'opacity: 1; transparent: false')
   }
 
   const filterBusiness = () => {
@@ -307,6 +314,7 @@ const renderItems = (podcasts) => {
     });
     businessBtn.classList.add('active')
     vrBusinessBtn.setAttribute('color', '#0051e6')
+    vrBusinessBtn.setAttribute('material', 'opacity: 1; transparent: false')
   }
 
   const filterSports = () => {
@@ -316,6 +324,7 @@ const renderItems = (podcasts) => {
     });
     sportsBtn.classList.add('active')
     vrSportsBtn.setAttribute('color', '#0051e6')
+    vrSportsBtn.setAttribute('material', 'opacity: 1; transparent: false')
   }
 
   const filterTvFilm = () => {
@@ -325,6 +334,7 @@ const renderItems = (podcasts) => {
     });
     tvfilmBtn.classList.add('active')
     vrTvfilmBtn.setAttribute('color', '#0051e6')
+    vrTvfilmBtn.setAttribute('material', 'opacity: 1; transparent: false')
   }
 
   const filterOther = () => {
@@ -334,6 +344,7 @@ const renderItems = (podcasts) => {
     });
     otherBtn.classList.add('active')
     vrOtherBtn.setAttribute('color', '#0051e6')
+    vrOtherBtn.setAttribute('material', 'opacity: 1; transparent: false')
   }
 
   allBtn.addEventListener('click', filterAll)
