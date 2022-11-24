@@ -42,7 +42,7 @@
         <a-asset-item id="click1" src="assets/audio/mixkit-sci-fi-click-900.mp3" response-type="arraybuffer"></a-asset-item>
         <a-asset-item id="click2" src="assets/audio/mixkit-select-click-1109.mp3" response-type="arraybuffer"></a-asset-item>
         <a-asset-item id="click3" src="assets/audio/mixkit-click-melodic-tone-1129.mp3" response-type="arraybuffer"></a-asset-item>
-        <a-asset-item id="click4" src="assets/audio/mixkit-mouse-click-close-1113.mp3" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="click4" src="assets/audio/mixkit-mouse-click-close-1113-2.mp3" response-type="arraybuffer"></a-asset-item>
         <a-asset-item id="click5" src="assets/audio/mixkit-modern-click-box-check-1120.mp3" response-type="arraybuffer"></a-asset-item>
         <a-asset-item id="click6" src="assets/audio/mixkit-single-classic-click-1116.mp3" response-type="arraybuffer"></a-asset-item>
 
@@ -261,7 +261,7 @@
             sound__down="src: #click2; on: mousedown; positional: true; volume: 0.1;"
             event-set__enter="_event: mouseenter; _target: #helpText; visible: true"
             event-set__leave="_event: mouseleave; _target: #helpText; visible: false">
-            <a-text id="helpText" scale="0.1 0.1" value="Filter" align="center" color="#FFF" visible="false" position="0 0.06 0"></a-text>
+            <a-text id="helpText" scale="0.1 0.1" value="MENU" align="center" color="#FFF" visible="false" position="0 0.06 0"></a-text>
           </a-circle>
 
           <a-entity
@@ -269,7 +269,7 @@
             rotation="-20 -15 0"
             id="vr-menu"
             visible="true"
-            scale="0 0 0"
+            scale="0 0"
           >
 
             <a-xycontainer
@@ -428,6 +428,32 @@
                 <a-text scale="0.1 0.1" align="center" color="black" position="0 0 0.001" value="OTHER"></a-text>
               </a-plane>
 
+            </a-xycontainer>
+
+            <a-xycontainer
+              justifyItems="start"
+              alignItems="start"
+              direction="row"
+              spacing="0.01"
+              rotation="0 0 0"
+              position="-0.25 -0.24 0"
+            >
+              <a-text
+                musictoggle
+                geometry="primitive:plane;width:2;height:0.8"
+                material="opacity: 0.0; transparent: true"
+                class="clickable music"
+                scale="0.07 0.07"
+                align="left"
+                color="white"
+                position="-0.8 0 0.01"
+                value="MUSIC ON"
+                sound="src: #click4; on: click; positional: true; volume: 0.2;"
+                music
+              >
+              <!-- <a-circle color="#CCC" radius="0.16" position="-0.06 0 -0.002"></a-circle> -->
+              <a-circle class="toggle" color="#0051e6" radius="0.16" position="1.3 0 -0.002"></a-circle>
+              </a-text>
             </a-xycontainer>
 
           </a-entity>
