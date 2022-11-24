@@ -39,7 +39,7 @@ AFRAME.registerComponent('introcontrol', {
       rockettwo.setAttribute('animation', 'property: rotation; from: 180 360 0; to: 0 0 0; loop: true; easing:linear; dur: 6500')
       rockettwo.setAttribute('sound', 'src: #rocket2; loop: true; volume: 10; autoplay: true; refDistance: 0.05; rolloffFactor: 0.5')
 
-      sun.setAttribute('sound', 'src: #bgaudio; loop: true; positional: false; volume: 1; autoplay: true; ')
+      sun.setAttribute('mixin', 'bgmusic-on')
       setTimeout(() => {
         menu.classList.add('fadeIn')
         rocketone.setAttribute('sound', 'src: #rocket2; loop: false; volume: 0;')

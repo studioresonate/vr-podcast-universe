@@ -378,6 +378,7 @@ fetch(endpoint, fetchOptions)
   .then((data) => renderItems(data.data.podcastCollection.items));
 
 
+const sun = document.querySelector('#sun');
 // desktop and mobile filter
 const children = document.querySelectorAll('.filter-btn')
 const menuico = document.querySelector('.menu-ico')
@@ -399,3 +400,22 @@ menuico.addEventListener('click', () => {
   delayClass('show')
 });
 
+// mute music desktop
+let m = document.querySelector('.music');
+m.insertAdjacentHTML("beforeend", `<img class='icomusic' src='../assets/ico-music-on.svg' alt='Music on' />`)
+
+function musicToggle() {
+  if (sun.hasAttribute('music')) {
+    sun.setAttribute('mixin', 'bgmusic-on');
+    sun.removeAttribute('music');
+    m.innerText = "Music on"
+    m.insertAdjacentHTML("beforeend", `<img class='icomusic' src='../assets/ico-music-on.svg' alt='Music on' />`)
+  } else {
+    sun.setAttribute('mixin', 'bgmusic-off');
+    sun.setAttribute('music', '1');
+    m.innerText = "Music off"
+    m.insertAdjacentHTML("beforeend", `<img class='icomusic' src='../assets/ico-music-off.svg' alt='Music off' />`)
+  }
+};
+
+m.addEventListener('click', musicToggle);

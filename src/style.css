@@ -199,7 +199,7 @@ body {
 
 .mainmenu {
   position: absolute;
-  bottom: 20px;
+  bottom: 25px;
   left: 20px;
   z-index: 10;
   display: flex;
@@ -232,20 +232,41 @@ body {
 .mainmenu .label {
   position: absolute;
   top: -42px;
-  color: white;
+  color: var(--white);
   left: 42px;
   z-index: 900;
   font-weight: bold;
   /* opacity: 1; */
   font-size: 1.4rem !important;
   /* visibility: visible; */
+
+}
+
+.mainmenu .music {
+  position: absolute;
+  bottom: -20px;
+  left: 54px;
+  margin: 0 !important;
+  padding: 0.4rem 1rem 0.4rem 0 !important;
+  font-size: 0.7rem !important;
+  color: var(--white);
+}
+
+.mainmenu .transparent {
   background-color: transparent !important;
+  backdrop-filter: none !important;
+}
+
+.mainmenu .music .icomusic {
+  display: block;
+  height: 10px;
+  padding-left: 6px;
 }
 
 .mainmenu .filter {
   display: flex;
   flex-wrap: wrap;
-  margin: 0;
+  margin: 0 0 0.4rem 0;
   padding: 0;
   width: 70%;
 }
@@ -261,13 +282,20 @@ body {
   font-weight: 600;
   padding: 0.6rem 0.8rem;
   list-style-type: none;
-  background-color: var(--white);
+  color: var(--white);
+  background-color: #4a589973;
+  backdrop-filter: blur(10px);
   cursor: pointer;
   opacity: 0;
   pointer-events: visible;
   visibility: hidden;
   transition: all 0.2s ease-in-out;
 }
+
+.mainmenu .filter li:hover {
+  background-color: #4a5899;
+}
+
 .mainmenu .filter li span {
   background-color: var(--black);
   color: var(--white);

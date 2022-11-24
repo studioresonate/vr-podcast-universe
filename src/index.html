@@ -50,6 +50,9 @@
         <a-mixin id="controller-right" laser-controls="hand: right" mixin="pointer"></a-mixin>
         <a-mixin id="controller-left" laser-controls="hand: left" mixin="pointer"></a-mixin>
 
+        <a-mixin id="bgmusic-on" sound="src: #bgaudio; loop: true; positional: false; volume: 1; autoplay: true;"></a-mixin>
+        <a-mixin id="bgmusic-off" sound="src: #bgaudio; loop: true; positional: false; volume: 0; autoplay: true;"></a-mixin>
+
         <img id="nebula" src="assets/nebula.jpg">
         <img id="txtintro-desktop" src="assets/texture-intro-desktop.png">
         <img id="txtintro-mobile" src="assets/texture-intro-mobile.png">
@@ -107,8 +110,9 @@
         animation="property: rotation; from: 0 360 0; to: 0 0 0; loop: true; easing:linear; dur: 150000">
         <div class="mainmenu">
           <div class="menu-ico"></div>
+
           <ul class="filter">
-            <li class="filter-btn label">Filter</li>
+            <li class="filter-btn label transparent">Menu</li>
             <li class="filter-btn all-filter active">All</li>
             <li class="filter-btn society-filter">Society and Culture</li>
             <li class="filter-btn comedy-filter">Comedy</li>
@@ -118,6 +122,7 @@
             <li class="filter-btn sports-filter">Sports</li>
             <li class="filter-btn tvfilm-filter">TV & Film</li>
             <li class="filter-btn other-filter">Other</li>
+            <li class="filter-btn music music-on transparent">Music on</li>
           </ul>
         </div>
       </a-entity>
