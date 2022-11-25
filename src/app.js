@@ -391,7 +391,7 @@ fetch(endpoint, fetchOptions)
 
 const sun = document.querySelector('#sun');
 // desktop and mobile filter
-const children = document.querySelectorAll('.filter-btn')
+const filterBtn = document.querySelectorAll('.filter-btn')
 const menuico = document.querySelector('.menu-ico')
 
 function delayClass(className, index) {
@@ -399,8 +399,8 @@ function delayClass(className, index) {
     index = 0
   }
 
-  if (children.length > index) {
-    children[index].classList.toggle(className)
+  if (filterBtn.length > index) {
+    filterBtn[index].classList.toggle(className)
     setTimeout(() => {
       delayClass(className, index + 1)
     }, 50);
