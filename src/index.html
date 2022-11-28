@@ -61,6 +61,7 @@
         <img id="txtclouds" src="assets/texture-clouds.png">
         <img id="modalclose" src="assets/ico-close.png">
         <img id="vrmenu" src="assets/ico-menu.svg">
+        <img id="listen-stitcher" src="assets/btn-stitcher.png">
         <a-asset-item id="rocket" src="assets/rocket.gltf"></a-asset-item>
       </a-assets>
 
@@ -195,6 +196,15 @@
             visible="false"
             >
           </a-video>
+
+          <a-plane
+            class="clickable listen"
+            height="0.440"
+            width="2.570"
+            position="-3.67 -0.83 0.350"
+            data-link
+            src="#listen-stitcher">
+          </a-plane>
 
           <!-- Art  -->
           <a-plane
@@ -440,10 +450,9 @@
             >
               <a-text
                 musictoggle
-                geometry="primitive:plane;width:2;height:0.8"
-                material="opacity: 0.0; transparent: true"
-                class="clickable music"
-                scale="0.07 0.07"
+                geometry="primitive:plane;;height:0.5;width:2.760width:2;height:0.8"
+                material="opacity: 0.0; transparent: true;color: white"
+            color="white"
                 align="left"
                 color="white"
                 position="-0.8 0 0.01"

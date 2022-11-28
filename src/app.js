@@ -28,6 +28,7 @@ const query = `{
         fileName
         url
       }
+      listenUrl
       category
     }
   }
@@ -61,6 +62,7 @@ const renderItems = (podcasts) => {
   const modalart = document.querySelector('.modalart');
   const modaldesc = document.querySelector('.modaldesc');
   const modalvideo = document.querySelector('.modalvideo');
+  const modallisten = document.querySelector('.listen')
   const podcastmodal = document.querySelector('.podcastModal');
 
   const podcastHolder = document.querySelector("[data-items]");
@@ -69,7 +71,7 @@ const renderItems = (podcasts) => {
   // const modal = document.querySelector("[data-modal]");
 
   podcasts.forEach((podcast) => {
-
+    // console.log(podcast.listenUrl);
     const newItemEl = document.createElement('a-entity');
 
     let cleanCats = `${podcast.category}`
@@ -147,6 +149,10 @@ const renderItems = (podcasts) => {
       };
 
 
+      // modallisten.addEventListener('click', () => {
+      //   window.location.href = podcast.listenUrl;
+      //   console.log('Clicky!');
+      // })
 
       // Hide video plane if no video available
       podcast.videoPreview ? modalvideo.setAttribute('visible', true) : modalvideo.setAttribute('visible', false)
@@ -165,6 +171,10 @@ const renderItems = (podcasts) => {
       // Modal podcast close button positioning for when there is a video, or no video
       podcast.videoPreview ? setAttributes(closemodal, { 'position': '-3.6 2 0.05' })
         : setAttributes(closemodal, { 'position': '-5.6 2.56 0.05' })
+
+      podcast.listenUrl ? setAttributes(modallisten, { "visible": true, 'data-link': `url: ${podcast.listenUrl}` }) : setAttributes(modallisten, { "visible": false, 'data-link': null })
+      // podcast.listenUrl ? modallisten.setAttribute('data-link', `url: ${podcast.listenUrl}`) : modallisten.setAttribute('data-link', null)
+      // setAttributes(modallisten, {"visible": true, "listen-to": podcast.listenUrl});
 
       // modaldesc.setAttribute('value', podcast.description.json)
       // (videoEl != null) ? videoEl.pause() : ' ';
