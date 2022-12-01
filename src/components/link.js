@@ -8,7 +8,6 @@ AFRAME.registerComponent('data-link', {
     var el = this.el;
 
     el.addEventListener('click', function () {
-      // window.location.href = data.url;
       window.open(data.url, '_blank')
     });
   }
