@@ -69,6 +69,7 @@ const renderItems = (podcasts) => {
   const podcastAssetHolder = document.querySelector("[data-assets]");
 
   // const modal = document.querySelector("[data-modal]");
+  let count = 0
 
   podcasts.forEach((podcast) => {
     // console.log(podcast.listenUrl);
@@ -119,6 +120,9 @@ const renderItems = (podcasts) => {
 
 
     newItemEl.addEventListener('mouseup', () => {
+      // count used to subvert inadvertant caching of video
+      count++
+      console.log('clicked' + count);
       const closemodal = document.querySelector('.closemodal');
       const videoEl = document.querySelector('.vidEl')
       const headset = AFRAME.utils.device.checkHeadsetConnected()
@@ -141,7 +145,7 @@ const renderItems = (podcasts) => {
       if (podcast.videoPreview) {
         podcastAssetHolder.insertAdjacentHTML("beforeend", `
           <video
-            id="vid-${podcast.sys.id}"
+            id="vid-${podcast.sys.id}-${count}"
             class="vidEl"
             src=${podcast.videoPreview.url}
             crossOrigin="anonymous"
@@ -149,7 +153,9 @@ const renderItems = (podcasts) => {
             >
           </video>
         `)
-        document.querySelector(`#vid-${podcast.sys.id}`).play()
+        setTimeout(() => {
+          document.querySelector(`#vid-${podcast.sys.id}-${count}`).play()
+        }, 200);
       }
 
       const podDesc = documentToPlainTextString(podcast.description.json)
@@ -262,7 +268,8 @@ const renderItems = (podcasts) => {
       // load video in asset management before applying to plane.. should probably fix this
       setTimeout(() => {
         if (podcast.videoPreview) {
-          modalvideo.setAttribute('src', `#vid-${podcast.sys.id}`)
+          modalvideo.setAttribute('src', `#vid-${podcast.sys.id}-${count}`)
+          modalvideo.setAttribute('visible', true)
         }
       }, 600);
 
