@@ -9,7 +9,10 @@ AFRAME.registerComponent("closemodal", {
         videoEl.remove()
       }
       // podcastmodal.remove()
-      podcastmodal.setAttribute('position', '0 300 -3')
+      podcastmodal.setAttribute('animation', 'property: scale; from: 1 1 1; to: 1 0 1; loop: false; easing:easeOutCubic; dur: 90')
+      setTimeout(() => {
+        podcastmodal.setAttribute('position', '0 300 -3')
+      }, 200);
     })
   },
   remove() {

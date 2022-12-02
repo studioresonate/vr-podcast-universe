@@ -117,13 +117,12 @@ const renderItems = (podcasts) => {
       </a-entity>
     `
 
-    podcastmodal.setAttribute('position', '0 300 -3')
-
 
     newItemEl.addEventListener('mouseup', () => {
       const closemodal = document.querySelector('.closemodal');
       const videoEl = document.querySelector('.vidEl')
       podcastmodal.setAttribute('position', '0 2 -5.5')
+      podcastmodal.setAttribute('animation', 'property: scale; from: 0.9 0.9 0.9; to: 1 1 1; loop: false; easing:easeOutCubic; dur: 100')
 
       if (podcast.videoPreview) {
         podcastAssetHolder.insertAdjacentHTML("beforeend", `
