@@ -180,32 +180,6 @@ const renderItems = (podcasts) => {
 
       // positioning
 
-      // // Hide video plane if no video available
-      // podcast.videoPreview ? modalvideo.setAttribute('visible', true) : modalvideo.setAttribute('visible', false)
-      // // Modal podcast artwork positioning and size for when there is a video, or no video
-      // podcast.videoPreview ? setAttributes(modalart, { 'position': '-2.7 -3.2 0', 'height': '1.6', 'width': '1.6' })
-      //   : setAttributes(modalart, { 'position': '-4 1 0', 'height': '3', 'width': '3' })
-      // // Modal podcast title positioning and size for when there is a video, or no video
-      // podcast.videoPreview ? setAttributes(modaltitle, { 'position': '-1.6 -2.8 0', 'width': '5', 'wrap-pixels': '400' })
-      //   : setAttributes(modaltitle, { 'position': '-2 2.5 0', 'width': '8', 'wrap-pixels': '800' })
-      // // Modal podcast description positioning and size for when there is a video, or no video
-      // podcast.videoPreview ? setAttributes(modaldesc, { 'position': '3.93 1.18 0', 'rotation': '0 -16 0', 'width': '4' })
-      //   : setAttributes(modaldesc, { 'position': '-2 1.42 0', 'width': '6.5', 'rotation': '0 0 0' })
-      // // Modal podcast hosts positioning and size for when there is a video, or no video
-      // podcast.videoPreview ? setAttributes(modalhosts, { 'position': '3.9 1.67 0', 'rotation': '0 -16 0', 'width': '5' })
-      //   : setAttributes(modalhosts, { 'position': '-5.5 -0.68 0', 'width': '3', 'lineHeight': '50', 'wrapCount': '9', 'rotation': '0 0 0' })
-      // // Modal podcast close button positioning for when there is a video, or no video
-      // podcast.videoPreview ? setAttributes(closemodal, { 'position': '-3.6 2 0.05' })
-      //   : setAttributes(closemodal, { 'position': '-5.6 2.56 0.05' })
-
-
-      // setAttributes(modallisten, { "visible": true, "data-link": podcast.listenUrl });
-
-      // podcast.listenUrl && podcast.videoPreview ? setAttributes(modallisten, { 'position': '3.93 1.18 0' }) : setAttributes(modalhosts, { 'position': '-5.5 -1.35 0' })
-
-      // podcast.listenUrl ? setAttributes(modallisten, { "visible": true, 'data-link': `url: ${podcast.listenUrl}` }) :
-      //   setAttributes(modallisten, { "visible": false, 'data-link': null })
-
       // NO VIDEO
       //if listen with hosts
       //if no listen with hosts
@@ -241,7 +215,7 @@ const renderItems = (podcasts) => {
         setAttributes(modaltitle, { 'position': '-2 2.5 0', 'width': '8', 'wrap-pixels': '800' })
         setAttributes(modaldesc, { 'position': '-2 1.42 0', 'width': '6.5', 'rotation': '0 0 0' })
         setAttributes(closemodal, { 'position': '-5.6 2.56 0.05' })
-        // if no video with listen button and hosts, do this
+        // if no video with no listen button and hosts OR headset, do this
         if (!podcast.listenUrl && podcast.hostNames) {
           setAttributes(modalhosts, { 'position': '-5.5 -0.8 0', 'width': '5', 'lineHeight': '50', 'wrapCount': '9', 'rotation': '0 0 0', 'baseline': 'top' })
         }
@@ -252,7 +226,15 @@ const renderItems = (podcasts) => {
         if (podcast.listenUrl && podcast.hostNames) {
           setAttributes(modallisten, { 'position': '-4 -0.93 0.01', 'scale': '1.16 1.16 1.16' })
           setAttributes(modalhosts, { 'position': '-5.5 -1.6 0', 'scale': '1 1 1', 'width': '5', 'lineHeight': '50', 'wrapCount': '9', 'baseline': 'top', 'rotation': '0 0 0' })
+          // hide listen button on headset
+          if (headset === true && mobile === false) {
+            modalhosts.setAttribute('position', '-5.5 -0.8 0')
+          }
         }
+      }
+
+      if (headset === true && mobile === false) {
+        modallisten.setAttribute('scale', '0 0 0')
       }
 
 
