@@ -5,7 +5,7 @@ AFRAME.registerComponent('introcontrol', {
     const sun = document.querySelector('#sun');
     const menu = document.querySelector('.menu-ico');
     const mainmenu = document.querySelector('.mainmenu');
-    // const vrmenu = document.querySelector('#vr-ico-menu')
+    const vrmenu = document.querySelector('#vr-ico-menu')
     // const camera = document.querySelector('#maincamera');
     const rocketone = document.querySelector('#rocketone');
     const rockettwo = document.querySelector('#rockettwo');
@@ -43,7 +43,7 @@ AFRAME.registerComponent('introcontrol', {
       sun.setAttribute('mixin', 'bgmusic-on')
       setTimeout(() => {
         menu.classList.add('fadeIn')
-        // vrmenu.setAttribute('position', '0.03 0.15 -0.02')
+        vrmenu.setAttribute('position', '0.03 0.15 -0.02')
         rocketone.setAttribute('sound', 'src: #rocket2; loop: false; volume: 0;')
         rockettwo.setAttribute('sound', 'src: #rocket2; loop: false; volume: 0;')
       }, 5000);
