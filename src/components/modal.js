@@ -12,7 +12,7 @@ AFRAME.registerComponent("closemodal", {
       modalvideo.setAttribute('src', '')
       modalvideo.setAttribute('visible', false)
       // podcastmodal.remove()
-      podcastmodal.setAttribute('animation', 'property: scale; from: 1 1 1; to: 1 0 1; loop: false; easing:easeOutCubic; dur: 90')
+      podcastmodal.setAttribute('animation', 'property: scale; from: 1 1 1; to: 0.5 0 0.5; loop: false; easing:easeInCubic; dur: 90')
       setTimeout(() => {
         podcastmodal.setAttribute('position', '0 300 -3')
       }, 200);
