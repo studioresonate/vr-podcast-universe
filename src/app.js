@@ -229,6 +229,10 @@ const renderItems = (podcasts) => {
         podcast.hostNames ? modalhosts.setAttribute('value', `HOSTS:\n${podcast.hostNames.join("\n")}`) :
           modalhosts.setAttribute('value', "")
 
+        if (podcast.listenUrl) {
+          setAttributes(modallisten, { 'position': '-4 -0.93 0.01', 'scale': '1.16 1.16 1.16' })
+        }
+
         if (podcast.listenUrl && podcast.hostNames) {
           setAttributes(modallisten, { 'position': '-4 -0.93 0.01', 'scale': '1.16 1.16 1.16' })
           setAttributes(modalhosts, { 'position': '-5.5 -1.6 0', 'scale': '1 1 1', 'width': '5', 'lineHeight': '50', 'wrapCount': '9', 'baseline': 'top', 'rotation': '0 0 0' })
