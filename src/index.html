@@ -171,81 +171,91 @@
         </a-entity>
 
 
-        <!-- Modal -->
-        <a-entity class="podcastModal"  visible="true" position="0 300 -3">
-          <a-circle
-            closemodal
-            class="clickable closemodal"
-            radius="0.4"
-            sound="src: #click4; on: click; positional: false; volume: 0.1;"
-            src="#modalclose">
-          </a-circle>
+        <a-box
+          id="modalContainer"
+          depth="4"
+          height="4"
+          width="4"
+          position="0 1.6 0"
+          rotation="0 0 0"
+          material="transparent: true; opacity: 0">
+          <!-- Modal -->
+          <a-entity class="podcastModal"  visible="true" position="0 0 -300">
+            <a-circle
+              closemodal
+              class="clickable closemodal"
+              radius="0.4"
+              sound="src: #click4; on: click; positional: false; volume: 0.1;"
+              src="#modalclose">
+            </a-circle>
 
-          <!-- Video  -->
-          <a-video
-            class="modalvideo clickable"
-            height="4"
-            width="7"
-            src=""
-            visible="false"
+            <!-- Video  -->
+            <a-video
+              class="modalvideo clickable"
+              height="4"
+              width="7"
+              src=""
+              visible="false"
+              >
+            </a-video>
+
+            <!-- listen -->
+            <a-plane
+              class="clickable listen"
+              height="0.440"
+              width="2.570"
+              position="-3.67 -0.83 0.350"
+              data-link
+              src="#listen-stitcher">
+            </a-plane>
+
+            <!-- Art  -->
+            <a-plane
+              class="modalart"
+              height="1.6"
+              width="1.6"
+              position="-2.7 -3.2 0"
+              src=""
             >
-          </a-video>
+            </a-plane>
 
-          <a-plane
-            class="clickable listen"
-            height="0.440"
-            width="2.570"
-            position="-3.67 -0.83 0.350"
-            data-link
-            src="#listen-stitcher">
-          </a-plane>
+            <!-- Title  -->
+            <a-text
+              class="modaltitle"
+              position="-1.6 -2.8 0"
+              width="5"
+              value=""
+              align="left"
+              color="white"
+              wrap-pixels="400"
+              baseline="top"
+            >
+            </a-text>
 
-          <!-- Art  -->
-          <a-plane
-            class="modalart"
-            height="1.6"
-            width="1.6"
-            position="-2.7 -3.2 0"
-            src=""
-          >
-          </a-plane>
+            <!-- Podcast Hosts  -->
+            <a-text
+              class="modalhosts"
+              width="2"
+              value=""
+              color="white"
+            >
+            </a-text>
 
-          <!-- Title  -->
-          <a-text
-            class="modaltitle"
-            position="-1.6 -2.8 0"
-            width="5"
-            value=""
-            align="left"
-            color="white"
-            wrap-pixels="400"
-            baseline="top"
-          >
-          </a-text>
+            <!-- Description  -->
+            <a-text
+              class="modaldesc"
+              position="0 -0.3 0"
+              scale="1 1"
+              width="2"
+              value=""
+              line-height="60"
+              color="white"
+              baseline="top"
+            >
+            </a-text>
+          </a-entity>
 
-          <!-- Podcast Hosts  -->
-          <a-text
-            class="modalhosts"
-            width="2"
-            value=""
-            color="white"
-          >
-          </a-text>
-
-          <!-- Description  -->
-          <a-text
-            class="modaldesc"
-            position="0 -0.3 0"
-            scale="1 1"
-            width="2"
-            value=""
-            line-height="60"
-            color="white"
-            baseline="top"
-          >
-          </a-text>
-        </a-entity>
-
+        </a-box>
 
 
 

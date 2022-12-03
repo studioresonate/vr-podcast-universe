@@ -67,6 +67,9 @@ const renderItems = (podcasts) => {
 
   const podcastHolder = document.querySelector("[data-items]");
   const podcastAssetHolder = document.querySelector("[data-assets]");
+  const modalContainer = document.querySelector('#modalContainer').object3D
+
+  const camera = document.querySelector('[camera]').object3D
 
   // const modal = document.querySelector("[data-modal]");
   let count = 0
@@ -122,24 +125,27 @@ const renderItems = (podcasts) => {
     newItemEl.addEventListener('mouseup', () => {
       // count used to subvert inadvertant caching of video
       count++
-      console.log('clicked' + count);
       const closemodal = document.querySelector('.closemodal');
       const videoEl = document.querySelector('.vidEl')
       const headset = AFRAME.utils.device.checkHeadsetConnected()
       const mobile = AFRAME.utils.device.isMobile()
 
-
       podcastmodal.setAttribute('animation', 'property: scale; from: 0.9 0.9 0.9; to: 1 1 1; loop: false; easing:easeOutCubic; dur: 100')
+
+      modalContainer.el.object3D.rotation.y = JSON.stringify(camera.rotation.y)
+
+      // console.log(modalContainer.el.object3D.rotation.y);
+
 
       if (headset === true && mobile === false) {
         // headset
-        podcastmodal.setAttribute('position', '0 2 -10.5')
+        podcastmodal.setAttribute('position', '0 0 -10.5')
       } else if (headset === false && mobile === true) {
         // mobile
-        podcastmodal.setAttribute('position', '0 2 -10.5')
+        podcastmodal.setAttribute('position', '0 0 -10.5')
       } else {
         // desktop
-        podcastmodal.setAttribute('position', '0 2 -7.5')
+        podcastmodal.setAttribute('position', '0 0 -7.5')
       }
 
       if (podcast.videoPreview) {
