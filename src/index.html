@@ -180,10 +180,11 @@
           rotation="0 0 0"
           material="transparent: true; opacity: 0">
           <!-- Modal -->
-          <a-entity class="podcastModal"  visible="true" position="0 0 -300">
+          <a-entity class="podcastModal"  visible="true" position="0 300 -3">
             <a-circle
               closemodal
               class="clickable closemodal"
+              material="shader: flat;"
               radius="0.4"
               sound="src: #click4; on: click; positional: false; volume: 0.1;"
               src="#modalclose">
@@ -215,6 +216,7 @@
               height="1.6"
               width="1.6"
               position="-2.7 -3.2 0"
+              material="shader: flat;"
               src=""
             >
             </a-plane>
@@ -254,6 +256,17 @@
             >
             </a-text>
           </a-entity>
+
+
+            <a-plane
+              id="bgModal"
+              color="black"
+              opacity="0.4"
+              material="shader: flat;"
+              scale="0 0 0"
+              >
+            </a-plane>
+
 
         </a-box>
 

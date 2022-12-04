@@ -129,8 +129,14 @@ const renderItems = (podcasts) => {
       const videoEl = document.querySelector('.vidEl')
       const headset = AFRAME.utils.device.checkHeadsetConnected()
       const mobile = AFRAME.utils.device.isMobile()
+      const modalBg = document.querySelector('#bgModal')
 
       podcastmodal.setAttribute('animation', 'property: scale; from: 0.9 0.9 0.9; to: 1 1 1; loop: false; easing:easeOutCubic; dur: 100')
+
+      setAttributes(modalBg, {
+        'animation': 'property: scale; from: 0 0 0; to: 1 1 1; loop: false; easing:easeOutCubic; dur: 200',
+        'animation__1': 'property: opacity; from: 0; to: 0.4; loop: false; easing:easeOutExpo; dur: 200'
+      })
 
       modalContainer.el.object3D.rotation.y = JSON.stringify(camera.rotation.y)
 
@@ -140,9 +146,11 @@ const renderItems = (podcasts) => {
       if (headset === true && mobile === false) {
         // headset
         podcastmodal.setAttribute('position', '0 0 -10.5')
+        modalBg.setAttribute('position', '0 1 -11')
       } else if (headset === false && mobile === true) {
         // mobile
         podcastmodal.setAttribute('position', '0 0 -10.5')
+        modalBg.setAttribute('position', '0 1 -11')
       } else {
         // desktop
         podcastmodal.setAttribute('position', '0 0 -7.5')
@@ -207,6 +215,7 @@ const renderItems = (podcasts) => {
         setAttributes(modaldesc, { 'position': '3.93 1.18 0', 'rotation': '0 -16 0', 'width': '4' })
         setAttributes(modalhosts, { 'position': '3.9 1.67 0', 'rotation': '0 -16 0', 'width': '5' })
         setAttributes(closemodal, { 'position': '-3.6 2 0.05' })
+        setAttributes(modalBg, { 'position': '2.06 -0.5 -9.22', 'height': '8', 'width': '10' })
         // if there's a listen button with a video, do this
         if (podcast.listenUrl) {
           setAttributes(modallisten, { 'position': '2.4 1.72 0.01', 'scale': '0.75 0.75 0.75' })
@@ -221,6 +230,7 @@ const renderItems = (podcasts) => {
         setAttributes(modaltitle, { 'position': '-2 2.5 0', 'width': '8', 'wrap-pixels': '800' })
         setAttributes(modaldesc, { 'position': '-2 1.42 0', 'width': '6.5', 'rotation': '0 0 0' })
         setAttributes(closemodal, { 'position': '-5.6 2.56 0.05' })
+        setAttributes(modalBg, { 'position': '-0.250 0.6 -9.22', 'height': '6', 'width': '10' })
         // if no video with no listen button and hosts OR headset, do this
         if (!podcast.listenUrl && podcast.hostNames) {
           setAttributes(modalhosts, { 'position': '-5.5 -0.8 0', 'width': '5', 'lineHeight': '50', 'wrapCount': '9', 'rotation': '0 0 0', 'baseline': 'top' })
