@@ -18,6 +18,7 @@ AFRAME.registerComponent("closemodal", {
       setTimeout(() => {
         modalBg.setAttribute('animation', 'property: scale; from: 1 1 1; to: 0.6 0.6 0.6; loop: false; easing:easeOutExpo; dur: 200')
         modalBg.setAttribute('animation__1', 'property: opacity; from: 0.4; to: 0; loop: false; easing:easeOutExpo; dur: 200')
+        modalBg.setAttribute('animation__2', 'property: rotation; from: 0 0 0; to: 0 -90 0; loop: false; easing:easeOutExpo; dur: 150')
         podcastmodal.setAttribute('position', '0 300 -3')
       }, 100);
     })
