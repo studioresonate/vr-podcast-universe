@@ -13,6 +13,8 @@ AFRAME.registerComponent('introcontrol', {
     const headset = AFRAME.utils.device.checkHeadsetConnected()
     const mobile = AFRAME.utils.device.isMobile()
 
+
+
     if (headset === true && mobile === false) {
       intro.setAttribute('src', '#txtintro-headset')
       // console.log("You're on a headset " + headset);
@@ -41,6 +43,28 @@ AFRAME.registerComponent('introcontrol', {
       rockettwo.setAttribute('sound', 'src: #rocket2; loop: true; volume: 10; autoplay: true; refDistance: 0.05; rolloffFactor: 0.5')
 
       sun.setAttribute('mixin', 'bgmusic-on')
+
+      // random asteroids
+      const asteroid = () => {
+        const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+        sun.insertAdjacentHTML('beforeend', `
+        <a-circle
+          radius="0.2"
+          color="white"
+          position="${random(-250, 250)} 180 ${random(0, 100)}"
+          id="asteroid"
+          animation="property: position; to: ${random(-50, 50)} -100 ${random(-250, -50)}; dur: 15000; easing: linear; loop: false"
+          trail="color:white; length:300;width:0.3"
+          trail__1="color:white; length:240;width:0.3"
+          trail__2="color:#39d1ff; length:80;width:0.3"
+          trail__3="color:#39d1ff; length:80;width:0.3">
+        </a-circle>
+        `)
+      }
+
+      asteroid()
+      setInterval(asteroid, 12000);
+
       setTimeout(() => {
         menu.classList.add('fadeIn')
         vrmenu.setAttribute('position', '0.03 0.15 -0.02')
