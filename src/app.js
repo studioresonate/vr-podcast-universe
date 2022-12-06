@@ -326,8 +326,6 @@ const renderItems = (podcasts) => {
   const scaleOut = `property: scale; to: 0 0 0; dur: 400; easing: easeInBack;`
   const scaleIn = `property: scale; to: 1 1 1; dur: 200; easing: easeInBack;`
 
-  // TODO: optimize these
-
   const filterAll = () => {
     all.forEach(function (e) {
       e.setAttribute('animation', scaleIn)
@@ -338,11 +336,9 @@ const renderItems = (podcasts) => {
     allBtn.classList.add('active')
 
     vrBtn.forEach(function (e) {
-      e.setAttribute('color', 'white')
-      e.setAttribute('material', 'opacity: 0.3; transparent: true')
+      setAttributes(e, { 'color': 'white', 'material': 'opacity: 0.3; transparent: true' })
     });
-    vrAllBtn.setAttribute('color', '#0051e6')
-    vrAllBtn.setAttribute('material', 'opacity: 1; transparent: false')
+    setAttributes(vrAllBtn, { 'color': '#0051e6', 'material': 'opacity: 1; transparent: false' })
   }
 
   const removeAll = () => {
@@ -353,123 +349,73 @@ const renderItems = (podcasts) => {
       e.classList.remove('active')
     });
     vrBtn.forEach(function (e) {
-      e.setAttribute('color', 'white')
-      e.setAttribute('material', 'opacity: 0.3; transparent: true')
+      setAttributes(e, { 'color': 'white', 'material': 'opacity: 0.3; transparent: true' })
     });
   }
 
-  // const handleBtnEvent = (cat, btn, vrBtn) => {
-  //   removeAll()
-  //   cat.forEach(function (e) {
-  //     e.setAttribute('animation', scaleIn)
-  //   });
-  //   btn.classList.add('active')
-  //   setAttributes(vrBtn, { 'color': '#0051e6', 'material': 'opacity: 1; transparent: false' })
-  // }
-
-
-  const filterSociety = () => {
+  const handleBtnEvent = (cat, btn, vrBtn) => {
     removeAll()
-    society.forEach(function (e) {
+    cat.forEach(function (e) {
       e.setAttribute('animation', scaleIn)
     });
-    societyBtn.classList.add('active')
-    vrSocietyBtn.setAttribute('color', '#0051e6')
-    vrSocietyBtn.setAttribute('material', 'opacity: 1; transparent: false')
-  }
-
-  const filterComedy = () => {
-    removeAll()
-    comedy.forEach(function (e) {
-      e.setAttribute('animation', scaleIn)
-    });
-    comedyBtn.classList.add('active')
-    vrComedyBtn.setAttribute('color', '#0051e6')
-    vrComedyBtn.setAttribute('material', 'opacity: 1; transparent: false')
-  }
-
-  const filterTrueCrime = () => {
-    removeAll()
-    truecrime.forEach(function (e) {
-      e.setAttribute('animation', scaleIn)
-    });
-    truecrimeBtn.classList.add('active')
-    vrTrueCrimeBtn.setAttribute('color', '#0051e6')
-    vrTrueCrimeBtn.setAttribute('material', 'opacity: 1; transparent: false')
-  }
-
-  const filterNews = () => {
-    removeAll()
-    news.forEach(function (e) {
-      e.setAttribute('animation', scaleIn)
-    });
-    newsBtn.classList.add('active')
-    vrNewsBtn.setAttribute('color', '#0051e6')
-    vrNewsBtn.setAttribute('material', 'opacity: 1; transparent: false')
-  }
-
-  const filterBusiness = () => {
-    removeAll()
-    business.forEach(function (e) {
-      e.setAttribute('animation', scaleIn)
-    });
-    businessBtn.classList.add('active')
-    vrBusinessBtn.setAttribute('color', '#0051e6')
-    vrBusinessBtn.setAttribute('material', 'opacity: 1; transparent: false')
-  }
-
-  const filterSports = () => {
-    removeAll()
-    sports.forEach(function (e) {
-      e.setAttribute('animation', scaleIn)
-    });
-    sportsBtn.classList.add('active')
-    vrSportsBtn.setAttribute('color', '#0051e6')
-    vrSportsBtn.setAttribute('material', 'opacity: 1; transparent: false')
-  }
-
-  const filterTvFilm = () => {
-    removeAll()
-    tvfilm.forEach(function (e) {
-      e.setAttribute('animation', scaleIn)
-    });
-    tvfilmBtn.classList.add('active')
-    vrTvfilmBtn.setAttribute('color', '#0051e6')
-    vrTvfilmBtn.setAttribute('material', 'opacity: 1; transparent: false')
-  }
-
-  const filterOther = () => {
-    removeAll()
-    other.forEach(function (e) {
-      e.setAttribute('animation', scaleIn)
-    });
-    otherBtn.classList.add('active')
-    vrOtherBtn.setAttribute('color', '#0051e6')
-    vrOtherBtn.setAttribute('material', 'opacity: 1; transparent: false')
+    btn.classList.add('active')
+    setAttributes(vrBtn, { 'color': '#0051e6', 'material': 'opacity: 1; transparent: false' })
   }
 
   allBtn.addEventListener('click', filterAll)
-  societyBtn.addEventListener('click', filterSociety)
-  comedyBtn.addEventListener('click', filterComedy)
-  truecrimeBtn.addEventListener('click', filterTrueCrime)
-  newsBtn.addEventListener('click', filterNews)
-  businessBtn.addEventListener('click', filterBusiness)
-  sportsBtn.addEventListener('click', filterSports)
-  tvfilmBtn.addEventListener('click', filterTvFilm)
-  otherBtn.addEventListener('click', filterOther)
+  societyBtn.addEventListener('click', () => {
+    handleBtnEvent(society, societyBtn, vrSocietyBtn)
+  })
+  comedyBtn.addEventListener('click', () => {
+    handleBtnEvent(comedy, comedyBtn, vrComedyBtn)
+  })
+  truecrimeBtn.addEventListener('click', () => {
+    handleBtnEvent(truecrime, truecrimeBtn, vrTrueCrimeBtn)
+  })
+  newsBtn.addEventListener('click', () => {
+    handleBtnEvent(news, newsBtn, vrNewsBtn)
+  })
+  businessBtn.addEventListener('click', () => {
+    handleBtnEvent(business, businessBtn, vrBusinessBtn)
+  })
+  sportsBtn.addEventListener('click', () => {
+    handleBtnEvent(sports, sportsBtn, vrSportsBtn)
+  })
+  tvfilmBtn.addEventListener('click', () => {
+    handleBtnEvent(tvfilm, tvfilmBtn, vrTvfilmBtn)
+  })
+  otherBtn.addEventListener('click', () => {
+    handleBtnEvent(other, otherBtn, vrOtherBtn)
+  })
 
 
   // VR Filters
 
   vrAllBtn.addEventListener('click', filterAll)
-  vrSocietyBtn.addEventListener('click', filterSociety)
-  vrComedyBtn.addEventListener('click', filterComedy)
-  vrTrueCrimeBtn.addEventListener('click', filterTrueCrime)
-  vrNewsBtn.addEventListener('click', filterNews)
-  vrBusinessBtn.addEventListener('click', filterBusiness)
-  vrSportsBtn.addEventListener('click', filterSports)
-  vrTvfilmBtn.addEventListener('click', filterTvFilm)
-  vrOtherBtn.addEventListener('click', filterOther)
+  vrSocietyBtn.addEventListener('click', () => {
+    handleBtnEvent(society, societyBtn, vrSocietyBtn)
+  })
+  vrComedyBtn.addEventListener('click', () => {
+    handleBtnEvent(comedy, comedyBtn, vrComedyBtn)
+  })
+  vrTrueCrimeBtn.addEventListener('click', () => {
+    handleBtnEvent(truecrime, truecrimeBtn, vrTrueCrimeBtn)
+  })
+  vrNewsBtn.addEventListener('click', () => {
+    handleBtnEvent(news, newsBtn, vrNewsBtn)
+  })
+  vrBusinessBtn.addEventListener('click', () => {
+    handleBtnEvent(business, businessBtn, vrBusinessBtn)
+  })
+  vrSportsBtn.addEventListener('click', () => {
+    handleBtnEvent(sports, sportsBtn, vrSportsBtn)
+  })
+  vrTvfilmBtn.addEventListener('click', () => {
+    handleBtnEvent(tvfilm, tvfilmBtn, vrTvfilmBtn)
+  })
+  vrOtherBtn.addEventListener('click', () => {
+    handleBtnEvent(other, otherBtn, vrOtherBtn)
+  })
 
   // vrBtn.addEventListener('mouseenter', () => {
 
