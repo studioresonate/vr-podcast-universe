@@ -127,9 +127,9 @@ const renderItems = (podcasts) => {
       count++
       const closemodal = document.querySelector('.closemodal');
       const videoEl = document.querySelector('.vidEl')
+      const modalBg = document.querySelector('#bgModal')
       const headset = AFRAME.utils.device.checkHeadsetConnected()
       const mobile = AFRAME.utils.device.isMobile()
-      const modalBg = document.querySelector('#bgModal')
 
       podcastmodal.setAttribute('animation', 'property: scale; from: 0.9 0.9 0.9; to: 1 1 1; loop: false; easing:easeOutCubic; dur: 100')
 
@@ -139,8 +139,8 @@ const renderItems = (podcasts) => {
         'animation__2': 'property: rotation; from: 0 90 0; to: 0 0 0; loop: false; easing:easeOutExpo; dur: 300'
       })
 
+      // set modal to face camera direction
       modalContainer.el.object3D.rotation.y = JSON.stringify(camera.rotation.y)
-
       // console.log(modalContainer.el.object3D.rotation.y);
 
 
@@ -173,22 +173,17 @@ const renderItems = (podcasts) => {
         }, 200);
       }
 
-      const podDesc = documentToPlainTextString(podcast.description.json)
-
       const truncateString = (str, max = 50) => {
         const array = str.trim().split(' ');
         const ellipsis = array.length > max ? '...' : '';
-
         return array.slice(0, max).join(' ') + ellipsis;
       };
-
-
-
 
       // values
       modalart.setAttribute('src', `#${podcast.sys.id}`)
       modaltitle.setAttribute('value', podcast.podcastTitle)
-      modaldesc.setAttribute('value', truncateString(podDesc))
+      const podDesc = documentToPlainTextString(podcast.description?.json)
+      podcast.description ? modaldesc.setAttribute('value', truncateString(podDesc)) : modaldesc.setAttribute('value', 'Description coming soon!')
       // podcast.hostNames ? modalhosts.setAttribute('value', `HOSTS:\n${podcast.hostNames.join("\n")}`) :
       //   modalhosts.setAttribute('value', "")
       podcast.listenUrl ? modallisten.setAttribute('data-link', `url: ${podcast.listenUrl}`) : modallisten.setAttribute('data-link', "")
@@ -217,10 +212,10 @@ const renderItems = (podcasts) => {
         setAttributes(modalhosts, { 'position': '3.9 1.67 0', 'rotation': '0 -16 0', 'width': '5' })
         setAttributes(closemodal, { 'position': '-3.6 2 0.05' })
         setAttributes(modalBg, { 'position': '2.06 -0.5 -9.22', 'height': '8', 'width': '10' })
+
         // if there's a listen button with a video, do this
-        if (podcast.listenUrl) {
-          setAttributes(modallisten, { 'position': '2.4 1.72 0.01', 'scale': '0.75 0.75 0.75' })
-        }
+        podcast.listenUrl ? setAttributes(modallisten, { 'position': '2.4 1.72 0.01', 'scale': '0.75 0.75 0.75' }) :
+          setAttributes(modallisten, { 'scale': '0 0 0' })
 
         podcast.hostNames ? modalhosts.setAttribute('value', `HOSTS: ${podcast.hostNames.join(", ")}`) :
           modalhosts.setAttribute('value', "")
@@ -240,14 +235,13 @@ const renderItems = (podcasts) => {
         podcast.hostNames ? modalhosts.setAttribute('value', `HOSTS:\n${podcast.hostNames.join("\n")}`) :
           modalhosts.setAttribute('value', "")
 
-        if (podcast.listenUrl) {
-          setAttributes(modallisten, { 'position': '-4 -0.93 0.01', 'scale': '1.16 1.16 1.16' })
-        }
+        podcast.listenUrl ? setAttributes(modallisten, { 'position': '-4 -0.93 0.01', 'scale': '1.16 1.16 1.16' }) :
+          setAttributes(modallisten, { 'scale': '0 0 0' })
 
         if (podcast.listenUrl && podcast.hostNames) {
           setAttributes(modallisten, { 'position': '-4 -0.93 0.01', 'scale': '1.16 1.16 1.16' })
           setAttributes(modalhosts, { 'position': '-5.5 -1.6 0', 'scale': '1 1 1', 'width': '5', 'lineHeight': '50', 'wrapCount': '9', 'baseline': 'top', 'rotation': '0 0 0' })
-          // hide listen button on headset
+
           if (headset === true && mobile === false) {
             modalhosts.setAttribute('position', '-5.5 -0.8 0')
           }
@@ -363,6 +357,16 @@ const renderItems = (podcasts) => {
       e.setAttribute('material', 'opacity: 0.3; transparent: true')
     });
   }
+
+  // const handleBtnEvent = (cat, btn, vrBtn) => {
+  //   removeAll()
+  //   cat.forEach(function (e) {
+  //     e.setAttribute('animation', scaleIn)
+  //   });
+  //   btn.classList.add('active')
+  //   setAttributes(vrBtn, { 'color': '#0051e6', 'material': 'opacity: 1; transparent: false' })
+  // }
+
 
   const filterSociety = () => {
     removeAll()
