@@ -71,6 +71,9 @@ const renderItems = (podcasts) => {
 
   const camera = document.querySelector('[camera]').object3D
 
+  const headset = AFRAME.utils.device.checkHeadsetConnected()
+  const mobile = AFRAME.utils.device.isMobile()
+
   // const modal = document.querySelector("[data-modal]");
   let count = 0
 
@@ -128,8 +131,6 @@ const renderItems = (podcasts) => {
       const closemodal = document.querySelector('.closemodal');
       const videoEl = document.querySelector('.vidEl')
       const modalBg = document.querySelector('#bgModal')
-      const headset = AFRAME.utils.device.checkHeadsetConnected()
-      const mobile = AFRAME.utils.device.isMobile()
 
       podcastmodal.setAttribute('animation', 'property: scale; from: 0.9 0.9 0.9; to: 1 1 1; loop: false; easing:easeOutCubic; dur: 100')
 
@@ -147,11 +148,12 @@ const renderItems = (podcasts) => {
       if (headset === true && mobile === false) {
         // headset
         podcastmodal.setAttribute('position', '0 0 -10.5')
-        modalBg.setAttribute('position', '0 1 -11')
+        // modalBg.setAttribute('position', '0 1 -11')
+
       } else if (headset === false && mobile === true) {
         // mobile
         podcastmodal.setAttribute('position', '0 0 -10.5')
-        modalBg.setAttribute('position', '0 1 -11')
+        // modalBg.setAttribute('position', '0 1 -11')
       } else {
         // desktop
         podcastmodal.setAttribute('position', '0 0 -7.5')
@@ -186,7 +188,16 @@ const renderItems = (podcasts) => {
       podcast.description ? modaldesc.setAttribute('value', truncateString(podDesc)) : modaldesc.setAttribute('value', 'Description coming soon!')
       // podcast.hostNames ? modalhosts.setAttribute('value', `HOSTS:\n${podcast.hostNames.join("\n")}`) :
       //   modalhosts.setAttribute('value', "")
-      podcast.listenUrl ? modallisten.setAttribute('data-link', `url: ${podcast.listenUrl}`) : modallisten.setAttribute('data-link', "")
+      // podcast.listenUrl ? modallisten.setAttribute('data-link', `url: ${podcast.listenUrl}`) : modallisten.setAttribute('data-link', "")
+
+      // podcast.listenUrl ? setAttributes(modallisten, { 'data-link': `url: ${podcast.listenUrl}`, 'visible': true }) :
+      //   setAttributes(modallisten, { 'data-link': ` `, 'visible': false })
+
+      if (podcast.listenUrl && headset === true && mobile === false) {
+        setAttributes(modallisten, { 'data-link': ` `, 'visible': false })
+      } else {
+        setAttributes(modallisten, { 'data-link': `url: ${podcast.listenUrl}`, 'visible': true })
+      }
 
       // positioning
 
@@ -202,7 +213,7 @@ const renderItems = (podcasts) => {
       //if no listen with no hosts
       //if listen with no hosts
 
-      podcast.listenUrl ? modallisten.setAttribute('visible', true) : modallisten.setAttribute('visible', false)
+      // podcast.listenUrl ? modallisten.setAttribute('visible', true) : modallisten.setAttribute('visible', false)
 
       if (podcast.videoPreview) {
         modalvideo.setAttribute('visible', true)
@@ -211,7 +222,11 @@ const renderItems = (podcasts) => {
         setAttributes(modaldesc, { 'position': '3.93 1.18 0', 'rotation': '0 -16 0', 'width': '4' })
         setAttributes(modalhosts, { 'position': '3.9 1.67 0', 'rotation': '0 -16 0', 'width': '5' })
         setAttributes(closemodal, { 'position': '-3.6 2 0.05' })
-        setAttributes(modalBg, { 'position': '2.06 -0.5 -9.22', 'height': '8', 'width': '10' })
+        if (headset === true && mobile === false) {
+          setAttributes(modalBg, { 'position': '2.06 -0.9 -11.8', 'height': '8', 'width': '10' })
+        } else {
+          setAttributes(modalBg, { 'position': '3 -0.5 -11.8', 'height': '8', 'width': '15' })
+        }
 
         // if there's a listen button with a video, do this
         podcast.listenUrl ? setAttributes(modallisten, { 'position': '2.4 1.72 0.01', 'scale': '0.75 0.75 0.75' }) :
@@ -226,7 +241,13 @@ const renderItems = (podcasts) => {
         setAttributes(modaltitle, { 'position': '-2 2.5 0', 'width': '8', 'wrap-pixels': '800' })
         setAttributes(modaldesc, { 'position': '-2 1.42 0', 'width': '6.5', 'rotation': '0 0 0' })
         setAttributes(closemodal, { 'position': '-5.6 2.56 0.05' })
-        setAttributes(modalBg, { 'position': '-0.250 0.6 -9.22', 'height': '6', 'width': '10' })
+
+        if (headset === true && mobile === false) {
+          setAttributes(modalBg, { 'position': '-0.250 0.6 -11.8', 'height': '6', 'width': '10' })
+        } else {
+          setAttributes(modalBg, { 'position': '-0.250 1.4 -11.8', 'height': '7', 'width': '11' })
+        }
+
         // if no video with no listen button and hosts OR headset, do this
         if (!podcast.listenUrl && podcast.hostNames) {
           setAttributes(modalhosts, { 'position': '-5.5 -0.8 0', 'width': '5', 'lineHeight': '50', 'wrapCount': '9', 'rotation': '0 0 0', 'baseline': 'top' })
@@ -240,17 +261,16 @@ const renderItems = (podcasts) => {
 
         if (podcast.listenUrl && podcast.hostNames) {
           setAttributes(modallisten, { 'position': '-4 -0.93 0.01', 'scale': '1.16 1.16 1.16' })
-          setAttributes(modalhosts, { 'position': '-5.5 -1.6 0', 'scale': '1 1 1', 'width': '5', 'lineHeight': '50', 'wrapCount': '9', 'baseline': 'top', 'rotation': '0 0 0' })
 
           if (headset === true && mobile === false) {
             modalhosts.setAttribute('position', '-5.5 -0.8 0')
+          } else {
+            setAttributes(modalhosts, { 'position': '-5.5 -1.6 0', 'scale': '1 1 1', 'width': '5', 'lineHeight': '50', 'wrapCount': '9', 'baseline': 'top', 'rotation': '0 0 0' })
           }
         }
       }
 
-      if (headset === true && mobile === false) {
-        modallisten.setAttribute('scale', '0 0 0')
-      }
+
 
 
 
@@ -462,7 +482,7 @@ menuico.addEventListener('click', () => {
 let m = document.querySelector('.music');
 m.insertAdjacentHTML("beforeend", `<img class='icomusic' src='../assets/ico-music-on.svg' alt='Music on' />`)
 
-function musicToggle() {
+const musicToggle = () => {
   if (sun.hasAttribute('music')) {
     sun.setAttribute('mixin', 'bgmusic-on');
     sun.removeAttribute('music');
