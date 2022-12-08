@@ -200,6 +200,7 @@ body {
   bottom: 55px;
   right: 20px;
   z-index: 100;
+  cursor: pointer;
 }
 
 .mainmenu {
@@ -228,7 +229,8 @@ body {
   transition: all 0.3s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-.mainmenu .menu-ico:hover {
+.mainmenu .menu-ico:hover,
+#EnterVRButton:hover {
   transform: scale(1.1);
   /* filter: grayscale(100%) */
   filter: hue-rotate(45deg)

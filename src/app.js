@@ -77,6 +77,23 @@ const renderItems = (podcasts) => {
   // const modal = document.querySelector("[data-modal]");
   let count = 0
 
+  const asteroid = () => {
+    const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+    sun.insertAdjacentHTML('beforeend', `
+    <a-circle
+      radius="0.2"
+      color="white"
+      position="${random(-250, 250)} 180 ${random(0, 100)}"
+      class="asteroids"
+      animation="property: position; to: ${random(-50, 50)} -100 ${random(-250, -50)}; dur: 15000; easing: linear; loop: false"
+      trail="color:white; length:300;width:0.3"
+      trail__1="color:white; length:240;width:0.3"
+      trail__2="color:#39d1ff; length:80;width:0.3"
+      trail__3="color:#39d1ff; length:80;width:0.3">
+    </a-circle>
+    `)
+  }
+
   podcasts.forEach((podcast) => {
     // console.log(podcast.listenUrl);
     const newItemEl = document.createElement('a-entity');
@@ -143,6 +160,10 @@ const renderItems = (podcasts) => {
       // set modal to face camera direction
       modalContainer.el.object3D.rotation.y = JSON.stringify(camera.rotation.y)
       // console.log(modalContainer.el.object3D.rotation.y);
+
+      setTimeout(() => {
+        asteroid()
+      }, 1000);
 
 
       if (headset === true && mobile === false) {
@@ -473,6 +494,48 @@ function delayClass(className, index) {
     }, 50);
   }
 };
+
+// random asteroids
+// const asteroid = () => {
+//   const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+//   sun.insertAdjacentHTML('beforeend', `
+//   <a-circle
+//     radius="0.2"
+//     color="white"
+//     position="${random(-250, 250)} 180 ${random(0, 100)}"
+//     class="asteroids"
+//     animation="property: position; to: ${random(-50, 50)} -100 ${random(-250, -50)}; dur: 15000; easing: linear; loop: false"
+//     trail="color:white; length:300;width:0.3"
+//     trail__1="color:white; length:240;width:0.3"
+//     trail__2="color:#39d1ff; length:80;width:0.3"
+//     trail__3="color:#39d1ff; length:80;width:0.3">
+//   </a-circle>
+//   `)
+// }
+
+
+// setInterval(() => {
+//   asteroid()
+// }, 1000);
+
+// const asteroid = document.querySelector('#asteroid')
+
+// const asteroidVisible = () => {
+//   asteroid.setAttribute('visible', true)
+// }
+
+// const asteroidInvisible = () => {
+//   asteroid.setAttribute('visible', false)
+// }
+
+// setInterval(() => {
+//   const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+//   asteroid.setAttribute('position', `${random(-250, 250)} 180 ${random(0, 100)}`)
+//   asteroid.setAttribute('animation', `property: position; to: ${random(-50, 50)} -100 ${random(-250, -50)}; dur: 15000; easing: linear; loop: false`)
+//   asteroidInvisible()
+// }, 16000);
+
+
 
 menuico.addEventListener('click', () => {
   delayClass('show')
