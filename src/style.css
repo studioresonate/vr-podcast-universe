@@ -191,11 +191,16 @@ body {
   margin: 0;
   background-color: var(--black);
 }
-/* #VRButton {
-  background: url('./assets/ico-menu.svg') 0 0 no-repeat;
-  height: 20px;
-  width: 20px;
-} */
+
+#EnterVRButton {
+  background: url('./assets/ico-vr.svg') 0 0 no-repeat;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  bottom: 55px;
+  right: 20px;
+  z-index: 100;
+}
 
 .mainmenu {
   position: absolute;

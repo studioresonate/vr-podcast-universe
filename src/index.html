@@ -28,6 +28,7 @@
       cursor="rayOrigin: mouse; fuse: false"
       gltf-model="dracoDecoderPath: util/; meshoptDecoderPath: util/meshopt_decoder.js;"
       mixin="pointer"
+      vr-mode-ui="enterVRButton: #EnterVRButton;"
     >
       <a-assets timeout="5000" data-assets>
 
@@ -481,7 +482,6 @@
                 width="0.3"
                 sound="src: #click4; on: click; positional: true; volume: 0.2;"
               >
-              <!-- <a-circle color="#CCC" radius="0.16" position="-0.06 0 -0.002"></a-circle> -->
               <a-circle class="toggle" color="#0051e6" radius="0.01" position="0.085 0 0"></a-circle>
               </a-text>
             </a-xycontainer>
@@ -508,6 +508,7 @@
       <!-- Sky -->
       <a-sky src="#nebula"></a-sky>
 
+      <a id="EnterVRButton"></a>
 
 
     </a-scene>
