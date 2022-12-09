@@ -284,7 +284,8 @@ const renderItems = (podcasts) => {
           setAttributes(modallisten, { 'position': '-4 -0.93 0.01', 'scale': '1.16 1.16 1.16' })
 
           if (headset === true && mobile === false) {
-            modalhosts.setAttribute('position', '-5.5 -0.8 0')
+            // modalhosts.setAttribute('position', '-5.5 -0.8 0')
+            setAttributes(modalhosts, { 'position': '-5.5 -0.8 0', 'scale': '1 1 1', 'width': '5', 'lineHeight': '50', 'wrapCount': '9', 'baseline': 'top', 'rotation': '0 0 0' })
           } else {
             setAttributes(modalhosts, { 'position': '-5.5 -1.6 0', 'scale': '1 1 1', 'width': '5', 'lineHeight': '50', 'wrapCount': '9', 'baseline': 'top', 'rotation': '0 0 0' })
           }

@@ -6,7 +6,8 @@ AFRAME.registerComponent('introcontrol', {
     const menu = document.querySelector('.menu-ico');
     const mainmenu = document.querySelector('.mainmenu');
     const vrmenu = document.querySelector('#vr-ico-menu')
-    // const camera = document.querySelector('#maincamera');
+    const rocket1Container = document.querySelector('#rocket1Container')
+    const rocket2Container = document.querySelector('#rocket2Container')
     const rocketone = document.querySelector('#rocketone');
     const rockettwo = document.querySelector('#rockettwo');
 
@@ -55,11 +56,14 @@ AFRAME.registerComponent('introcontrol', {
       intro.setAttribute('animation', 'property: position; to: 0 0 35; easing:easeInOutCubic; dur: 2000')
 
       rocketone.setAttribute('animation', 'property: rotation; from: 10 190 90; to: 60 0 0; loop: true; easing:linear; dur: 4200')
-      rocketone.setAttribute('sound', 'src: #rocket; loop: true; volume: 10; autoplay: true; refDistance: 0.05; rolloffFactor: 0.5')
+      rocketone.setAttribute('sound', 'src: #rocket; loop: true; volume: 13; autoplay: true; refDistance: 0.05; rolloffFactor: 0.5')
 
       rockettwo.setAttribute('animation__1', 'property: rotation; from: 25 -10 0; to: 25 30 80; loop: true; easing:linear; dur: 8500')
-      rockettwo.setAttribute('animation', 'property: position; from: 1 1 130; to: 4 2 80; loop: false; easing:linear; dur: 10000')
-      rockettwo.setAttribute('sound', 'src: #rocket; loop: true; volume: 10; autoplay: true; refDistance: 0.05; rolloffFactor: 0.5')
+      // rockettwo.setAttribute('animation', 'property: position; from: 1 1 130; to: 4 2 80; loop: false; easing:linear; dur: 10000')
+      rockettwo.setAttribute('sound', 'src: #rocket; loop: true; volume: 13; autoplay: true; refDistance: 0.05; rolloffFactor: 0.5')
+
+      rocket1Container.setAttribute('animation', 'property: rotation; from: 0 -360 0; to: 0 0 0; loop: true; easing: linear; dur: 250000')
+      rocket2Container.setAttribute('animation', 'property: rotation; from: 0 360 0; to: 0 0 0; loop: true; easing: linear; dur: 250000')
 
       sun.setAttribute('mixin', 'bgmusic-on')
 
@@ -77,6 +81,8 @@ AFRAME.registerComponent('introcontrol', {
         rocketone.setAttribute('animation', 'property: rotation; from: 360 -360 0; to: 0 0 0; loop: true; easing:linear; dur: 30000')
         rockettwo.setAttribute('animation__1', 'property: rotation; from: 0 -360 0; to: 0 0 360; loop: true; easing:linear; dur: 20000')
         rockettwo.setAttribute('animation', 'property: position; from: 1 1 330; to: 4 2 330; loop: false; easing:linear; dur: 10000')
+        rocket1Container.setAttribute('animation', 'property: rotation; from: 20 -360 0; to: 0 0 0; loop: true; easing: linear; dur: 250000')
+        rocket2Container.setAttribute('animation', 'property: rotation; from: -10 360 0; to: 0 0 0; loop: true; easing: linear; dur: 250000')
       }, 8500);
     })
   },

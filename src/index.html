@@ -32,7 +32,7 @@
     >
       <a-assets timeout="5000" data-assets>
 
-        <a-asset-item id="rocket" src="assets/audio/looperman-l-1791281-0294023-0x0329e01f.m4a" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="rocket" src="assets/audio/looperman-l-1791281-0294023-0x0329e01f.mp3" response-type="arraybuffer"></a-asset-item>
         <a-asset-item id="bgaudio" src="assets/audio/PodcastUniverse360_Loop01.mp3" response-type="arraybuffer"></a-asset-item>
         <a-asset-item id="click1" src="assets/audio/mixkit-sci-fi-click-900.mp3" response-type="arraybuffer"></a-asset-item>
         <a-asset-item id="click2" src="assets/audio/mixkit-select-click-1109.mp3" response-type="arraybuffer"></a-asset-item>
@@ -85,20 +85,23 @@
 
       <a-entity star-system="texture: assets/star.svg"></a-entity>
 
+      <a-box id="rocket1Container">
+        <a-gltf-model
+          src="#rocket1"
+          id="rocketone"
+          position="-30 0 420"
+        >
+        </a-gltf-model>
+      </a-box>
 
-      <a-gltf-model
-        src="#rocket1"
-        id="rocketone"
-        position="-3 0 420"
-      >
-      </a-gltf-model>
-
-      <a-gltf-model
-        src="#rocket2"
-        id="rockettwo"
-        position="5 0 120"
-      >
-      </a-gltf-model>
+      <a-box id="rocket2Container">
+        <a-gltf-model
+          src="#rocket2"
+          id="rockettwo"
+          position="19 0 120"
+        >
+        </a-gltf-model>
+      </a-box>
 
       <!-- Podcast container -->
       <a-entity
@@ -289,7 +292,7 @@
             radius="0.04"
             position="0 0 -300"
             src="#vrmenu"
-            sound="src: #click6; on: mouseenter; positional: true; volume: 0.8;"
+            sound="src: #click6; on: mouseenter; positional: true; volume: 0.3;"
             sound__down="src: #click2; on: mousedown; positional: true; volume: 0.1;"
             event-set__enter="_event: mouseenter; _target: #helpText; visible: true"
             event-set__leave="_event: mouseleave; _target: #helpText; visible: false">
@@ -317,7 +320,7 @@
                 event-set__leave="_event: mouseleave; scale: 1 1 1"
                 event-set__down="_event: mousedown; scale: 0.98 0.98 0.98"
                 event-set__up="_event: mouseup; scale: 1 1 1"
-                sound="src: #click6; on: mouseenter; positional: true; volume: 0.8;"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.3;"
                 sound__down="src: #click2; on: mousedown; positional: true; volume: 0.1;"
                 color="#0051e6"
                 height="0.07"
@@ -331,7 +334,7 @@
                 event-set__leave="_event: mouseleave; scale: 1 1 1"
                 event-set__down="_event: mousedown; scale: 0.98 0.98 0.98"
                 event-set__up="_event: mouseup; scale: 1 1 1"
-                sound="src: #click6; on: mouseenter; positional: true; volume: 0.8;"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.3;"
                 sound__down="src: #click2; on: mousedown; positional: true; volume: 0.1;"
                 material="opacity: 0.3; transparent: true"
                 height="0.07"
@@ -345,7 +348,7 @@
                 event-set__leave="_event: mouseleave; scale: 1 1 1"
                 event-set__down="_event: mousedown; scale: 0.98 0.98 0.98"
                 event-set__up="_event: mouseup; scale: 1 1 1"
-                sound="src: #click6; on: mouseenter; positional: true; volume: 0.8;"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.3;"
                 sound__down="src: #click2; on: mousedown; positional: true; volume: 0.1;"
                 material="opacity: 0.3; transparent: true"
                 height="0.07"
@@ -370,7 +373,7 @@
                 event-set__leave="_event: mouseleave; scale: 1 1 1"
                 event-set__down="_event: mousedown; scale: 0.98 0.98 0.98"
                 event-set__up="_event: mouseup; scale: 1 1 1"
-                sound="src: #click6; on: mouseenter; positional: true; volume: 0.8;"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.3;"
                 sound__down="src: #click2; on: mousedown; positional: true; volume: 0.1;"
                 material="opacity: 0.3; transparent: true"
                 height="0.07"
@@ -384,7 +387,7 @@
                 event-set__leave="_event: mouseleave; scale: 1 1 1"
                 event-set__down="_event: mousedown; scale: 0.98 0.98 0.98"
                 event-set__up="_event: mouseup; scale: 1 1 1"
-                sound="src: #click6; on: mouseenter; positional: true; volume: 0.8;"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.3;"
                 sound__down="src: #click2; on: mousedown; positional: true; volume: 0.1;"
                 material="opacity: 0.3; transparent: true"
                 height="0.07"
@@ -398,7 +401,7 @@
                 event-set__leave="_event: mouseleave; scale: 1 1 1"
                 event-set__down="_event: mousedown; scale: 0.98 0.98 0.98"
                 event-set__up="_event: mouseup; scale: 1 1 1"
-                sound="src: #click6; on: mouseenter; positional: true; volume: 0.8;"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.3;"
                 sound__down="src: #click2; on: mousedown; positional: true; volume: 0.1;"
                 material="opacity: 0.3; transparent: true"
                 height="0.07"
@@ -424,7 +427,7 @@
                 event-set__leave="_event: mouseleave; scale: 1 1 1"
                 event-set__down="_event: mousedown; scale: 0.98 0.98 0.98"
                 event-set__up="_event: mouseup; scale: 1 1 1"
-                sound="src: #click6; on: mouseenter; positional: true; volume: 0.8;"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.3;"
                 sound__down="src: #click2; on: mousedown; positional: true; volume: 0.1;"
                 material="opacity: 0.3; transparent: true"
                 height="0.07"
@@ -438,7 +441,7 @@
                 event-set__leave="_event: mouseleave; scale: 1 1 1"
                 event-set__down="_event: mousedown; scale: 0.98 0.98 0.98"
                 event-set__up="_event: mouseup; scale: 1 1 1"
-                sound="src: #click6; on: mouseenter; positional: true; volume: 0.8;"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.3;"
                 sound__down="src: #click2; on: mousedown; positional: true; volume: 0.1;"
                 material="opacity: 0.3; transparent: true"
                 height="0.07"
@@ -452,7 +455,7 @@
                 event-set__leave="_event: mouseleave; scale: 1 1 1"
                 event-set__down="_event: mousedown; scale: 0.98 0.98 0.98"
                 event-set__up="_event: mouseup; scale: 1 1 1"
-                sound="src: #click6; on: mouseenter; positional: true; volume: 0.8;"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.3;"
                 sound__down="src: #click2; on: mousedown; positional: true; volume: 0.1;"
                 material="opacity: 0.3; transparent: true"
                 height="0.07"
@@ -507,7 +510,7 @@
       </a-light>
 
       <!-- Sky -->
-      <a-sky src="#nebula"></a-sky>
+      <a-sky src="#nebula" radius="800" animation="property: rotation; from: 0 360 0; to: 0 0 0; loop: true; easing:linear; dur: 1500000"></a-sky>
 
       <a id="EnterVRButton"></a>
 
