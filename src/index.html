@@ -32,7 +32,7 @@
     >
       <a-assets timeout="5000" data-assets>
 
-        <a-asset-item id="rocket2" src="assets/audio/looperman-l-1791281-0294023-0x0329e01f.m4a" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="rocket" src="assets/audio/looperman-l-1791281-0294023-0x0329e01f.m4a" response-type="arraybuffer"></a-asset-item>
         <a-asset-item id="bgaudio" src="assets/audio/PodcastUniverse360_Loop01.mp3" response-type="arraybuffer"></a-asset-item>
         <a-asset-item id="click1" src="assets/audio/mixkit-sci-fi-click-900.mp3" response-type="arraybuffer"></a-asset-item>
         <a-asset-item id="click2" src="assets/audio/mixkit-select-click-1109.mp3" response-type="arraybuffer"></a-asset-item>
@@ -57,7 +57,8 @@
         <img id="modalclose" src="assets/ico-close.png">
         <img id="vrmenu" src="assets/ico-menu.svg">
         <img id="listen-stitcher" src="assets/btn-stitcher.png">
-        <a-asset-item id="rocket" src="assets/rocket.gltf"></a-asset-item>
+        <a-asset-item id="rocket1" src="assets/Satellite-Pandora_ColorOnly_Embeded.gltf"></a-asset-item>
+        <a-asset-item id="rocket2" src="assets/Satellite-Stitcher_ColorOnly_Embeded.gltf"></a-asset-item>
       </a-assets>
 
 
@@ -86,16 +87,16 @@
 
 
       <a-gltf-model
-        src="#rocket"
+        src="#rocket1"
         id="rocketone"
-        position="-2 0 420"
+        position="-3 0 420"
       >
       </a-gltf-model>
 
       <a-gltf-model
-        src="#rocket"
+        src="#rocket2"
         id="rockettwo"
-        position="3 0 250"
+        position="5 0 120"
       >
       </a-gltf-model>
 
@@ -502,7 +503,7 @@
       </a-light>
 
       <a-light intensity="0.3" type="directional" position="0 0 0" rotation="-90 0 0" target="#directionaltarget2">
-        <a-entity id="directionaltarget2" position="-4 -6 3"></a-entity>
+        <a-entity id="directionaltarget2" position="-4 3 3"></a-entity>
       </a-light>
 
       <!-- Sky -->
