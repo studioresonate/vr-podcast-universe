@@ -103,8 +103,8 @@ const renderItems = (podcasts) => {
 
     newItemEl.setAttribute("position", {
       x: generateRandom(-40, 40),
-      y: generateRandom(-10, 5),
-      z: generateRandom(-10, 10)
+      y: generateRandom(-10, 10),
+      z: generateRandom(-40, 40)
     });
     // document.querySelector('a-assets').addEventListener('loaded', function () {
     //   console.log("OK LOADED");
@@ -170,7 +170,6 @@ const renderItems = (podcasts) => {
         // headset
         podcastmodal.setAttribute('position', '0 0 -10.5')
         // modalBg.setAttribute('position', '0 1 -11')
-
       } else if (headset === false && mobile === true) {
         // mobile
         podcastmodal.setAttribute('position', '0 0 -10.5')
@@ -180,21 +179,6 @@ const renderItems = (podcasts) => {
         podcastmodal.setAttribute('position', '0 0 -7.5')
       }
 
-      if (podcast.videoPreview) {
-        podcastAssetHolder.insertAdjacentHTML("beforeend", `
-          <video
-            id="vid-${podcast.sys.id}-${count}"
-            class="vidEl"
-            src=${podcast.videoPreview.url}
-            crossOrigin="anonymous"
-            autoplay
-            >
-          </video>
-        `)
-        setTimeout(() => {
-          document.querySelector(`#vid-${podcast.sys.id}-${count}`).play()
-        }, 200);
-      }
 
       const truncateString = (str, max = 50) => {
         const array = str.trim().split(' ');
@@ -238,6 +222,20 @@ const renderItems = (podcasts) => {
 
       if (podcast.videoPreview) {
         modalvideo.setAttribute('visible', true)
+        podcastAssetHolder.insertAdjacentHTML("beforeend", `
+          <video
+            id="vid-${podcast.sys.id}-${count}"
+            class="vidEl"
+            src=${podcast.videoPreview.url}
+            crossOrigin="anonymous"
+            autoplay
+            >
+          </video>
+        `)
+        setTimeout(() => {
+          document.querySelector(`#vid-${podcast.sys.id}-${count}`).play()
+        }, 200);
+
         setAttributes(modalart, { 'position': '-2.7 -3.2 0', 'height': '1.6', 'width': '1.6' })
         setAttributes(modaltitle, { 'position': '-1.6 -2.8 0', 'width': '5', 'wrap-pixels': '400' })
         setAttributes(modaldesc, { 'position': '3.93 1.18 0', 'rotation': '0 -16 0', 'width': '4' })
@@ -307,8 +305,7 @@ const renderItems = (podcasts) => {
       // load video in asset management before applying to plane.. should probably fix this
       setTimeout(() => {
         if (podcast.videoPreview) {
-          modalvideo.setAttribute('src', `#vid-${podcast.sys.id}-${count}`)
-          modalvideo.setAttribute('visible', true)
+          setAttributes(modalvideo, { 'src': `#vid-${podcast.sys.id}-${count}`, 'visible': true })
         }
       }, 600);
 
