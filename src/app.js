@@ -76,9 +76,17 @@ const renderItems = (podcasts) => {
 
   // const modal = document.querySelector("[data-modal]");
   let count = 0
+  let id;
+
+  const asteroidInterval = () => {
+    // assign setInterval's result
+    id = setInterval(function () {
+      asteroid()
+    }, 20000)
+  }
 
   const asteroid = () => {
-    const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+    const random = (min, max) => Math.random() * (max - min) + min;
     sun.insertAdjacentHTML('beforeend', `
     <a-circle
       radius="0.2"
@@ -93,6 +101,18 @@ const renderItems = (podcasts) => {
     </a-circle>
     `)
   }
+
+  asteroidInterval()
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      // console.log('Hidden');
+      clearInterval(id)
+    } else {
+      // console.log('Visible');
+      asteroidInterval()
+    }
+  });
 
   podcasts.forEach((podcast) => {
     // console.log(podcast.listenUrl);
@@ -161,9 +181,6 @@ const renderItems = (podcasts) => {
       modalContainer.el.object3D.rotation.y = JSON.stringify(camera.rotation.y)
       // console.log(modalContainer.el.object3D.rotation.y);
 
-      setTimeout(() => {
-        asteroid()
-      }, 1000);
 
 
       if (headset === true && mobile === false) {
