@@ -96,11 +96,15 @@
         </a-gltf-model>
       </a-box>
 
-      <a-box id="rocket2Container">
+      <a-box
+        id="rocket2Container"
+        position="110 0 0"
+        material="opacity: 0; transparent: true">
         <a-gltf-model
           src="#rocket2"
           id="rockettwo"
-          position="19 0 120"
+          position="100 0 120"
+          rotation="0 90 45"
         >
         </a-gltf-model>
       </a-box>
@@ -150,7 +154,7 @@
       <a-entity id="rig"
         introcontrol
         speed="1"
-        movement-controls="fly: false"
+        movement-controls="enabled: false"
       >
 
         <!-- Intro -->
