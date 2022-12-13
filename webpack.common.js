@@ -12,7 +12,9 @@ module.exports = {
     _head: './src/head.js',
   },
   plugins: [
-    new Dotenv(),
+    new Dotenv({
+      systemvars: true,
+    }),
     new CopyPlugin({
       patterns: [
         { from: "./src/images", to: "images" },
