@@ -51,6 +51,7 @@
         <a-mixin id="bgmusic-off" sound="src: #bgaudio; loop: true; positional: false; volume: 0; autoplay: true;"></a-mixin>
 
         <img id="nebula" src="assets/nebula.jpg">
+        <img id="galaxy" src="assets/galaxy.png">
         <img id="txtintro-desktop" src="assets/texture-intro-desktop.png">
         <img id="txtintro-mobile" src="assets/texture-intro-mobile.png">
         <img id="txtintro-headset" src="assets/texture-intro-headset.png">
@@ -522,6 +523,14 @@
 
       <!-- Sky -->
       <a-sky src="#nebula" radius="800" animation="property: rotation; from: 0 360 0; to: 0 0 0; loop: true; easing:linear; dur: 1500000"></a-sky>
+
+      <a-circle
+        material="src: #galaxy; opacity: 0.6; transparent: true; shader: flat;"
+        rotation="90 0 0"
+        position="100 700 100"
+        radius="300"
+        animation="property: rotation; from: 90 0 360; to: 90 0 0; loop: true; easing:linear; dur: 200000">
+      </a-circle>
 
       <a id="EnterVRButton"></a>
 
