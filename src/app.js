@@ -119,6 +119,10 @@ const renderItems = (podcasts) => {
     }
   });
 
+  // pick a random rotation duration
+  const podcastRotation = [6000, 9000, 10000, 20000]
+
+
   podcasts.forEach((podcast) => {
     // console.log(podcast.listenUrl);
     const newItemEl = document.createElement('a-entity');
@@ -134,6 +138,8 @@ const renderItems = (podcasts) => {
     // document.querySelector('a-assets').addEventListener('loaded', function () {
     //   console.log("OK LOADED");
     // });
+    const podcastRandom = Math.floor(Math.random() * podcastRotation.length);
+    // console.log(podcastRotation[podcastRandom]);
 
     newItemEl.innerHTML = `
       <a-entity class="podcastEl ${cleanCats}">
@@ -147,7 +153,7 @@ const renderItems = (podcasts) => {
           id="#${podcast.sys.id}"
           src="#${podcast.sys.id}"
           sound="src: #click2; on: click; positional: false; volume: 0.1;"
-          animation="property: rotation; to: 0 360 0; loop: true; easing:linear; dur: ${generateRandom(5000, 20000)}"
+          animation="property: rotation; to: 0 360 0; loop: true; easing:linear; dur: ${podcastRotation[podcastRandom]}"
           material="shader:phong; reflectivity: 0.9; shininess: 30;"
           >
         </a-box>
