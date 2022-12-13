@@ -51,9 +51,14 @@ function setAttributes(el, attrs) {
 }
 
 // generate random position with offset for the sun
-function generateRandom(min, max) {
+function generateRandomOffset(min, max) {
   const num = Math.random() * (max - min + 1) + min;
-  return (num >= -4 && num <= 4) ? generateRandom(min, max) : num;
+  return (num >= -4 && num <= 4) ? generateRandomOffset(min, max) : num;
+}
+
+// generate random position with no offset
+function generateRandom(min, max) {
+  return Math.random() * (max - min) + min;
 }
 
 const renderItems = (podcasts) => {
@@ -122,9 +127,9 @@ const renderItems = (podcasts) => {
     cleanCats = cleanCats.replace(/\s+/g, '-').toLowerCase().replaceAll(',', ' ');
 
     newItemEl.setAttribute("position", {
-      x: generateRandom(-40, 40),
+      x: generateRandomOffset(-50, 50),
       y: generateRandom(-10, 10),
-      z: generateRandom(-40, 40)
+      z: generateRandomOffset(-50, 50)
     });
     // document.querySelector('a-assets').addEventListener('loaded', function () {
     //   console.log("OK LOADED");
@@ -473,9 +478,6 @@ const renderItems = (podcasts) => {
     handleBtnEvent(other, otherBtn, vrOtherBtn)
   })
 
-  // vrBtn.addEventListener('mouseenter', () => {
-
-  // })
 
   // Asset management
   podcasts.forEach((podcast) => {
@@ -510,45 +512,6 @@ function delayClass(className, index) {
   }
 };
 
-// random asteroids
-// const asteroid = () => {
-//   const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
-//   sun.insertAdjacentHTML('beforeend', `
-//   <a-circle
-//     radius="0.2"
-//     color="white"
-//     position="${random(-250, 250)} 180 ${random(0, 100)}"
-//     class="asteroids"
-//     animation="property: position; to: ${random(-50, 50)} -100 ${random(-250, -50)}; dur: 15000; easing: linear; loop: false"
-//     trail="color:white; length:300;width:0.3"
-//     trail__1="color:white; length:240;width:0.3"
-//     trail__2="color:#39d1ff; length:80;width:0.3"
-//     trail__3="color:#39d1ff; length:80;width:0.3">
-//   </a-circle>
-//   `)
-// }
-
-
-// setInterval(() => {
-//   asteroid()
-// }, 1000);
-
-// const asteroid = document.querySelector('#asteroid')
-
-// const asteroidVisible = () => {
-//   asteroid.setAttribute('visible', true)
-// }
-
-// const asteroidInvisible = () => {
-//   asteroid.setAttribute('visible', false)
-// }
-
-// setInterval(() => {
-//   const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
-//   asteroid.setAttribute('position', `${random(-250, 250)} 180 ${random(0, 100)}`)
-//   asteroid.setAttribute('animation', `property: position; to: ${random(-50, 50)} -100 ${random(-250, -50)}; dur: 15000; easing: linear; loop: false`)
-//   asteroidInvisible()
-// }, 16000);
 
 
 
