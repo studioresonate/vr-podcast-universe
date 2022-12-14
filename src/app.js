@@ -337,6 +337,8 @@ const renderItems = (podcasts) => {
         }
       }, 600);
 
+      dataLayer.push({ 'event': 'Click Podcast', 'podcastTitle': podcast.podcastTitle })
+
     })
 
     podcastHolder.appendChild(newItemEl);
