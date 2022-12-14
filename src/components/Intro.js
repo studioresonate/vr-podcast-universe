@@ -87,7 +87,7 @@ AFRAME.registerComponent('introcontrol', {
       }, 7000);
 
       setTimeout(() => {
-        rocket2Container.setAttribute('animation', 'property: rotation; from: 0 -190 0; to: 0 190 0; loop: true; easing: linear; dur: 250000')
+        rocket2Container.setAttribute('animation', 'property: rotation; from: 0 190 0; to: 0 -190 0; loop: true; easing: linear; dur: 250000')
       }, 12000);
     })
   },
