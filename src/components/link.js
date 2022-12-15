@@ -9,7 +9,7 @@ AFRAME.registerComponent('data-link', {
 
     el.addEventListener('click', function () {
       window.open(data.url, '_blank')
-      dataLayer.push({ 'event': data.url });
+      dataLayer.push({ 'event': 'Click Listen Button', 'podcastUrl': data.url });
     });
   }
 });
