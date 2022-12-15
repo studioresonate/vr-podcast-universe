@@ -343,3 +343,32 @@ body {
 .a-dialog-ok-button {
   background-color: var(--blue);
 }
+
+footer {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+}
+
+footer .legal {
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+}
+
+footer .legal li {
+  padding: 0 0.4rem;
+  list-style-type: none;
+}
+
+footer .legal a {
+  text-decoration: none;
+  color: var(--white);
+  transition: all 0.8 ease-in-out;
+}
+
+footer .legal a:hover {
+  color: var(--blue)
+}
