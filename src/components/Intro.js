@@ -65,6 +65,7 @@ AFRAME.registerComponent('introcontrol', {
 
       sun.setAttribute('mixin', 'bgmusic-on')
 
+      dataLayer.push({ 'event': 'click_intro' })
       // random asteroids
 
 
