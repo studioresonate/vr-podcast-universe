@@ -337,7 +337,7 @@ const renderItems = (podcasts) => {
         }
       }, 600);
 
-      dataLayer.push({ 'event': 'Click Podcast', 'podcastTitle': podcast.podcastTitle })
+      dataLayer.push({ 'event': 'click_podcast', 'podcastTitle': podcast.podcastTitle })
 
     })
 
