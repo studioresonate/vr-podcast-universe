@@ -269,9 +269,9 @@ const renderItems = (podcasts) => {
         setAttributes(modalhosts, { 'position': '3.9 1.67 0', 'rotation': '0 -16 0', 'width': '5' })
         setAttributes(closemodal, { 'position': '-3.6 2 0.05' })
         if (headset === true && mobile === false) {
-          setAttributes(modalBg, { 'position': '2.06 -0.9 -11.8', 'height': '8', 'width': '10' })
+          setAttributes(modalBg, { 'position': '3.3 -0.9 -11.8', 'height': '8', 'width': '13' })
         } else {
-          setAttributes(modalBg, { 'position': '3 -0.5 -11.8', 'height': '8', 'width': '15' })
+          setAttributes(modalBg, { 'position': '5.5 -0.5 -11.8', 'height': '8', 'width': '18.5' })
         }
 
         // if there's a listen button with a video, do this
@@ -289,9 +289,9 @@ const renderItems = (podcasts) => {
         setAttributes(closemodal, { 'position': '-5.6 2.56 0.05' })
 
         if (headset === true && mobile === false) {
-          setAttributes(modalBg, { 'position': '-0.250 0.6 -11.8', 'height': '6', 'width': '10' })
+          setAttributes(modalBg, { 'position': '0 0.6 -11.8', 'height': '6', 'width': '11' })
         } else {
-          setAttributes(modalBg, { 'position': '-0.250 1.4 -11.8', 'height': '7', 'width': '11' })
+          setAttributes(modalBg, { 'position': '1 0.8 -11.8', 'height': '8', 'width': '14' })
         }
 
         // if no video with no listen button and hosts OR headset, do this
