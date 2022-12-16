@@ -154,7 +154,6 @@ const renderItems = (podcasts) => {
           src="#${podcast.sys.id}"
           sound="src: #click2; on: click; positional: false; volume: 0.1;"
           animation="property: rotation; to: 0 360 0; loop: true; easing:linear; dur: ${podcastRotation[podcastRandom]}"
-          material="shader:phong; reflectivity: 0.9; shininess: 30;"
           >
         </a-box>
         <a-text
