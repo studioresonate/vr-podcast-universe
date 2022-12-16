@@ -98,7 +98,10 @@
       >
       </a-entity>
 
-      <a-entity star-system="texture: assets/star.png"></a-entity>
+      <a-entity
+        material="opacity: 1; transparent: true"
+        star-system="count: 3000; radius: 450; depth: 450; texture: assets/star.svg; size: 1">
+      </a-entity>
 
       <a-entity id="rocket1Container">
         <a-gltf-model
