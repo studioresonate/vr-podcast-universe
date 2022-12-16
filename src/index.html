@@ -100,18 +100,16 @@
 
       <a-entity star-system="texture: assets/star.png"></a-entity>
 
-      <a-box
-        id="rocket1Container"
-        material="src: #studioresonate">
+      <a-entity id="rocket1Container">
         <a-gltf-model
           src="#rocket1"
           id="rocketone"
           position="-30 0 420"
         >
         </a-gltf-model>
-      </a-box>
+      </a-entity>
 
-      <a-box
+      <a-entity
         id="rocket2Container"
         position="110 0 0"
         material="opacity: 0; transparent: true">
@@ -122,7 +120,7 @@
           rotation="0 90 45"
         >
         </a-gltf-model>
-      </a-box>
+      </a-entity>
 
       <!-- Podcast container -->
       <a-entity
@@ -162,6 +160,10 @@
           position="0 1.6 0"
           radius="6"
           src="#txtsxm">
+          <a-box
+            material="src: #studioresonate"
+            animation="property: rotation; from: 90 360 0; to: 90 0 360; loop: true; easing:linear; dur: 150000">
+          </a-box>
         </a-sphere>
       </a-entity>
 
