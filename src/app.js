@@ -4,7 +4,7 @@ import { documentToPlainTextString } from '@contentful/rich-text-plain-text-rend
 const endpoint = "https://graphql.contentful.com/content/v1/spaces/" + process.env.SPACE_ID;
 
 const query = `{
-  podcastCollection {
+  podcastCollection(limit: 500) {
     items {
       slug
       sys {
