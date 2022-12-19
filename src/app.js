@@ -53,7 +53,7 @@ function setAttributes(el, attrs) {
 // generate random position with offset for the sun
 function generateRandomOffset(min, max) {
   const num = Math.random() * (max - min + 1) + min;
-  return (num >= -4 && num <= 4) ? generateRandomOffset(min, max) : num;
+  return (num >= -4.25 && num <= 4.25) ? generateRandomOffset(min, max) : num;
 }
 
 // generate random position with no offset
@@ -131,9 +131,9 @@ const renderItems = (podcasts) => {
     cleanCats = cleanCats.replace(/\s+/g, '-').toLowerCase().replaceAll(',', ' ');
 
     newItemEl.setAttribute("position", {
-      x: generateRandomOffset(-50, 50),
-      y: generateRandom(-10, 10),
-      z: generateRandomOffset(-50, 50)
+      x: generateRandomOffset(-70, 70),
+      y: generateRandom(-15, 15),
+      z: generateRandomOffset(-70, 70)
     });
     // document.querySelector('a-assets').addEventListener('loaded', function () {
     //   console.log("OK LOADED");
