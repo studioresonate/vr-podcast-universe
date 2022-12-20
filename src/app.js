@@ -172,7 +172,7 @@ const renderItems = (podcasts) => {
     `
 
 
-    newItemEl.addEventListener('mouseup', () => {
+    newItemEl.addEventListener('click', () => {
       // count used to subvert inadvertant caching of video
       count++
       const closemodal = document.querySelector('.closemodal');
