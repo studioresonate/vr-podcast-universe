@@ -10,6 +10,7 @@ AFRAME.registerComponent('introcontrol', {
     const rocket2Container = document.querySelector('#rocket2Container')
     const rocketone = document.querySelector('#rocketone');
     const rockettwo = document.querySelector('#rockettwo');
+    const outerstars = document.querySelector('#stars2')
 
     const headset = AFRAME.utils.device.checkHeadsetConnected()
     const mobile = AFRAME.utils.device.isMobile()
@@ -79,6 +80,7 @@ AFRAME.registerComponent('introcontrol', {
         rockettwo.setAttribute('sound', 'src: #rocket; loop: false; volume: 0;')
         rocketone.setAttribute('animation', 'property: rotation; from: 360 -360 0; to: 0 0 0; loop: true; easing:linear; dur: 30000')
         rocket1Container.setAttribute('animation', 'property: rotation; from: 20 -360 0; to: 0 0 0; loop: true; easing: linear; dur: 250000')
+        outerstars.setAttribute('visible', false)
         this.el.setAttribute('movement-controls', 'enabled: true')
       }, 8500);
 

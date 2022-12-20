@@ -77,31 +77,26 @@
       </a-assets>
 
 
-      <!-- Stars -->
+      <!-- Inner Stars -->
       <a-entity
+        particle-system="preset: dust; texture: ./assets/star2.png; color: #000,#fffecc,#ccf6ff; size: 2; particleCount:300"
         position="0 0 0"
-        particle-system="preset: dust"
-        particleCount="10000"
-        size=[2,7,4,5,1,10]
         maxAge="40"
         accelerationSpread="0 2 0"
+        id="stars1"
       >
       </a-entity>
 
-      <!-- Stars -->
+      <!-- Outer Stars -->
       <a-entity
-        position="0 0 420"
-        particle-system="preset: dust"
-        particleCount="10000"
+        particle-system="preset: dust; texture: ./assets/star2.png; color: #000,#fffecc,#ccf6ff; size: 2; particleCount:200; opacity: 1;"
+        position="0 0 400"
         maxAge="40"
         velocityValue="0 105 0"
+        id="stars2"
       >
       </a-entity>
 
-      <a-entity
-        material="opacity: 1; transparent: true"
-        star-system="count: 3000; radius: 450; depth: 450; texture: assets/star.svg; size: 1">
-      </a-entity>
 
       <a-entity id="rocket1Container">
         <a-gltf-model
@@ -155,7 +150,7 @@
           position="0 1.6 0"
           radius="8.035"
           src="#txtclouds"
-          material="transparent: true"
+          material="transparent: true;shader: flat;"
           animation="property: rotation; from: 0 0 0; to: 0 360 0; loop: true; easing:linear; dur: 100000">
         </a-sphere>
 
@@ -184,7 +179,7 @@
           position="0, 1.6, -2"
           height="2.5"
           width="3.6"
-          material="side: front"
+          material="side: front; shader: flat"
           sound="src: #click1; on: click; positional: true; volume: 0.1;"
         >
         </a-image>
@@ -310,7 +305,7 @@
 
 
         <a-entity id="rhand" mixin="controller-right">
-          <!-- <a-entity position="0 0.2 0" fps-counter></a-entity> -->
+          <!-- <a-entity position="0 0.1 0" fps-counter></a-entity> -->
         </a-entity>
 
         <a-entity id="lhand" mixin="controller-left">
