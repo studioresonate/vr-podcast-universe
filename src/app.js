@@ -131,9 +131,9 @@ const renderItems = (podcasts) => {
     cleanCats = cleanCats.replace(/\s+/g, '-').toLowerCase().replaceAll(',', ' ');
 
     newItemEl.setAttribute("position", {
-      x: generateRandomOffset(-70, 70),
+      x: generateRandomOffset(-80, 80),
       y: generateRandom(-15, 15),
-      z: generateRandomOffset(-70, 70)
+      z: generateRandomOffset(-80, 80)
     });
     // document.querySelector('a-assets').addEventListener('loaded', function () {
     //   console.log("OK LOADED");
