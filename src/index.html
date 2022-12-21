@@ -79,9 +79,8 @@
 
       <!-- Inner Stars -->
       <a-entity
-        particle-system="preset: dust; texture: ./assets/star2.png; color: #000,#fffecc,#ccf6ff; size: 2; particleCount:300"
+        particle-system="preset: dust; texture: ./assets/star2.png; color: #000,#fffecc,#ccf6ff; size: 2; particleCount:300; maxAge:40"
         position="0 0 0"
-        maxAge="40"
         accelerationSpread="0 2 0"
         id="stars1"
       >
@@ -89,10 +88,8 @@
 
       <!-- Outer Stars -->
       <a-entity
-        particle-system="preset: dust; texture: ./assets/star2.png; color: #000,#fffecc,#ccf6ff; size: 2; particleCount:200; opacity: 1;"
+        particle-system="preset: dust; texture: ./assets/star2.png; color: #000,#fffecc,#ccf6ff; size: 3; particleCount:200; opacity: 1;direction: 0;maxAge:9"
         position="0 0 400"
-        maxAge="40"
-        velocityValue="0 105 0"
         id="stars2"
       >
       </a-entity>
@@ -150,7 +147,7 @@
           position="0 1.6 0"
           radius="8.035"
           src="#txtclouds"
-          material="transparent: true;shader: flat;"
+          material="transparent: true;"
           animation="property: rotation; from: 0 0 0; to: 0 360 0; loop: true; easing:linear; dur: 100000">
         </a-sphere>
 
