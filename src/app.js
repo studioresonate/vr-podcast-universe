@@ -545,3 +545,21 @@ const musicToggle = () => {
 };
 
 m.addEventListener('click', musicToggle);
+
+const cursor = document.querySelector('.cursor');
+const clickable = document.querySelectorAll('.clickable');
+
+document.addEventListener('mousemove', function (e) {
+  const x = e.clientX;
+  const y = e.clientY;
+  cursor.style.left = x + 'px';
+  cursor.style.top = y + 'px';
+});
+
+document.addEventListener('mousedown', function () {
+  cursor.classList.add('mousedown')
+});
+
+document.addEventListener('mouseup', function () {
+  cursor.classList.remove('mousedown')
+});

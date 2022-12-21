@@ -134,6 +134,7 @@ template {
 
 * {
   box-sizing: border-box;
+  cursor: none !important;
 }
 
 :root {
@@ -146,6 +147,7 @@ template {
   --white: #ffffff;
   --offwhite: #f8f8f2;
   --pink: #d91ca8;
+  --raspberry: #C5169C;
   --yellow: #ffb626;
   --yellow-darker: #f0a000;
   --border-radius: 0.5rem;
@@ -181,6 +183,7 @@ template {
 
 html {
   font-size: 100%;
+  height: 100%;
 }
 
 body {
@@ -190,6 +193,7 @@ body {
   font-weight: var(--font-weight-normal);
   margin: 0;
   background-color: var(--black);
+  height: 100%;
 }
 
 #EnterVRButton {
@@ -371,4 +375,30 @@ footer .legal a {
 
 footer .legal a:hover {
   color: var(--blue)
+}
+
+.cursor {
+  z-index: 999;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  border: 2px solid var(--white);
+  background-color: transparent;
+  opacity: .8;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: width .2s, height .2s, opacity .2s;
+}
+
+.cursor.hover {
+  width: 35px;
+  height: 35px;
+  border: 3px solid var(--raspberry);
+  opacity: 1;
+}
+
+.cursor.mousedown {
+  width: 15px;
+  height: 15px;
 }
