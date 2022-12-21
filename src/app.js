@@ -183,7 +183,7 @@ const renderItems = (podcasts) => {
 
       setAttributes(modalBg, {
         'animation': 'property: scale; from: 0 0 0; to: 1 1 1; loop: false; easing:easeOutCubic; dur: 200',
-        'animation__1': 'property: opacity; from: 0; to: 0.4; loop: false; easing:easeOutExpo; dur: 200',
+        'animation__1': 'property: opacity; from: 0; to: 0.6; loop: false; easing:easeOutExpo; dur: 200',
         'animation__2': 'property: rotation; from: 0 90 0; to: 0 0 0; loop: false; easing:easeOutExpo; dur: 300'
       })
 
