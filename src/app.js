@@ -507,6 +507,7 @@ const filterBtn = document.querySelectorAll('.filter-btn')
 const menuico = document.querySelector('.menu-ico')
 
 function delayClass(className, index) {
+
   if (typeof index === 'undefined') {
     index = 0
   }
@@ -523,6 +524,8 @@ function delayClass(className, index) {
 
 
 menuico.addEventListener('click', () => {
+  const menuTitle = menuico.querySelector('p')
+  menuTitle.classList.toggle('open')
   delayClass('show')
 });
 

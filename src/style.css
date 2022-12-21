@@ -230,6 +230,7 @@ body {
   opacity: 0;
   cursor: pointer;
   pointer-events: visible;
+  position: relative;
   transition: all 0.3s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
@@ -321,6 +322,22 @@ body {
   opacity: 1;
   margin-left: 0rem;
   visibility: visible;
+}
+
+.mainmenu p {
+  position: absolute;
+  top: -16px;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  margin: 0 0 0 5px;
+  color: var(--white);
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+}
+
+.mainmenu p.open {
+  opacity: 0;
+  top: 0;
 }
 
 .a-loader-title,
