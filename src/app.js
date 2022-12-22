@@ -525,7 +525,10 @@ function delayClass(className, index) {
 
 menuico.addEventListener('click', () => {
   const menuTitle = menuico.querySelector('p')
+  const menuClick = document.querySelector('#menu-click')
   menuTitle.classList.toggle('open')
+  menuClick.volume = 0.1
+  menuClick.play()
   delayClass('show')
 });
 
@@ -566,3 +569,4 @@ document.addEventListener('mousedown', function () {
 document.addEventListener('mouseup', function () {
   cursor.classList.remove('mousedown')
 });
+
