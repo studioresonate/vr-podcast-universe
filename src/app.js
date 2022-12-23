@@ -162,10 +162,12 @@ const renderItems = (podcasts) => {
           scale="2 2"
           align="center"
           width="2"
-          value="${podcast.podcastTitle}"
+          value="${podcast.podcastTitle.replace(/"/g, '&quot;')}"
           line-height="60"
           color="white"
           baseline="top"
+          font="assets/fonts/AvenirNextLTProMedium-msdf.json"
+          negate="false"
         >
         </a-text>
       </a-entity>
@@ -210,7 +212,7 @@ const renderItems = (podcasts) => {
       const truncateString = (str, max = 50) => {
         const array = str.trim().split(' ');
         const ellipsis = array.length > max ? '...' : '';
-        return array.slice(0, max).join(' ') + ellipsis;
+        return array.slice(0, max).join(' ').replace(/[“”]/g, '"').replace(/[‘’]/g, "'") + ellipsis;
       };
 
       // values
