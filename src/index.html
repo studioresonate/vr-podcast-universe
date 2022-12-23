@@ -1,11 +1,575 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Podcast Universe VR</title>
-</head>
-<body>
-    <canvas class="webgl"></canvas>
-</body>
+<html>
+  <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KRDK2GT');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="utf-8"/>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <script src="js/aframe.min.js"></script>
+    <script src="js/aframe-extras.min@6.1.1.js"></script>
+    <script src="js/xylayout-all.min.js"></script>
+    <!-- <script src="https://unpkg.com/aframe-fps-counter-component@1.0.1/dist/aframe-fps-counter-component.min.js"></script> -->
+    <script src="components.min.js"></script>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
+    <link href="https://images.ctfassets.net" rel="preconnect" crossorigin>
+    <link rel="dns-prefetch" href="https://images.ctfassets.net" />
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KRDK2GT"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <% if (htmlWebpackPlugin.options.unsupportedBrowser) { %>
+      <style>.unsupported-browser { display: none; }</style>
+      <div class="unsupported-browser">
+        Sorry, your browser is not supported.  Please upgrade to
+        the latest version or switch your browser to use this site.
+        See <a href="http://outdatedbrowser.com/">outdatedbrowser.com</a>
+        for options.
+      </div>
+    <% } %>
+    <a-scene
+      vrtoggle
+      loading-screen="backgroundColor: black"
+      cursor="rayOrigin: mouse; fuse: false"
+      gltf-model="dracoDecoderPath: util/; meshoptDecoderPath: util/meshopt_decoder.js;"
+      mixin="pointer"
+      vr-mode-ui="enterVRButton: #EnterVRButton;"
+    >
+      <a-assets timeout="5000" data-assets>
+
+        <a-asset-item id="rocket" src="assets/audio/looperman-l-1791281-0294023-0x0329e01f.mp3" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="bgaudio" src="assets/audio/PodcastUniverse360_Loop01.mp3" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="click1" src="assets/audio/mixkit-sci-fi-click-900.mp3" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="click2" src="assets/audio/mixkit-select-click-1109.mp3" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="click3" src="assets/audio/mixkit-click-melodic-tone-1129.mp3" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="click4" src="assets/audio/mixkit-mouse-click-close-1113-2.mp3" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="click5" src="assets/audio/mixkit-modern-click-box-check-1120.mp3" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="click6" src="assets/audio/mixkit-single-classic-click-1116.mp3" response-type="arraybuffer"></a-asset-item>
+
+        <a-mixin id="pointer" raycaster="objects: .clickable"></a-mixin>
+        <a-mixin id="controller-right" laser-controls="hand: right" mixin="pointer"></a-mixin>
+        <a-mixin id="controller-left" laser-controls="hand: left" mixin="pointer"></a-mixin>
+
+        <a-mixin id="bgmusic-on" sound="src: #bgaudio; loop: true; positional: false; volume: 1; autoplay: true;"></a-mixin>
+        <a-mixin id="bgmusic-off" sound="src: #bgaudio; loop: true; positional: false; volume: 0; autoplay: true;"></a-mixin>
+
+        <img id="nebula" src="assets/nebula.jpg">
+        <img id="galaxy" src="assets/galaxy.png">
+        <img id="txtintro-desktop" src="assets/texture-intro-desktop.png">
+        <img id="txtintro-mobile" src="assets/texture-intro-mobile.png">
+        <img id="txtintro-headset" src="assets/texture-intro-headset.png">
+        <img id="txtsxm" src="assets/texture-sxm.png">
+        <img id="studioresonate" src="assets/texture-studioresonate.png">
+        <img id="txtclouds" src="assets/texture-clouds.png">
+        <img id="modalclose" src="assets/ico-close.png">
+        <img id="vrmenu" src="assets/ico-menu.svg">
+        <img id="listen-stitcher" src="assets/btn-stitcher.png">
+        <a-asset-item id="rocket1" src="assets/Satellite-Pandora_ColorOnly_Embeded.gltf"></a-asset-item>
+        <a-asset-item id="rocket2" src="assets/Satellite-Stitcher_ColorOnly_Embeded.gltf"></a-asset-item>
+      </a-assets>
+
+
+      <!-- Inner Stars -->
+      <a-entity
+        particle-system="preset: dust; texture: ./assets/star2.png; color: #000,#fffecc,#ccf6ff; size: 2; particleCount:300; maxAge:40"
+        position="0 0 0"
+        accelerationSpread="0 2 0"
+        id="stars1"
+      >
+      </a-entity>
+
+      <!-- Outer Stars -->
+      <a-entity
+        particle-system="preset: dust; texture: ./assets/star2.png; color: #000,#fffecc,#ccf6ff; size: 3; particleCount:200; opacity: 1;direction: 0;maxAge:9"
+        position="0 0 400"
+        id="stars2"
+      >
+      </a-entity>
+
+
+      <a-entity id="rocket1Container">
+        <a-gltf-model
+          src="#rocket1"
+          id="rocketone"
+          position="-30 0 420"
+        >
+        </a-gltf-model>
+      </a-entity>
+
+      <a-entity
+        id="rocket2Container"
+        position="110 0 0"
+        material="opacity: 0; transparent: true">
+        <a-gltf-model
+          src="#rocket2"
+          id="rockettwo"
+          position="100 0 120"
+          rotation="0 90 45"
+        >
+        </a-gltf-model>
+      </a-entity>
+
+      <!-- Podcast container -->
+      <a-entity
+        data-items
+        position="0 1.6 0"
+        animation="property: rotation; from: 0 360 0; to: 0 0 0; loop: true; easing:linear; dur: 250000">
+        <div class="mainmenu">
+
+          <div class="menu-ico"><p>Menu</p></div>
+
+          <ul class="filter">
+            <li class="filter-btn label transparent">Menu</li>
+            <li class="filter-btn all-filter active">All</li>
+            <li class="filter-btn society-filter">Society and Culture</li>
+            <li class="filter-btn comedy-filter">Comedy</li>
+            <li class="filter-btn truecrime-filter">True Crime</li>
+            <li class="filter-btn news-filter">News</li>
+            <li class="filter-btn business-filter">Business</li>
+            <li class="filter-btn sports-filter">Sports</li>
+            <li class="filter-btn tvfilm-filter">TV & Film</li>
+            <li class="filter-btn other-filter">Other</li>
+            <li class="filter-btn music music-on transparent">Music on</li>
+          </ul>
+        </div>
+      </a-entity>
+
+      <!-- Sun -->
+      <a-entity id="sun">
+        <a-sphere
+          position="0 1.6 0"
+          radius="8.035"
+          src="#txtclouds"
+          material="transparent: true;"
+          animation="property: rotation; from: 0 0 0; to: 0 360 0; loop: true; easing:linear; dur: 100000">
+        </a-sphere>
+
+        <a-sphere
+          position="0 1.6 0"
+          radius="8"
+          src="#txtsxm">
+          <a-box
+            material="src: #studioresonate"
+            animation="property: rotation; from: 90 360 0; to: 90 0 360; loop: true; easing:linear; dur: 150000">
+          </a-box>
+        </a-sphere>
+      </a-entity>
+
+      <!-- Camera and controls -->
+      <a-entity id="rig"
+        introcontrol
+        speed="1"
+        movement-controls="enabled: false"
+      >
+
+        <!-- Intro -->
+        <a-image
+          class="clickable"
+          id="intro"
+          position="0, 1.6, -2"
+          height="2.5"
+          width="3.6"
+          material="side: front; shader: flat"
+          sound="src: #click1; on: click; positional: true; volume: 0.1;"
+        >
+        </a-image>
+
+        <!-- Camera -->
+        <a-entity
+          camera
+          id="maincamera"
+          position="0 1.6 0"
+          look-controls="pointerLockEnabled: false"
+          wasd-controls-enabled="false"
+          active="true"
+        >
+          <!-- <a-cursor></a-cursor> -->
+        </a-entity>
+
+
+        <a-box
+          id="modalContainer"
+          depth="4"
+          height="4"
+          width="4"
+          position="0 1.6 0"
+          rotation="0 0 0"
+          material="transparent: true; opacity: 0">
+          <!-- Modal -->
+          <a-entity class="podcastModal"  visible="true" position="0 300 -3">
+            <a-circle
+              closemodal
+              class="clickable closemodal"
+              material="shader: flat;"
+              radius="0.4"
+              sound="src: #click4; on: click; positional: false; volume: 0.1;"
+              event-set__enter1="_event: mouseenter; scale: 1.1 1.1 1.1"
+              event-set__leave2="_event: mouseleave; scale: 1 1 1"
+              src="#modalclose">
+            </a-circle>
+
+            <!-- Video  -->
+            <a-video
+              class="modalvideo clickable"
+              height="4"
+              width="7"
+              src=""
+              visible="false"
+              >
+            </a-video>
+
+            <!-- listen -->
+            <a-plane
+              class="clickable listen"
+              height="0.440"
+              width="2.570"
+              position="-3.67 -0.83 0.350"
+              material="shader: flat;"
+              event-set__enter="_event: mouseenter; material: color: #D6E4E5"
+              event-set__leave="_event: mouseleave; material: color: white"
+              data-link
+              src="#listen-stitcher">
+            </a-plane>
+
+            <!-- Art  -->
+            <a-plane
+              class="modalart"
+              height="1.6"
+              width="1.6"
+              position="-2.7 -3.2 0"
+              material="shader: flat;"
+              src=""
+            >
+            </a-plane>
+
+            <!-- Title  -->
+            <a-text
+              class="modaltitle"
+              position="-1.6 -2.8 0"
+              width="5"
+              value=""
+              align="left"
+              color="white"
+              wrap-count="25"
+              baseline="top"
+              font="assets/fonts/AvenirNextLTProMedium-msdf.json"
+              negate="false"
+            >
+            </a-text>
+
+            <!-- Podcast Hosts  -->
+            <a-text
+              class="modalhosts"
+              width="2"
+              value=""
+              color="white"
+              font="assets/fonts/AvenirNextLTProMedium-msdf.json"
+              negate="false"
+            >
+            </a-text>
+
+            <!-- Description  -->
+            <a-text
+              class="modaldesc"
+              position="0 -0.3 0"
+              scale="1 1"
+              width="2"
+              value=""
+              line-height="60"
+              color="white"
+              baseline="top"
+              font="assets/fonts/AvenirNextLTProMedium-msdf.json"
+              negate="false"
+            >
+            </a-text>
+          </a-entity>
+
+
+            <a-plane
+              id="bgModal"
+              color="black"
+              opacity="0.4"
+              material="shader: flat;"
+              scale="0 0 0"
+              rotation="0 90 0"
+              >
+            </a-plane>
+
+
+        </a-box>
+
+
+
+        <a-entity id="rhand" mixin="controller-right">
+          <!-- <a-entity position="0 0.1 0" fps-counter></a-entity> -->
+        </a-entity>
+
+        <a-entity id="lhand" mixin="controller-left">
+          <!-- menu icon -->
+          <a-circle
+            vrmenufilter
+            id="vr-ico-menu"
+            class="clickable"
+            radius="0.04"
+            position="0 0 -300"
+            src="#vrmenu"
+            sound="src: #click6; on: mouseenter; positional: true; volume: 0.3;"
+            sound__down="src: #click2; on: mousedown; positional: true; volume: 0.1;"
+            event-set__enter="_event: mouseenter; _target: #helpText; visible: true"
+            event-set__leave="_event: mouseleave; _target: #helpText; visible: false">
+            <a-text id="helpText" scale="0.1 0.1" value="MENU" align="center" color="#FFF" visible="false" position="0 0.06 0"></a-text>
+          </a-circle>
+
+          <a-entity
+            position="0.4 0.15 0"
+            rotation="-20 -15 0"
+            id="vr-menu"
+            visible="true"
+            scale="0 0"
+          >
+
+            <a-xycontainer
+              justifyItems="start"
+              alignItems="start"
+              direction="row"
+              spacing="0.01"
+            >
+
+              <a-plane
+                class="clickable vr-btn-filter vr-all-filter"
+                event-set__enter="_event: mouseenter; scale: 1.02 1.02 1.02"
+                event-set__leave="_event: mouseleave; scale: 1 1 1"
+                event-set__down="_event: mousedown; scale: 0.98 0.98 0.98"
+                event-set__up="_event: mouseup; scale: 1 1 1"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.3;"
+                sound__down="src: #click2; on: mousedown; positional: true; volume: 0.1;"
+                color="#0051e6"
+                height="0.07"
+                width="0.12">
+                <a-text scale="0.1 0.1" align="center" color="white" position="0 0 0.001" value="ALL"></a-text>
+              </a-plane>
+
+              <a-plane
+                class="clickable vr-btn-filter vr-society-filter"
+                event-set__enter="_event: mouseenter; scale: 1.02 1.02 1.02"
+                event-set__leave="_event: mouseleave; scale: 1 1 1"
+                event-set__down="_event: mousedown; scale: 0.98 0.98 0.98"
+                event-set__up="_event: mouseup; scale: 1 1 1"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.3;"
+                sound__down="src: #click2; on: mousedown; positional: true; volume: 0.1;"
+                material="opacity: 0.3; transparent: true"
+                height="0.07"
+                width="0.26">
+                <a-text scale="0.1 0.1" align="center" color="white" position="0 0 0.001" value="SOCIETY & CULTURE"></a-text>
+              </a-plane>
+
+              <a-plane
+                class="clickable vr-btn-filter vr-comedy-filter"
+                event-set__enter="_event: mouseenter; scale: 1.02 1.02 1.02"
+                event-set__leave="_event: mouseleave; scale: 1 1 1"
+                event-set__down="_event: mousedown; scale: 0.98 0.98 0.98"
+                event-set__up="_event: mouseup; scale: 1 1 1"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.3;"
+                sound__down="src: #click2; on: mousedown; positional: true; volume: 0.1;"
+                material="opacity: 0.3; transparent: true"
+                height="0.07"
+                width="0.15">
+                <a-text scale="0.1 0.1" align="center" color="white" position="0 0 0.001" value="COMEDY"></a-text>
+              </a-plane>
+
+            </a-xycontainer>
+
+            <a-xycontainer
+              justifyItems="start"
+              alignItems="start"
+              direction="row"
+              spacing="0.01"
+              rotation="0 0 0"
+              position="-0.03 -0.08 0"
+            >
+
+              <a-plane
+                class="clickable vr-btn-filter vr-true-crime-filter"
+                event-set__enter="_event: mouseenter; scale: 1.02 1.02 1.02"
+                event-set__leave="_event: mouseleave; scale: 1 1 1"
+                event-set__down="_event: mousedown; scale: 0.98 0.98 0.98"
+                event-set__up="_event: mouseup; scale: 1 1 1"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.3;"
+                sound__down="src: #click2; on: mousedown; positional: true; volume: 0.1;"
+                material="opacity: 0.3; transparent: true"
+                height="0.07"
+                width="0.2">
+                <a-text scale="0.1 0.1" align="center" color="white" position="0 0 0.001" value="TRUE CRIME"></a-text>
+              </a-plane>
+
+              <a-plane
+                class="clickable vr-btn-filter vr-news-filter"
+                event-set__enter="_event: mouseenter; scale: 1.02 1.02 1.02"
+                event-set__leave="_event: mouseleave; scale: 1 1 1"
+                event-set__down="_event: mousedown; scale: 0.98 0.98 0.98"
+                event-set__up="_event: mouseup; scale: 1 1 1"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.3;"
+                sound__down="src: #click2; on: mousedown; positional: true; volume: 0.1;"
+                material="opacity: 0.3; transparent: true"
+                height="0.07"
+                width="0.11">
+                <a-text scale="0.1 0.1" align="center" color="white" position="0 0 0.001" value="NEWS"></a-text>
+              </a-plane>
+
+              <a-plane
+                class="clickable vr-btn-filter vr-business-filter"
+                event-set__enter="_event: mouseenter; scale: 1.02 1.02 1.02"
+                event-set__leave="_event: mouseleave; scale: 1 1 1"
+                event-set__down="_event: mousedown; scale: 0.98 0.98 0.98"
+                event-set__up="_event: mouseup; scale: 1 1 1"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.3;"
+                sound__down="src: #click2; on: mousedown; positional: true; volume: 0.1;"
+                material="opacity: 0.3; transparent: true"
+                height="0.07"
+                width="0.16">
+                <a-text scale="0.1 0.1" align="center" color="white" position="0 0 0.001" value="BUSINESS"></a-text>
+              </a-plane>
+
+            </a-xycontainer>
+
+
+            <a-xycontainer
+              justifyItems="start"
+              alignItems="start"
+              direction="row"
+              spacing="0.01"
+              rotation="0 0 0"
+              position="-0.055 -0.16 0"
+            >
+
+              <a-plane
+                class="clickable vr-btn-filter vr-sports-filter"
+                event-set__enter="_event: mouseenter; scale: 1.02 1.02 1.02"
+                event-set__leave="_event: mouseleave; scale: 1 1 1"
+                event-set__down="_event: mousedown; scale: 0.98 0.98 0.98"
+                event-set__up="_event: mouseup; scale: 1 1 1"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.3;"
+                sound__down="src: #click2; on: mousedown; positional: true; volume: 0.1;"
+                material="opacity: 0.3; transparent: true"
+                height="0.07"
+                width="0.12">
+                <a-text scale="0.1 0.1" align="center" color="white" position="0 0 0.001" value="SPORTS"></a-text>
+              </a-plane>
+
+              <a-plane
+                class="clickable vr-btn-filter vr-tv-film-filter"
+                event-set__enter="_event: mouseenter; scale: 1.02 1.02 1.02"
+                event-set__leave="_event: mouseleave; scale: 1 1 1"
+                event-set__down="_event: mousedown; scale: 0.98 0.98 0.98"
+                event-set__up="_event: mouseup; scale: 1 1 1"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.3;"
+                sound__down="src: #click2; on: mousedown; positional: true; volume: 0.1;"
+                material="opacity: 0.3; transparent: true"
+                height="0.07"
+                width="0.17">
+                <a-text scale="0.1 0.1" align="center" color="white" position="0 0 0.001" value="TV & FILM"></a-text>
+              </a-plane>
+
+              <a-plane
+                class="clickable vr-btn-filter vr-other-filter"
+                event-set__enter="_event: mouseenter; scale: 1.02 1.02 1.02"
+                event-set__leave="_event: mouseleave; scale: 1 1 1"
+                event-set__down="_event: mousedown; scale: 0.98 0.98 0.98"
+                event-set__up="_event: mouseup; scale: 1 1 1"
+                sound="src: #click6; on: mouseenter; positional: true; volume: 0.3;"
+                sound__down="src: #click2; on: mousedown; positional: true; volume: 0.1;"
+                material="opacity: 0.3; transparent: true"
+                height="0.07"
+                width="0.13">
+                <a-text scale="0.1 0.1" align="center" color="white" position="0 0 0.001" value="OTHER"></a-text>
+              </a-plane>
+
+            </a-xycontainer>
+
+            <a-xycontainer
+              justifyItems="start"
+              alignItems="start"
+              direction="row"
+              spacing="0.01"
+              rotation="0 0 0"
+              position="-0.25 -0.24 0"
+            >
+              <a-text
+                musictoggle
+                class="clickable"
+                geometry="primitive:plane; height:0.03; width:0.16;"
+                material="opacity: 0; transparent: true; color: white"
+                color="white"
+                align="left"
+                color="white"
+                position="-0.5 -0.01 0.01"
+                value="MUSIC ON"
+                width="0.3"
+                sound="src: #click4; on: click; positional: true; volume: 0.2;"
+              >
+              <a-circle class="toggle" color="#0051e6" radius="0.01" position="0.085 0 0"></a-circle>
+              </a-text>
+            </a-xycontainer>
+
+          </a-entity>
+
+        </a-entity>
+          <!-- /left controller -->
+
+      </a-entity>
+      <!-- /rig -->
+
+
+
+      <!-- Lights -->
+      <a-light intensity="1.5" type="directional" position="0 0 0" rotation="-90 0 0" target="#directionaltarget">
+        <a-entity id="directionaltarget" position="4 3 -3"></a-entity>
+      </a-light>
+
+      <a-light intensity="0.3" type="directional" position="0 0 0" rotation="-90 0 0" target="#directionaltarget2">
+        <a-entity id="directionaltarget2" position="-4 3 3"></a-entity>
+      </a-light>
+
+      <!-- Sky -->
+      <a-sky src="#nebula" radius="800" animation="property: rotation; from: 0 360 0; to: 0 0 0; loop: true; easing:linear; dur: 1500000"></a-sky>
+
+      <a-circle
+        material="src: #galaxy; opacity: 0.6; transparent: true; shader: flat;"
+        rotation="80 177 -129"
+        position="0 600 -100"
+        radius="300"
+        animation="property: rotation; from: 80 177 360; to: 80 177 0; loop: true; easing:linear; dur: 300000">
+      </a-circle>
+
+      <a id="EnterVRButton"></a>
+
+
+    </a-scene>
+
+    <div class="cursor"></div>
+
+    <footer>
+      <ul class="legal">
+        <li><a href="https://www.sxmmedia.com/privacy-policy" target="_blank">Privacy Policy</a></li>
+        <li><a href="https://www.sxmmedia.com/terms" target="_blank">Terms</a></li>
+      </ul>
+    </footer>
+
+    <audio id="menu-click" src="assets/audio/mixkit-mouse-click-close-1113-2.mp3"></audio>
+
+
+      <script src="js/app.js"></script>
+      <% if (htmlWebpackPlugin.options.devServer) { %>
+      <script src="<%= htmlWebpackPlugin.options.devServer%>/webpack-dev-server.js"></script>
+    <% } %>
+  </body>
 </html>

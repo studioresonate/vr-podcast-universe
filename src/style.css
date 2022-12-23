@@ -1,50 +1,422 @@
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  display: block;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+a {
+  background-color: transparent;
+}
+
+abbr[title] {
+  border-bottom: none;
+  text-decoration: underline;
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+b, strong {
+  font-weight: bolder;
+}
+
+code, kbd, samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+img {
+  border-style: none;
+}
+
+button, input, optgroup, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+button, input {
+  overflow: visible;
+}
+
+button, select {
+  text-transform: none;
+}
+
+[type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=submit]::-moz-focus-inner, button::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+[type=button]:-moz-focusring, [type=reset]:-moz-focusring, [type=submit]:-moz-focusring, button:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+legend {
+  box-sizing: border-box;
+  color: inherit;
+  display: table;
+  max-width: 100%;
+  padding: 0;
+  white-space: normal;
+}
+
+progress {
+  vertical-align: baseline;
+}
+
+textarea {
+  overflow: auto;
+}
+
+details {
+  display: block;
+}
+
+summary {
+  display: list-item;
+}
+
+template {
+  display: none;
+}
+
+[hidden] {
+  display: none;
+}
+
+* {
+  box-sizing: border-box;
+  cursor: none !important;
+}
+
 :root {
+  --red: #f11012;
+  --red-darker: #d90d10;
+  --green: #82af3a;
+  --blue: #0051e6;
+  --black: #0f111a;
+  --gray: #242424;
   --white: #ffffff;
-  --black: #000000;
-  --grey: #2d2d2d;
+  --offwhite: #f8f8f2;
+  --pink: #d91ca8;
+  --raspberry: #C5169C;
+  --yellow: #ffb626;
+  --yellow-darker: #f0a000;
+  --border-radius: 0.5rem;
+  --grid-unit: 0.5rem;
+  --font-weight-normal: 300;
+  --font-weight-bold: 600;
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --global-transition-time: 0.2s;
+  --hard-box-shadow: 0.625rem 0.625rem 0 0 var(--yellow-darker);
 }
 
-*
-{
-    margin: 0;
-    padding: 0;
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-html,
-body
-{
-    height: 100vh;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fadeIn {
+  -webkit-animation: 1s ease-out 0.5s forwards fadeIn;
+          animation: 1s ease-out 0.5s forwards fadeIn;
 }
 
-.webgl
-{
-    position: fixed;
-    top: 0;
-    left: 0;
-    outline: none;
+html {
+  font-size: 100%;
+  height: 100%;
 }
 
-.instructions {
-  color: var(--white);
+body {
+  font-size: 1rem;
+  background-color: var(--offwhite);
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-normal);
+  margin: 0;
+  background-color: var(--black);
+  height: 100%;
+}
+
+#EnterVRButton {
+  background: url('./assets/ico-vr.svg') 0 0 no-repeat;
+  height: 40px;
+  width: 40px;
   position: absolute;
-  top: 0;
-  left: 0;
+  bottom: 55px;
+  right: 20px;
   z-index: 100;
-  right: 0;
-  margin: 0 auto;
-  text-align: center;
-  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
-  padding: 0.4rem 1rem;
-  font-size: 0.8rem;
-  display: inline-table;
-  margin-top: 1rem;
-  text-shadow: 1px 1px 1px var(--black);
-  /* background-color: hsla(0, 0%, 0%, 0.595); */
+  cursor: pointer;
+  display: none;
 }
 
-.instructions span {
+.mainmenu {
+  position: absolute;
+  bottom: 25px;
+  left: 20px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  pointer-events: none;
+}
+
+.mainmenu.mobile {
+  align-items: flex-end;
+}
+
+.mainmenu .menu-ico {
+  width: 2.4rem;
+  height: 2.4rem;
+  margin-right: 1rem;
+  background: url('./assets/ico-menu.svg') 0 0 no-repeat;
+  opacity: 0;
+  cursor: pointer;
+  pointer-events: visible;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.mainmenu .menu-ico:hover,
+#EnterVRButton:hover {
+  transform: scale(1.1);
+  /* filter: grayscale(100%) */
+  filter: hue-rotate(45deg)
+}
+
+.mainmenu .label {
+  position: absolute;
+  top: -42px;
+  color: var(--white);
+  left: 42px;
+  z-index: 900;
   font-weight: bold;
-  background-color: var(--grey);
-  padding: 2px 5px;
-  border-radius: 20px;
+  /* opacity: 1; */
+  font-size: 1.4rem !important;
+  /* visibility: visible; */
+
+}
+
+.mainmenu .music {
+  position: absolute;
+  bottom: -20px;
+  left: 54px;
+  margin: 0 !important;
+  padding: 0.4rem 1rem 0.4rem 0 !important;
+  font-size: 0.7rem !important;
+  color: var(--white);
+}
+
+.mainmenu .transparent {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+}
+
+.mainmenu .music .icomusic {
+  display: block;
+  height: 10px;
+  padding-left: 6px;
+}
+
+.mainmenu .filter {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 0.4rem 0;
+  padding: 0;
+  width: 70%;
+}
+.mainmenu .filter li {
+  display: flex;
+  align-items: flex-end;
+  margin: 0.3rem 0.6rem 0.3rem -0.5rem;
+  border: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.6rem 0.8rem;
+  list-style-type: none;
+  color: var(--white);
+  background-color: rgba(74, 88, 153, 0.45);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: visible;
+  visibility: hidden;
+  transition: all 0.2s ease-in-out;
+}
+
+.mainmenu .filter li:hover {
+  background-color: #4a5899;
+}
+
+.mainmenu .filter li span {
+  background-color: var(--black);
+  color: var(--white);
+  font-size: 0.6rem;
+  padding: 0.2rem 0.4rem;
+  margin-left: 0.3rem;
+  border-radius: 2rem;
+}
+.mainmenu .filter li.active {
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.mainmenu .filter li.show {
+  opacity: 1;
+  margin-left: 0rem;
+  visibility: visible;
+}
+
+.mainmenu p {
+  position: absolute;
+  top: -16px;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  margin: 0 0 0 5px;
+  color: var(--white);
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+}
+
+.mainmenu p.open {
+  opacity: 0;
+  top: 0;
+}
+
+.a-loader-title,
+.a-enter-ar {
+  /* color: var(--black); */
+  visibility: hidden;
+  display: none;
+}
+
+.a-dialog-button {
+  color: var(--white);
+  font-weight: bold;
+  border-radius: 0;
+  box-shadow: 0 !important;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.a-dialog-deny-button {
+  background-color: var(--gray);
+}
+
+.a-dialog-allow-button,
+.a-dialog-ok-button {
+  background-color: var(--blue);
+}
+
+footer {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+}
+
+footer .legal {
+  margin: 0 20px 0 0;
+  padding: 0;
+  font-size: 0.6rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+footer .legal li {
+  padding: 0 0.4rem;
+  list-style-type: none;
+}
+
+footer .legal a {
+  text-decoration: none;
+  color: var(--white);
+  transition: all 0.8 ease-in-out;
+}
+
+footer .legal a:hover {
+  color: var(--blue)
+}
+
+.cursor {
+  z-index: 999;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  border: 2px solid var(--white);
+  background-color: transparent;
+  opacity: .8;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: width .2s, height .2s, opacity .2s;
+}
+
+.cursor.hover {
+  width: 35px;
+  height: 35px;
+  border: 3px solid var(--raspberry);
+  opacity: 1;
+}
+
+.cursor.mousedown {
+  width: 15px;
+  height: 15px;
 }
