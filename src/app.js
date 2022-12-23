@@ -159,7 +159,7 @@ const renderItems = (podcasts) => {
         <a-text
           look-at="[camera]"
           position="0 -0.8 0"
-          scale="2 2"
+          scale="1.4 1.4"
           align="center"
           width="2"
           value="${podcast.podcastTitle.replace(/"/g, '&quot;')}"
@@ -168,6 +168,7 @@ const renderItems = (podcasts) => {
           baseline="top"
           font="assets/fonts/AvenirNextLTProMedium-msdf.json"
           negate="false"
+          wrap-count="20"
         >
         </a-text>
       </a-entity>
