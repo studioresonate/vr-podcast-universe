@@ -10,6 +10,7 @@
     <!-- End Google Tag Manager -->
     <meta charset="utf-8"/>
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta name="description" content="Hundreds of exclusive podcasts, ready to be explored. Dive into the SXM Podcast Universe and see what's possible.">
     <script src="js/aframe.min.js"></script>
     <script src="js/aframe-extras.min@6.1.1.js"></script>
     <script src="js/xylayout-all.min.js"></script>
@@ -21,6 +22,15 @@
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
     <link href="https://images.ctfassets.net" rel="preconnect" crossorigin>
     <link rel="dns-prefetch" href="https://images.ctfassets.net" />
+
+    <meta property="og:url" content="https://vr-podcast-universe.netlify.app" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="<%= htmlWebpackPlugin.options.title %>" />
+    <meta property="og:description" content="Hundreds of exclusive podcasts, ready to be explored. Dive into the SXM Podcast Universe and see what's possible." />
+    <meta property="og:image" content="https://vr-podcast-universe.netlify.app/images/og-image.jpg" />
+    <meta property="og:image:url" content="https://vr-podcast-universe.netlify.app/images/og-image.jpg" />
+    <meta property="og:image:secure_url" content="https://vr-podcast-universe.netlify.app/images/og-image.jpg" />
+
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -33,7 +43,7 @@
       <div class="unsupported-browser">
         Sorry, your browser is not supported.  Please upgrade to
         the latest version or switch your browser to use this site.
-        See <a href="http://outdatedbrowser.com/">outdatedbrowser.com</a>
+        See <a href="https://outdatedbrowser.com/">outdatedbrowser.com</a>
         for options.
       </div>
     <% } %>
