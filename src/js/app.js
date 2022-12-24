@@ -1,3 +1,16 @@
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.querySelector('#loading').classList.add('loaded')
+  }, 800);
+})
+
+// const scene = document.querySelector('a-scene');
+// scene.addEventListener('loaded', () => {
+//   setTimeout(() => {
+//     document.querySelector('#loading').classList.add('loaded')
+//   }, 800);
+// });
+
 const text = `
 ╔═╗╔╦╗╦ ╦╔╦╗╦╔═╗  ╦═╗╔═╗╔═╗╔═╗╔╗╔╔═╗╔╦╗╔═╗
 ╚═╗ ║ ║ ║ ║║║║ ║  ╠╦╝║╣ ╚═╗║ ║║║║╠═╣ ║ ║╣
