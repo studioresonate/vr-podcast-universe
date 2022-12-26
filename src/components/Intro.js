@@ -33,23 +33,6 @@ AFRAME.registerComponent('introcontrol', {
       // console.log("You're on mobile " + mobile);
     }
 
-    const asteroid = () => {
-      const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
-      sun.insertAdjacentHTML('beforeend', `
-      <a-circle
-        radius="0.2"
-        color="white"
-        position="${random(-250, 250)} 180 ${random(0, 100)}"
-        class="asteroids"
-        animation="property: position; to: ${random(-50, 50)} -100 ${random(-250, -50)}; dur: 15000; easing: linear; loop: false"
-        trail="color:white; length:300;width:0.3"
-        trail__1="color:white; length:240;width:0.3"
-        trail__2="color:#39d1ff; length:80;width:0.3"
-        trail__3="color:#39d1ff; length:80;width:0.3">
-      </a-circle>
-      `)
-    }
-
 
     intro.addEventListener('click', () => {
       this.el.setAttribute('animation', 'property: position; to: 0 0 35; dur: 8500; easing: easeInOutCubic;')
@@ -70,7 +53,7 @@ AFRAME.registerComponent('introcontrol', {
       // random asteroids
 
 
-      asteroid()
+
 
 
       setTimeout(() => {

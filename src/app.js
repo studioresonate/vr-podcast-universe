@@ -67,8 +67,9 @@ const renderItems = (podcasts) => {
   const modalart = document.querySelector('.modalart');
   const modaldesc = document.querySelector('.modaldesc');
   const modalvideo = document.querySelector('.modalvideo');
-  const modallisten = document.querySelector('.listen')
+  const modallisten = document.querySelector('.listen');
   const podcastmodal = document.querySelector('.podcastModal');
+  const intro = document.querySelector('#intro');
 
   const podcastHolder = document.querySelector("[data-items]");
   const podcastAssetHolder = document.querySelector("[data-assets]");
@@ -81,16 +82,46 @@ const renderItems = (podcasts) => {
 
   // const modal = document.querySelector("[data-modal]");
   let count = 0
-  let id;
+  // let id;
 
-  const asteroidInterval = () => {
-    // assign setInterval's result
-    id = setInterval(function () {
-      asteroid()
-    }, 20000)
-  }
+  // const asteroidInterval = () => {
+  //   // assign setInterval's result
+  //   id = setInterval(function () {
+  //     asteroid()
+  //   }, 20000)
+  // }
 
-  const asteroid = () => {
+  // const asteroid = () => {
+  //   const random = (min, max) => Math.random() * (max - min) + min;
+  //   sun.insertAdjacentHTML('beforeend', `
+  //   <a-circle
+  //     radius="0.2"
+  //     color="white"
+  //     position="${random(-250, 250)} 180 ${random(0, 100)}"
+  //     class="asteroids"
+  //     animation="property: position; to: ${random(-50, 50)} -100 ${random(-250, -50)}; dur: 15000; easing: linear; loop: false"
+  //     trail="color:white; length:300;width:0.3"
+  //     trail__1="color:white; length:240;width:0.3"
+  //     trail__2="color:#39d1ff; length:80;width:0.3"
+  //     trail__3="color:#39d1ff; length:80;width:0.3">
+  //   </a-circle>
+  //   `)
+  // }
+
+  // asteroidInterval()
+
+  // document.addEventListener("visibilitychange", () => {
+  //   if (document.hidden) {
+  //     // console.log('Hidden');
+  //     clearInterval(id)
+  //   } else {
+  //     // console.log('Visible');
+  //     asteroidInterval()
+  //   }
+  // });
+
+  // Run asteroid function once every minute for only 4 times. This is due to the Oculus browser not knowing how to handle visibilitychange events and preventing a ton of asteroids falling once visibility is back. Otherwise, we would just set a setInterval to run this function.
+  const asteroids = () => {
     const random = (min, max) => Math.random() * (max - min) + min;
     sun.insertAdjacentHTML('beforeend', `
     <a-circle
@@ -105,19 +136,17 @@ const renderItems = (podcasts) => {
       trail__3="color:#39d1ff; length:80;width:0.3">
     </a-circle>
     `)
+    asteroidCount++;
+    if (asteroidCount >= 4) {
+      clearInterval(asteroidInt);
+    }
   }
 
-  asteroidInterval()
+  let asteroidCount = 0;
+  const asteroidInt = setInterval(asteroids, 60000);
 
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      // console.log('Hidden');
-      clearInterval(id)
-    } else {
-      // console.log('Visible');
-      asteroidInterval()
-    }
-  });
+  intro.addEventListener('click', asteroids)
+
 
   // pick a random rotation duration
   const podcastRotation = [6000, 9000, 10000, 20000]
@@ -556,7 +585,6 @@ const musicToggle = () => {
 m.addEventListener('click', musicToggle);
 
 const cursor = document.querySelector('.cursor');
-const clickable = document.querySelectorAll('.clickable');
 
 document.addEventListener('mousemove', function (e) {
   const x = e.clientX;
