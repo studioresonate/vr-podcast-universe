@@ -53,7 +53,7 @@ function setAttributes(el, attrs) {
 // generate random position with offset for the sun
 function generateRandomOffset(min, max) {
   const num = Math.random() * (max - min + 1) + min;
-  return (num >= -4.5 && num <= 4.5) ? generateRandomOffset(min, max) : num;
+  return (num >= -5 && num <= 5) ? generateRandomOffset(min, max) : num;
 }
 
 // generate random position with no offset
