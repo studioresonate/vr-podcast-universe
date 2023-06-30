@@ -246,7 +246,8 @@ const renderItems = (podcasts) => {
       };
 
       // values
-      modalart.setAttribute('src', `#${podcast.sys.id}`)
+      podcast.coverArt ? modalart.setAttribute('src', `#${podcast.sys.id}`) : modalart.setAttribute('src', '#nocoverart')
+      // modalart.setAttribute('src', `#${podcast.sys.id}`)
       modaltitle.setAttribute('value', podcast.podcastTitle)
       const podDesc = documentToPlainTextString(podcast.description?.json)
       podcast.description ? modaldesc.setAttribute('value', truncateString(podDesc)) : modaldesc.setAttribute('value', 'Description coming soon!')
@@ -520,9 +521,15 @@ const renderItems = (podcasts) => {
 
   // Asset management
   podcasts.forEach((podcast) => {
-    podcastAssetHolder.insertAdjacentHTML("beforeend", `
-      <img crossorigin="anonymous" id=${podcast.sys.id} src=${podcast.coverArt.url}?fit=scale&amp;w=250&amp;h=250&amp;q=75 />
-    `)
+    if (podcast.coverArt) {
+      podcastAssetHolder.insertAdjacentHTML("beforeend", `
+        <img crossorigin="anonymous" id=${podcast.sys.id} src=${podcast.coverArt.url}?fit=scale&amp;w=250&amp;h=250&amp;q=75 />
+      `)
+    } else {
+      podcastAssetHolder.insertAdjacentHTML("beforeend", `
+        <img crossorigin="anonymous" id=${podcast.sys.id} src="/assets/texture-coming-soon-250x250.png" />
+      `)
+    }
   });
 
 
